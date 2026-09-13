@@ -1,70 +1,126 @@
 import { projects } from '../data/mockData';
-import { MapPin, Clock, Zap } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { MapPin, Clock, Zap, ArrowUpRight } from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
+
+const galleryImages = [
+  { url: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b6?auto=format&fit=crop&q=80&w=800", caption: "Industrial Power DB Testing" },
+  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=800", caption: "Commercial Conduit Routing" },
+  { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", caption: "Architectural Office Lighting" },
+  { url: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=800", caption: "Cable Tray & Feeder Assembly" },
+  { url: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=800", caption: "Residential Smart Distribution" },
+  { url: "https://images.unsplash.com/photo-1632731515904-8b6343513a94?auto=format&fit=crop&q=80&w=800", caption: "High Voltage Insulation Checks" }
+];
 
 const Projects = () => {
   return (
-    <div className="bg-gray-50 pb-20">
-      <section className="bg-dark text-white py-20 text-center">
-        <div className="container-custom">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects & Gallery</h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            A showcase of our successfully completed electrical projects across various sectors.
-          </p>
+    <div className="bg-slate-50 min-h-screen">
+      {/* ============================== PAGE HEADER ============================== */}
+      <section className="relative pt-32 pb-20 bg-slate-950 text-white overflow-hidden">
+        <div className="hero-orb hero-orb-1 opacity-60"></div>
+        <div className="hero-grid-pattern"></div>
+        
+        <div className="container-custom relative z-10 text-center">
+          <ScrollReveal variant="fade-up">
+            <span className="eyebrow !text-amber-400">Proven Portfolio</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight text-white">
+              Projects &amp; Field Gallery
+            </h1>
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Explore our executed electrical contracts across Patancheru, Hyderabad, and surrounding industrial zones.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
+      {/* ============================== FEATURED PROJECTS ============================== */}
       <section className="section-padding">
         <div className="container-custom">
           
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {projects.map((project, idx) => (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              <ScrollReveal 
                 key={project.id} 
-                className="card group cursor-pointer"
+                variant="fade-up" 
+                delay={idx * 0.1}
               >
-                <div className="relative overflow-hidden h-64">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                    {project.category}
+                <div className="card group cursor-pointer h-full flex flex-col">
+                  {/* Card Media with Saitronics Image Zoom */}
+                  <div className="card-media relative h-64 bg-slate-900">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-amber-500 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        {project.category}
+                      </span>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div className="absolute bottom-4 left-4 right-4 text-white z-10">
+                      <h3 className="text-xl font-bold group-hover:text-amber-400 transition-colors flex items-center justify-between">
+                        <span>{project.title}</span>
+                        <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      </h3>
+                      <p className="text-xs text-slate-300 mt-1">{project.client}</p>
+                    </div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{project.title}</h3>
-                    <p className="text-sm text-gray-300">{project.client}</p>
+                  
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div className="flex items-center gap-2 text-slate-700 mb-4 text-xs font-semibold">
+                      <Zap size={16} className="text-amber-500 shrink-0"/> 
+                      <span>{project.services}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-medium text-slate-500">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin size={15} className="text-amber-500" /> 
+                        {project.location}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={15} className="text-amber-500" /> 
+                        {project.duration}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-gray-600 mb-3 text-sm font-medium">
-                    <Zap size={16} className="text-primary"/> 
-                    {project.services}
-                  </div>
-                  <div className="flex justify-between border-t pt-4 mt-4 text-sm text-gray-500">
-                    <span className="flex items-center gap-1"><MapPin size={16}/> {project.location}</span>
-                    <span className="flex items-center gap-1"><Clock size={16}/> {project.duration}</span>
-                  </div>
-                </div>
-              </motion.div>
+              </ScrollReveal>
             ))}
           </div>
 
-          {/* Simple Gallery Grid for demonstration */}
-          <h2 className="section-title mt-10">Photo Gallery</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b6?auto=format&fit=crop&q=80&w=400" alt="Gallery 1" className="w-full h-48 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer" />
-            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=400" alt="Gallery 2" className="w-full h-48 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer" />
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Gallery 3" className="w-full h-48 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer" />
-            <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=400" alt="Gallery 4" className="w-full h-48 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer" />
+          {/* ============================== PHOTO GALLERY ============================== */}
+          <ScrollReveal variant="fade-up">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="eyebrow">On-Site Moments</span>
+              <h2 className="section-title">Field Work In Action</h2>
+              <p className="section-subtitle">
+                A glimpse into our neat conduit work, robust panel terminations, and clean installation finishes.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((item, idx) => (
+              <ScrollReveal 
+                key={idx} 
+                variant="zoom-in" 
+                delay={idx * 0.06}
+              >
+                <div className="card-media group relative h-64 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-slate-900 cursor-pointer">
+                  <img 
+                    src={item.url} 
+                    alt={item.caption} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <div className="text-white">
+                      <span className="text-xs font-bold text-amber-400 block uppercase tracking-wider">Site Execution</span>
+                      <p className="text-sm font-semibold">{item.caption}</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
           
         </div>
