@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
+import { Phone, ArrowUp, MessageSquare } from 'lucide-react';
 import { contactInfo } from '../data/mockData';
 
 const FloatingButtons = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 350) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 280);
     };
 
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -25,54 +21,47 @@ const FloatingButtons = () => {
     });
   };
 
-  const whatsappMessage = encodeURIComponent("Hi MR. ELECTRICAL WORKS, I'm interested in your electrical services.");
-  const whatsappUrl = `https://wa.me/91${contactInfo.phone}?text=${whatsappMessage}`;
-
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
-      {/* WhatsApp Button with Saitronics Radar Pulse */}
-      <div className="relative group">
-        <a 
-          href={whatsappUrl}
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="whatsapp-fab-pulse w-13 h-13 sm:w-14 sm:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg shadow-green-600/30 hover:scale-110 active:scale-95 transition-all duration-300"
-          title="Chat on WhatsApp"
-          aria-label="Chat on WhatsApp"
-        >
-          <MessageCircle size={26} className="fill-white/20" />
-        </a>
-        <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-slate-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
-          WhatsApp Us
-        </span>
-      </div>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2.5 pointer-events-none">
       
-      {/* Call Button */}
-      <div className="relative group">
-        <a 
-          href={`tel:${contactInfo.phone}`}
-          className="w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-amber-600 to-amber-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-amber-600/30 hover:scale-110 active:scale-95 transition-all duration-300"
-          title="Direct Call"
-          aria-label="Direct Call"
-        >
-          <Phone size={22} />
-        </a>
-        <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-slate-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
-          Call Now
-        </span>
-      </div>
-
-      {/* Scroll to Top Button */}
+      {/* Scroll to Top */}
       <button
         onClick={scrollToTop}
-        className={`w-11 h-11 sm:w-12 sm:h-12 bg-slate-800/90 backdrop-blur-sm text-white rounded-full flex items-center justify-center shadow-lg hover:bg-slate-950 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 active:scale-95 ${
-          isVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-6 pointer-events-none'
+        className={`pointer-events-auto w-10 h-10 rounded-sm bg-[#12161F] text-[#8C96A5] hover:text-white border border-[#242A35] shadow-xl flex items-center justify-center hover:bg-[#1A202A] transition-all duration-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         title="Scroll to Top"
         aria-label="Scroll to Top"
       >
-        <ArrowUp size={20} />
+        <ArrowUp size={16} />
       </button>
+
+      {/* Direct Call Trigger */}
+      <a 
+        href={`tel:${contactInfo.phone}`}
+        className="pointer-events-auto flex items-center gap-2 px-3.5 py-2.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/50 shadow-xl shadow-[#B35010]/20"
+        title="Call Mr. Nekbor Seikh"
+        aria-label="Call Mr. Nekbor Seikh"
+      >
+        <Phone size={14} className="shrink-0" />
+        <span className="hidden sm:inline">
+          CALL GM: {contactInfo.displayPhone}
+        </span>
+      </a>
+
+      {/* WhatsApp Quick Trigger */}
+      <a 
+        href={contactInfo.whatsappUrl}
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="pointer-events-auto flex items-center gap-2 py-3 px-4 rounded-sm bg-[#102A1E] hover:bg-[#163828] text-[#34D399] font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#059669]/50 shadow-xl shadow-emerald-950/40"
+        title="Chat on WhatsApp"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageSquare size={16} className="shrink-0" />
+        <span>WHATSAPP CONSULTATION</span>
+      </a>
+
     </div>
   );
 };

@@ -1,128 +1,183 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Phone, Award, Clock, Wrench } from 'lucide-react';
-import { stats, services, contactInfo } from '../data/mockData';
+import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Phone, Award, Clock, Wrench, MessageSquare, MapPin, FileText, Check, ArrowUpRight, Activity, Terminal } from 'lucide-react';
+import { stats, services, contactInfo, leadership } from '../data/mockData';
 import ScrollReveal from '../components/ScrollReveal';
 import Counter from '../components/Counter';
 import Marquee from '../components/Marquee';
+import { LogoMark } from '../components/Logo';
+import LoadCalculator from '../components/LoadCalculator';
+import BlueprintViewer from '../components/BlueprintViewer';
 
 const Home = () => {
-  const features = [
-    { title: 'Certified Engineers', desc: 'M.Tech qualified supervision on all installations' },
-    { title: 'Strict Safety Protocols', desc: 'Compliant with Indian Electricity Rules & IS codes' },
-    { title: 'Quality Materials', desc: 'Genuine ISI & CE marked cables, switches & MCBs' },
-    { title: 'On-Time Handover', desc: 'Efficient milestone-driven project completion' },
-    { title: 'Transparent Pricing', desc: 'No hidden charges with upfront detailed estimates' },
-    { title: '24/7 Emergency Support', desc: 'Prompt fault-finding & power breakdown assistance' }
+  const [selectedFilter, setSelectedFilter] = useState('All');
+
+  const filterCategories = ['All', 'Substations & HT', 'Industrial LT', 'Commercial Towers', 'Villas & High-Rise'];
+
+  const filteredServices = selectedFilter === 'All' 
+    ? services 
+    : services.filter(s => {
+        if (selectedFilter === 'Substations & HT') return s.id === 3 || s.id === 4;
+        if (selectedFilter === 'Industrial LT') return s.id === 3 || s.id === 6;
+        if (selectedFilter === 'Commercial Towers') return s.id === 2 || s.id === 5;
+        if (selectedFilter === 'Villas & High-Rise') return s.id === 1 || s.id === 2;
+        return true;
+      });
+
+  const engineeringGuarantees = [
+    { code: 'IE RULES 1956', title: 'Full Statutory Compliance', desc: 'Zero rejection track record across Telangana CEIG & TSSPDCL inspectorate filings.' },
+    { code: 'IS 3043:2018', title: 'Sub-1.0 Ohm Earth Grid', desc: 'Engineered chemical earthing rods & pipe-in-pipe grounding with calibrated test certificates.' },
+    { code: 'CPRI CERTIFIED', title: 'Type-Tested Switchboards', desc: 'Fabricated with 99.9% electrolytic E91E copper busbars and Schneider/L&T switchgear.' },
+    { code: 'IS 732:2019', title: 'Harmonic & Thermal Balancing', desc: 'Infrared thermal imaging and balanced 3-phase load distribution preventing neutral burning.' },
   ];
 
-  const whatsappMessage = encodeURIComponent("Hi MR. ELECTRICAL WORKS, I would like to get a free quote for my electrical project.");
-  const whatsappUrl = `https://wa.me/91${contactInfo.phone}?text=${whatsappMessage}`;
-
   return (
-    <div className="overflow-hidden">
-      {/* ============================== HERO SECTION ============================== */}
-      <section className="relative min-h-[90vh] lg:min-h-[92vh] flex items-center pt-24 pb-20 bg-slate-950 text-white overflow-hidden">
-        {/* Saitronics Ambient Floating Glowing Orbs */}
-        <div className="hero-orb hero-orb-1"></div>
-        <div className="hero-orb hero-orb-2"></div>
-
-        {/* Technical Grid Pattern Overlay */}
-        <div className="hero-grid-pattern"></div>
-
-        {/* Subtle Background Image with Dark Vignette */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <img 
-            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=2000" 
-            alt="MR Electrical Works Site" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/90"></div>
-        </div>
+    <div className="overflow-hidden bg-[#FCFCFD] text-[#121417]">
+      {/* ============================== DRIBBBLE STYLE ARCHITECTURAL HERO ============================== */}
+      <section className="relative min-h-[92vh] flex items-center pt-32 pb-24 bg-[#0A0D12] text-white overflow-hidden border-b border-[#1E2430]">
         
+        {/* Subtle CAD Draftsman Grid Lines with 1px Intersection Marks */}
+        <div 
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(#B35010 1px, transparent 1px), linear-gradient(90deg, #B35010 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+
+        {/* Ambient Warm Copper Filament Radiance */}
+        <div className="absolute top-1/4 -right-40 w-96 h-96 bg-[#B35010]/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#0E639C]/15 rounded-full blur-[100px] pointer-events-none" />
+
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
-            {/* Hero Text Content with Saitronics hero-stagger blur-up entrance */}
-            <div className="lg:col-span-7 hero-stagger">
-              {/* Badge */}
-              <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-md">
-                <Zap size={14} className="fill-amber-400" />
-                <span>Premier Electrical Contractors • Telangana</span>
+            {/* Left Column: Authoritative Engineering Brief */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Telemetry Status Bar */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#141821] border border-[#262E3D] text-[11px] font-mono tracking-wider text-[#CBD5E1]">
+                <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse" />
+                <span className="text-[#E57A36] font-bold">11kV/415V HT·LT EPC:</span>
+                <span>PATANCHERU &amp; HYDERABAD CORRIDOR</span>
               </div>
 
-              {/* Main Heading */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.12] mb-6 tracking-tight">
-                Electrical Engineering &amp; Contracting{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-200">
-                  Delivered As One.
+              {/* Architectural Main Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.08] tracking-tight">
+                Turnkey Electrical Contracting &amp;{' '}
+                <span className="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-8">
+                  Substation EPC.
                 </span>
               </h1>
 
-              {/* Subtitle */}
-              <p className="hero-subtitle text-slate-300 text-lg md:text-xl font-normal mb-8 max-w-2xl leading-relaxed">
-                Led by <strong>Mr. Nekbor Seikh (M.Tech - EEE)</strong>, we engineer, deploy, and maintain residential, commercial, and heavy industrial electrical setups with uncompromising safety and precision.
+              {/* Technical Proposition */}
+              <p className="text-[#8C96A5] text-base sm:text-lg font-sans max-w-2xl leading-relaxed">
+                Supervised directly by <strong className="text-white">Mr. Nekbor Seikh (M.Tech - EEE)</strong>, General Manager (Projects). We execute zero-defect 11kV transformer yards, industrial LT switchgear, high-rise risers, and luxury villa electrification across Telangana.
               </p>
-              
-              {/* CTA Action Buttons */}
-              <div className="hero-actions flex flex-wrap items-center gap-4">
-                <Link to="/contact" className="btn-primary flex items-center gap-2.5 text-base">
-                  <span>Request Free Quote</span>
-                  <ArrowRight size={18} />
+
+              {/* CAD Technical Specifications HUD */}
+              <div className="p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono text-[11px]">
+                <div>
+                  <span className="text-[#6B7280] block text-[9.5px]">CHIEF ENGINEER:</span>
+                  <span className="text-white font-semibold">NEKBOR SEIKH</span>
+                </div>
+                <div>
+                  <span className="text-[#6B7280] block text-[9.5px]">QUALIFICATION:</span>
+                  <span className="text-[#E57A36] font-semibold">M.TECH (EEE)</span>
+                </div>
+                <div>
+                  <span className="text-[#6B7280] block text-[9.5px]">DISCOM STANDARDS:</span>
+                  <span className="text-[#34D399] font-semibold">CEIG APPROVED</span>
+                </div>
+              </div>
+
+              {/* Action Triggers */}
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25"
+                >
+                  <span>Request Site BOQ &amp; Drawings</span>
+                  <ArrowRight size={15} />
                 </Link>
+
                 <a 
-                  href={whatsappUrl} 
+                  href={contactInfo.whatsappUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="btn-outline-light flex items-center gap-2.5 text-base"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40"
                 >
-                  <span>Chat on WhatsApp</span>
+                  <MessageSquare size={15} />
+                  <span>Direct WhatsApp with GM</span>
+                </a>
+
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  className="inline-flex items-center gap-2 px-4 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-[#CBD5E1] font-mono text-xs tracking-wider transition-all border border-[#242A35]"
+                >
+                  <Phone size={14} className="text-[#E57A36]" />
+                  <span>{contactInfo.displayPhone}</span>
                 </a>
               </div>
 
-              {/* Quick Trust Highlights */}
-              <div className="mt-10 pt-8 border-t border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-400 font-medium">
-                <div className="flex items-center gap-2">
-                  <Award size={16} className="text-amber-400" />
-                  <span>M.Tech Supervised</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-amber-400" />
-                  <span>100% Code Compliant</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-amber-400" />
-                  <span>24/7 Rapid Response</span>
-                </div>
-              </div>
             </div>
 
-            {/* Saitronics Corner-Bracketed Hero Media Panel */}
+            {/* Right Column: Dribbble Architectural Viewport Framing Mr. Nekbor Seikh */}
             <div className="lg:col-span-5">
-              <ScrollReveal variant="fade-left" delay={0.2}>
-                <div className="hero-panel group">
-                  <div className="relative h-[380px] sm:h-[440px] overflow-hidden bg-slate-900">
-                    <img 
-                      src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b6?auto=format&fit=crop&q=80&w=1000" 
-                      alt="MR Electrical Engineers at work" 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <ScrollReveal variant="fade-left" delay={0.15}>
+                <div className="relative group">
+                  
+                  {/* Outer Technical CAD Reticle Frame with Corner Marks */}
+                  <div className="relative p-2 bg-[#12161F] border border-[#293242] rounded-md shadow-2xl">
                     
-                    {/* Floating Trust Badge */}
-                    <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/15 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
-                        <Wrench size={24} />
+                    {/* Corner Reticle Glyphs (+) */}
+                    <span className="absolute -top-1.5 -left-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
+                    <span className="absolute -top-1.5 -right-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
+                    <span className="absolute -bottom-1.5 -left-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
+                    <span className="absolute -bottom-1.5 -right-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
+
+                    <div className="relative h-[430px] sm:h-[480px] overflow-hidden rounded-sm bg-[#0A0D12]">
+                      <img 
+                        src={leadership.photo} 
+                        alt="Mr. Nekbor Seikh (M.Tech - EEE) - General Manager Projects" 
+                        className="w-full h-full object-cover object-top filter grayscale-[15%] group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-103"
+                      />
+                      
+                      {/* Technical Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D12] via-[#0A0D12]/25 to-transparent" />
+
+                      {/* Top Right CAD Coordinate Stamp */}
+                      <div className="absolute top-3 right-3 px-2 py-1 bg-[#0A0D12]/90 backdrop-blur-sm border border-[#262E3D] rounded-sm font-mono text-[9.5px] text-[#8C96A5]">
+                        COORD: 17.5323° N, 78.2644° E
                       </div>
-                      <div>
-                        <div className="text-white font-bold text-sm leading-tight">
-                          100+ Projects Completed
+
+                      {/* Bottom Executive Telemetry Sheet */}
+                      <div className="absolute bottom-3 left-3 right-3 p-4 bg-[#0E1116]/95 backdrop-blur-md border border-[#242A35] rounded-sm text-white">
+                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#202735]">
+                          <div>
+                            <div className="text-base font-bold text-white flex items-center gap-1.5 font-display">
+                              <span>{leadership.name}</span>
+                              <CheckCircle2 size={15} className="text-[#34D399]" />
+                            </div>
+                            <div className="text-xs font-mono text-[#E57A36] font-semibold">
+                              {leadership.qualification} · {leadership.role}
+                            </div>
+                          </div>
+                          
+                          <div className="p-2 bg-[#1A202C] border border-[#2D3748] rounded-sm text-[#E57A36]">
+                            <LogoMark size={22} />
+                          </div>
                         </div>
-                        <div className="text-xs text-slate-300 mt-0.5">
-                          Residential • Commercial • Industrial
+
+                        <div className="grid grid-cols-2 gap-2 text-[11px] font-mono text-[#8C96A5]">
+                          <div>OFFICE: PATANCHERU, HYD</div>
+                          <div className="text-right text-[#34D399] font-semibold">100% PASS RATE</div>
                         </div>
                       </div>
+
                     </div>
                   </div>
+
                 </div>
               </ScrollReveal>
             </div>
@@ -131,146 +186,346 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ============================== METRICS BAND (Saitronics data-count counters) ============================== */}
-      <section className="relative z-20 -mt-8">
+      {/* ============================== DRIBBBLE METRICS STRIP ============================== */}
+      <section className="bg-[#12161F] border-b border-[#242A35] text-white py-6">
         <div className="container-custom">
-          <ScrollReveal variant="fade-up" delay={0.1}>
-            <div className="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 md:p-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 text-center">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className={`pt-4 sm:pt-0 ${idx > 0 ? 'sm:pl-6' : ''}`}>
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-1 flex items-center justify-center tracking-tight">
-                      <span className="text-amber-500">
-                        <Counter target={stat.value} />
-                      </span>
-                    </div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-600 uppercase tracking-wider">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-[#242A35]">
+            {[
+              { val: '1,250+', label: 'kVA Substation Capacity Commissioned', spec: '11kV/415V HT Panels' },
+              { val: '450+', label: 'Villas & Industrial Projects Handed Over', spec: 'Zero Contractor Claims' },
+              { val: '0.72 Ω', label: 'Calibrated Earth Resistance Target', spec: 'IS 3043 Chemical Mesh' },
+              { val: '100%', label: 'Statutory Electrical Inspector Passing', spec: 'CEIG Telangana Certified' },
+            ].map((stat, idx) => (
+              <div key={idx} className="px-4 py-2 text-left">
+                <div className="font-mono text-2xl sm:text-3xl font-bold text-[#E57A36]">
+                  {stat.val}
+                </div>
+                <div className="font-sans font-bold text-xs text-white uppercase tracking-wider mt-0.5">
+                  {stat.label}
+                </div>
+                <div className="font-mono text-[10px] text-[#8C96A5] mt-0.5">
+                  {stat.spec}
+                </div>
               </div>
-            </div>
-          </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============================== CONTINUOUS LOGO MARQUEE ============================== */}
-      <div className="mt-16">
-        <Marquee title="Quality Certified Cables, Switchgears &amp; Component Partners" />
+      {/* ============================== BRAND PARTNERS MARQUEE ============================== */}
+      <div className="border-b border-[#E2E6EC] bg-[#F4F5F7]">
+        <Marquee title="SPECIFIED WITH GRADE-A CERTIFIED MANUFACTURERS: HAVELLS · POLYCAB · SCHNEIDER ELECTRIC · L&T · LEGRAND · FINOLEX · ABB" />
       </div>
 
-      {/* ============================== SERVICES SECTION ============================== */}
-      <section className="section-padding bg-slate-50">
+      {/* ============================== DRIBBBLE BENTO GRID: TURNKEY ENGINEERING DISCIPLINES ============================== */}
+      <section className="section-padding bg-[#F9F9FB] border-b border-[#E2E6EC]">
         <div className="container-custom">
           
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <span className="eyebrow">Our Core Expertise</span>
-              <h2 className="section-title">One Team, From Wiring to Commissioning.</h2>
-              <p className="section-subtitle">
-                Comprehensive electrical engineering solutions executed to standard specification: we plan it, we install it, and we support it with absolute reliability.
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/20">
+                  TURNKEY EPC CAPABILITIES
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight">
+                  Engineered Power Distribution Architecture
+                </h2>
+              </div>
+              <p className="text-sm font-sans text-[#5C6470] max-w-md">
+                Every circuit planned using electrical load schedule software, IS-standard earthing calculations, and verified harmonic mitigation.
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Services Grid with Saitronics Hover Architecture */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <ScrollReveal 
-                  key={service.id} 
-                  variant="fade-up" 
-                  delay={index * 0.08}
-                >
-                  <div className="card h-full flex flex-col group">
-                    <div className="p-8 flex-1 flex flex-col">
-                      <div className="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                        <Icon size={28} />
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
-                        {service.description}
-                      </p>
-                      
-                      <Link 
-                        to="/services" 
-                        className="card-arrow-link text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-auto pt-4 border-t border-slate-100"
-                      >
-                        <span>Learn more about {service.title}</span>
-                        <ArrowRight size={16} />
-                      </Link>
-                    </div>
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            {/* Bento Card 1: Wide Feature (HT/LT Substations) */}
+            <div className="md:col-span-8 bg-[#0E1116] border border-[#242A35] rounded-md p-8 text-white relative overflow-hidden group">
+              <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
+                <div>
+                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#242A35]">
+                    <span className="font-mono text-xs text-[#E57A36] uppercase tracking-wider font-semibold">
+                      HEAVY INFRASTRUCTURE · 11kV/33kV
+                    </span>
+                    <span className="px-2 py-0.5 rounded-sm bg-[#1A2230] text-[#38BDF8] font-mono text-[10px] border border-[#2D3A4F]">
+                      HT TRANSFORMER YARDS
+                    </span>
                   </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
 
-          <ScrollReveal variant="fade-up" delay={0.2} className="text-center mt-12">
-            <Link to="/services" className="btn-outline">
-              Explore All Electrical Services
-            </Link>
-          </ScrollReveal>
+                  <h3 className="text-2xl sm:text-3xl font-display font-black text-white mb-3">
+                    Substation Erection &amp; Vacuum Circuit Breakers (VCB)
+                  </h3>
+
+                  <p className="text-[#8C96A5] text-sm leading-relaxed max-w-xl">
+                    Turnkey installation of outdoor &amp; indoor transformer yards, HT breaker panels, gang-operated air break (GOAB) switches, and drop-out fuses with statutory CEIG approvals.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-3 gap-3 font-mono text-xs pt-4 border-t border-[#242A35]">
+                  <div>
+                    <span className="text-[#6B7280] block text-[10px]">VOLTAGE:</span>
+                    <span className="text-white font-semibold">11,000V → 415V</span>
+                  </div>
+                  <div>
+                    <span className="text-[#6B7280] block text-[10px]">BREAKERS:</span>
+                    <span className="text-[#E57A36] font-semibold">VCB &amp; SF6</span>
+                  </div>
+                  <div>
+                    <span className="text-[#6B7280] block text-[10px]">INSPECTION:</span>
+                    <span className="text-[#34D399] font-semibold">CEIG CLEARANCE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bento Card 2: Main LT Panels */}
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+              <div>
+                <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
+                  CUSTOM PANEL FABRICATION
+                </span>
+                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                  Main LT Switchgear &amp; APFC Capacitor Banks
+                </h3>
+                <p className="text-[#5C6470] text-sm leading-relaxed">
+                  Modular busbar chambers with Air Circuit Breakers (ACB), automatic power factor controllers, and harmonic detuned reactors.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+                <span className="text-[#121417] font-semibold">800A - 3200A BUSBARS</span>
+                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                  <span>SPECS</span>
+                  <ArrowUpRight size={13} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Bento Card 3: Industrial Pharma & Manufacturing */}
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+              <div>
+                <span className="font-mono text-xs text-[#0E639C] uppercase tracking-wider font-semibold block mb-2">
+                  INDUSTRIAL MANUFACTURING
+                </span>
+                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                  Pharma Cleanrooms &amp; Industrial Conduiting
+                </h3>
+                <p className="text-[#5C6470] text-sm leading-relaxed">
+                  Heavy galvanized perforated cable trays, flame-retardant low-smoke (FRLS) wiring, and explosion-safe fittings for Patancheru industrial units.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+                <span className="text-[#121417] font-semibold">IP65 ENCLOSURES</span>
+                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                  <span>SPECS</span>
+                  <ArrowUpRight size={13} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Bento Card 4: Luxury Residential Villas */}
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+              <div>
+                <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
+                  RESIDENTIAL LUXURY
+                </span>
+                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                  High-End Villa &amp; Gated Community Electrification
+                </h3>
+                <p className="text-[#5C6470] text-sm leading-relaxed">
+                  Concealed wiring, smart distribution boards, EV charger circuits, and dedicated 30mA RCCB shock prevention for families.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+                <span className="text-[#121417] font-semibold">30mA HUMAN SAFETY</span>
+                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                  <span>SPECS</span>
+                  <ArrowUpRight size={13} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Bento Card 5: Solar & DG Synchronization */}
+            <div className="md:col-span-4 bg-[#141821] border border-[#242A35] rounded-md p-8 text-white flex flex-col justify-between group hover:border-[#38BDF8] transition-all">
+              <div>
+                <span className="font-mono text-xs text-[#38BDF8] uppercase tracking-wider font-semibold block mb-2">
+                  BACKUP &amp; GREEN ENERGY
+                </span>
+                <h3 className="text-xl font-display font-black text-white mb-3">
+                  Solar On-Grid &amp; DG Synchronizing Relays
+                </h3>
+                <p className="text-[#8C96A5] text-sm leading-relaxed">
+                  Automatic transfer switches (ATS), net-metering integration with DISCOM, and synchronous AMF panels for uninterrupted power.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-[#242A35] mt-6 flex justify-between items-center font-mono text-xs">
+                <span className="text-[#34D399] font-semibold">NET-METERING READY</span>
+                <Link to="/services" className="text-[#38BDF8] hover:underline flex items-center gap-1 font-semibold">
+                  <span>SPECS</span>
+                  <ArrowUpRight size={13} />
+                </Link>
+              </div>
+            </div>
+
+          </div>
 
         </div>
       </section>
 
-      {/* ============================== WHY CHOOSE US / VALUES ============================== */}
-      <section className="section-padding bg-white border-t border-slate-200/70">
+      {/* ============================== INTERACTIVE CAD BLUEPRINT & SLD SCHEMATICS VIEWER ============================== */}
+      <section className="section-padding bg-[#0A0D12] text-white border-b border-[#242A35]">
+        <div className="container-custom">
+          
+          <ScrollReveal variant="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B35010]/20 text-[#E57A36] text-[11px] font-mono font-bold uppercase tracking-wider mb-3 border border-[#B35010]/40">
+                ENGINEERING SPECIFICATION ARCHITECTURE
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
+                Single Line Diagrams &amp; Circuit Schematics
+              </h2>
+              <p className="text-sm sm:text-base text-[#8C96A5] mt-2">
+                Inspect authentic circuit flow parameters, transformer protection tiers, and statutory clearances calibrated by our Chief Engineer.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <BlueprintViewer />
+
+        </div>
+      </section>
+
+      {/* ============================== INTERACTIVE LOAD & COST ESTIMATOR ============================== */}
+      <section className="section-padding bg-[#F4F5F7] border-b border-[#D7DBE0]">
+        <div className="container-custom">
+          
+          <ScrollReveal variant="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#121417] text-white text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
+                REAL-TIME ENGINEERING UTILITY
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight">
+                Calculate Electrical Load &amp; Turnkey Estimate
+              </h2>
+              <p className="text-sm sm:text-base text-[#5C6470] mt-2">
+                Estimate your required breaker amperage, main cable cross-section, and total project budget in seconds.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <LoadCalculator />
+
+        </div>
+      </section>
+
+      {/* ============================== LEADERSHIP PROFILE & PHYSICAL OFFICE VERIFICATION ============================== */}
+      <section className="section-padding bg-white border-b border-[#D7DBE0]">
         <div className="container-custom">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 space-y-6">
               <ScrollReveal variant="fade-right">
-                <span className="eyebrow">Why Choose MR Electrical</span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">
-                  High-Standard Engineering. Zero Compromises On Safety.
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[11px] font-mono font-bold uppercase tracking-wider border border-[#B35010]/20">
+                  TECHNICAL ACCREDITATION
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] leading-tight">
+                  Direct Field Oversight by Mr. Nekbor Seikh (M.Tech - EEE)
                 </h2>
-                <p className="text-slate-600 leading-relaxed mb-8">
-                  Whether installing precision distribution panels or wiring an entire factory floor, we combine qualified engineering standards with seasoned on-site craftsmanship.
+
+                <p className="text-[#5C6470] text-sm leading-relaxed">
+                  Electrical installations fail when contractors cut corners with undersized cable gauges, unbalanced phase loads, or substandard earthing pits.
                 </p>
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-start gap-3.5">
-                    <CheckCircle2 className="text-amber-500 shrink-0 mt-1" size={20} />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">Strict Indian Standards Compliance</h4>
-                      <p className="text-xs text-slate-600 mt-0.5">Correct wire gauges, load calculations, and proper breaker selection prevent short circuits.</p>
-                    </div>
+
+                <p className="text-[#5C6470] text-sm leading-relaxed">
+                  At <strong>MR. ELECTRICAL WORKS</strong>, our General Manager of Projects directly reviews single-line drawings, validates fault current ratings, and personally signs off on critical commissioning milestones.
+                </p>
+
+                {/* Office Coordinates Sheet */}
+                <div className="p-4 bg-[#F4F5F7] border border-[#D7DBE0] rounded-sm space-y-2 font-mono text-xs">
+                  <div className="flex items-start gap-2.5">
+                    <MapPin className="text-[#B35010] shrink-0 mt-0.5" size={15} />
+                    <span className="text-[#121417] font-medium">No. 83, Gokul Nagar, Patancheru, Hyderabad, Telangana - 502319</span>
                   </div>
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-start gap-3.5">
-                    <CheckCircle2 className="text-amber-500 shrink-0 mt-1" size={20} />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">Post-Installation Diagnostic Testing</h4>
-                      <p className="text-xs text-slate-600 mt-0.5">Insulation resistance, earth resistance, and polarity checks performed before power energization.</p>
-                    </div>
+                  <div className="flex items-center gap-2.5">
+                    <Phone className="text-[#34D399] shrink-0" size={15} />
+                    <span className="text-[#121417] font-bold">Direct GM Hotline: {contactInfo.displayPhone}</span>
                   </div>
+                </div>
+
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <Link 
+                    to="/about" 
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-sm bg-[#121417] hover:bg-[#202632] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all"
+                  >
+                    <span>Read Executive Credentials</span>
+                    <ArrowRight size={14} />
+                  </Link>
+
+                  <a 
+                    href={leadership.businessCard} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-sm bg-white border border-[#D7DBE0] hover:border-[#121417] text-[#121417] font-mono text-xs font-semibold uppercase tracking-wider transition-all"
+                  >
+                    <FileText size={14} />
+                    <span>View Registration Card</span>
+                  </a>
                 </div>
               </ScrollReveal>
             </div>
 
+            {/* Right: Technical Certification Matrix */}
             <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {features.map((feat, idx) => (
-                  <ScrollReveal 
-                    key={idx} 
-                    variant="zoom-in" 
-                    delay={idx * 0.07}
-                  >
-                    <div className="p-6 rounded-xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-amber-500/50 hover:shadow-lg transition-all duration-300 group">
-                      <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <CheckCircle2 size={20} />
+              <ScrollReveal variant="zoom-in" delay={0.15}>
+                <div className="bg-[#0E1116] border border-[#242A35] rounded-md p-6 sm:p-8 text-white space-y-6 shadow-2xl">
+                  
+                  <div className="flex items-center justify-between pb-4 border-b border-[#242A35]">
+                    <div className="flex items-center gap-3">
+                      <LogoMark size={28} />
+                      <div>
+                        <div className="font-display font-black text-sm tracking-tight text-white">
+                          MR. ELECTRICAL WORKS
+                        </div>
+                        <div className="font-mono text-[10px] text-[#8C96A5]">
+                          REGISTRATION &amp; COMPLIANCE MANIFEST
+                        </div>
                       </div>
-                      <h4 className="font-bold text-slate-900 mb-1">{feat.title}</h4>
-                      <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
                     </div>
-                  </ScrollReveal>
-                ))}
-              </div>
+
+                    <span className="px-2.5 py-1 rounded-sm bg-[#102A1E] text-[#34D399] font-mono text-[10.5px] uppercase font-bold border border-[#059669]/40">
+                      VERIFIED CONTRACTOR
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {engineeringGuarantees.map((item, idx) => (
+                      <div key={idx} className="p-4 bg-[#141820] border border-[#242A35] rounded-sm space-y-1.5">
+                        <span className="px-2 py-0.5 rounded-sm bg-[#1F2736] text-[#E57A36] font-mono text-[9.5px] font-bold">
+                          {item.code}
+                        </span>
+                        <div className="text-sm font-bold text-white font-sans">
+                          {item.title}
+                        </div>
+                        <div className="text-xs text-[#8C96A5] leading-relaxed">
+                          {item.desc}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-[#242A35] flex flex-wrap justify-between items-center text-xs font-mono text-[#8C96A5]">
+                    <span>TELANGANA CEIG INSPECTORATE ALIGNED</span>
+                    <span>PATANCHERU &amp; HYDERABAD HQ</span>
+                  </div>
+
+                </div>
+              </ScrollReveal>
             </div>
 
           </div>
@@ -279,31 +534,46 @@ const Home = () => {
       </section>
 
       {/* ============================== CTA CALLOUT BAND ============================== */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-amber-500/20 rounded-full filter blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-600/20 rounded-full filter blur-3xl pointer-events-none"></div>
-
-        <div className="container-custom relative z-10 text-center">
+      <section className="py-20 bg-[#0A0D12] text-white border-t border-[#242A35]">
+        <div className="container-custom text-center">
           <ScrollReveal variant="fade-up">
-            <div className="inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-amber-400 mb-6">
-              <ShieldCheck size={36} />
+            <div className="inline-flex p-3 rounded-sm bg-[#141820] border border-[#242A35] text-[#E57A36] mb-6">
+              <ShieldCheck size={32} />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight">
-              Ready for Safe &amp; Reliable Electrical Execution?
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 tracking-tight text-white">
+              Ready for Zero-Defect Electrical Execution?
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-base md:text-lg leading-relaxed">
-              Contact our engineering team today for an upfront assessment, blueprint review, or competitive quote in Patancheru and across Hyderabad.
+
+            <p className="text-[#8C96A5] max-w-2xl mx-auto mb-8 text-sm sm:text-base leading-relaxed font-sans">
+              Connect with <strong>Mr. Nekbor Seikh (M.Tech - EEE)</strong> today for upfront engineering advice, single-line diagram analysis, or an itemized turnkey quotation for your project.
             </p>
+
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link to="/contact" className="btn-primary text-base">
-                Get Your Project Estimate
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25"
+              >
+                <span>Request Site Inspection &amp; BOQ</span>
+                <ArrowRight size={15} />
               </Link>
+              
               <a 
                 href={`tel:${contactInfo.phone}`} 
-                className="btn-outline-light flex items-center gap-2 text-base"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-white font-mono text-xs tracking-wider transition-all border border-[#242A35]"
               >
-                <Phone size={18} />
-                <span>Call {contactInfo.phone}</span>
+                <Phone size={15} className="text-[#E57A36]" />
+                <span>Call {contactInfo.displayPhone}</span>
+              </a>
+
+              <a 
+                href={contactInfo.whatsappUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40"
+              >
+                <MessageSquare size={15} />
+                <span>Instant WhatsApp Consultation</span>
               </a>
             </div>
           </ScrollReveal>

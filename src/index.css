@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,223 +6,225 @@
 
 @layer base {
   :root {
-    --color-primary: 245 158 11; /* safety yellow/orange */
-    --color-primary-dark: 217 119 6;
-    --color-secondary: 30 58 138; /* deep industrial blue */
-    --color-secondary-dark: 23 37 84;
-    
-    --primary: #F59E0B;
-    --primary-dark: #D97706;
-    --secondary: #1E3A8A;
-    --secondary-dark: #172554;
-    
-    --gradient-primary: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-    --gradient-secondary: linear-gradient(135deg, #1E3A8A 0%, #172554 100%);
-    --gradient-accent: linear-gradient(135deg, #F59E0B 0%, #1E3A8A 100%);
+    --primary: #1D4ED8;
+    --primary-dark: #1E3A8A;
+    --secondary: #16A34A;
+    --secondary-dark: #14532D;
+    --accent: #EA580C;
   }
 
   body {
-    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-primary/30 selection:text-primary-dark;
+    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-blue-600 selection:text-white;
     overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     @apply font-bold text-slate-900 tracking-tight;
   }
 }
 
 @layer components {
   /* ==========================================================================
-     SAITRONICS BUTTONS WITH SIGNATURE LIGHT SHEEN
+     MATERIAL DESIGN 3 (M3) BUTTON SYSTEM
      ========================================================================== */
-  .btn-primary {
+  .btn-primary,
+  .m3-btn-filled {
     position: relative;
     overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.6rem;
+    border-radius: 9999px; /* M3 Pill Shape */
+    background: #1D4ED8;
     color: #ffffff;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
   }
 
-  .btn-primary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -65%;
-    width: 45%;
-    height: 100%;
-    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transform: skewX(-22deg);
-    transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
+  .btn-primary:hover,
+  .m3-btn-filled:hover {
+    background: #1E40AF;
+    box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
   }
 
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(217, 119, 6, 0.35);
+  .btn-primary:active,
+  .m3-btn-filled:active {
+    transform: scale(0.98);
   }
 
-  .btn-primary:hover::before {
-    left: 135%;
-  }
-
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-
-  .btn-secondary {
-    position: relative;
-    overflow: hidden;
+  .btn-secondary,
+  .m3-btn-tonal {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, #1E3A8A 0%, #172554 100%);
-    color: #ffffff;
-    border: 1px solid rgba(30, 58, 138, 0.4);
-    box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 9999px;
+    background: #DBEAFE;
+    color: #1E3A8A;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   }
 
-  .btn-secondary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -65%;
-    width: 45%;
-    height: 100%;
-    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-    transform: skewX(-22deg);
-    transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
+  .btn-secondary:hover,
+  .m3-btn-tonal:hover {
+    background: #BFDBFE;
+    transform: translateY(-1px);
   }
 
-  .btn-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(30, 58, 138, 0.35);
-  }
-
-  .btn-secondary:hover::before {
-    left: 135%;
-  }
-
-  .btn-outline {
-    position: relative;
-    overflow: hidden;
+  .btn-outline,
+  .m3-btn-outlined {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    background: rgba(245, 158, 11, 0.05);
-    color: #b45309;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1px solid #CBD5E1;
+    color: #1E293B;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   }
 
-  .btn-outline:hover {
-    background: #F59E0B;
-    color: #ffffff;
-    border-color: #F59E0B;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
+  .btn-outline:hover,
+  .m3-btn-outlined:hover {
+    background: #F1F5F9;
+    border-color: #94A3B8;
   }
 
   .btn-outline-light {
-    position: relative;
-    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: transparent;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   }
 
   .btn-outline-light:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #ffffff;
-    transform: translateY(-2px);
-  }
-
-  /* Layout & Containers */
-  .section-padding {
-    @apply py-20 md:py-28;
-  }
-  
-  .container-custom {
-    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
-  }
-  
-  .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-center tracking-tight;
-  }
-  
-  .section-subtitle {
-    @apply text-slate-600 max-w-2xl mx-auto text-center mb-14 text-base md:text-lg leading-relaxed;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #D97706;
-    margin-bottom: 0.75rem;
-  }
-
-  .eyebrow::before {
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #D97706;
-    display: inline-block;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
   }
 
   /* ==========================================================================
-     SAITRONICS CARD ARCHITECTURE & HOVER SYSTEM
+     MATERIAL DESIGN 3 (M3) CARD SYSTEM
      ========================================================================== */
-  .card {
+  .card,
+  .m3-elevated-card {
     background: #ffffff;
-    border-radius: 1rem;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    border-top: 3px solid transparent;
+    border-radius: 1.75rem; /* M3 28px roundness */
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    border: 1px solid #E2E8F0;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s ease;
     overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.35s ease;
   }
 
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
-    border-color: rgba(226, 232, 240, 1);
-    border-top-color: #F59E0B;
+  .card:hover,
+  .m3-elevated-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 16px 2px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+    border-color: #93C5FD;
   }
 
+  .m3-filled-card {
+    background: #F1F5F9;
+    border-radius: 1.75rem;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    overflow: hidden;
+  }
+
+  .m3-filled-card:hover {
+    background: #E2E8F0;
+    transform: translateY(-2px);
+  }
+
+  .m3-outlined-card {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    border: 1px solid #CBD5E1;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    overflow: hidden;
+  }
+
+  .m3-outlined-card:hover {
+    border-color: #1D4ED8;
+    box-shadow: 0px 4px 12px 1px rgba(29, 78, 216, 0.08);
+  }
+
+  /* ==========================================================================
+     M3 CHIPS (Assist, Filter, Suggestion Chips)
+     ========================================================================== */
+  .m3-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border: 1px solid #CBD5E1;
+    background: #ffffff;
+    color: #334155;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .m3-chip:hover {
+    background: #F8FAFC;
+    border-color: #94A3B8;
+  }
+
+  .m3-chip.active,
+  .m3-chip-selected {
+    background: #DBEAFE;
+    border-color: #1D4ED8;
+    color: #1E3A8A;
+  }
+
+  /* ==========================================================================
+     M3 EXTENDED FAB (Floating Action Button)
+     ========================================================================== */
+  .m3-fab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.4rem;
+    border-radius: 1.25rem; /* M3 20px */
+    background: #1D4ED8;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: 0px 4px 12px 2px rgba(29, 78, 216, 0.35);
+    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .m3-fab:hover {
+    transform: scale(1.04);
+    box-shadow: 0px 6px 18px 4px rgba(29, 78, 216, 0.45);
+    background: #1E40AF;
+  }
+
+  .m3-fab:active {
+    transform: scale(0.97);
+  }
+
+  /* Card media zoom */
   .card-media {
     position: relative;
     overflow: hidden;
@@ -232,8 +234,9 @@
     transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .card:hover .card-media img {
-    transform: scale(1.06);
+  .card:hover .card-media img,
+  .m3-elevated-card:hover .card-media img {
+    transform: scale(1.05);
   }
 
   .card-arrow-link {
@@ -251,30 +254,38 @@
     transform: translateX(4px);
   }
 
-  /* Glassmorphism utilities */
-  .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
-  }
-  
-  .glass-dark {
-    @apply bg-slate-900/80 backdrop-blur-md border border-slate-700/50 shadow-xl;
+  /* Section Padding */
+  .section-padding {
+    @apply py-20 lg:py-28;
   }
 
-  /* Text Gradients */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Headers */
+  .eyebrow {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-blue-50 text-blue-700 border border-blue-200;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed;
   }
 }
 
 /* ==========================================================================
-   SAITRONICS AMBIENT FLOATING ORBS & GRID BACKGROUND
+   AMBIENT FLOATING ORBS & GRID BACKGROUND
    ========================================================================== */
 .hero-orb {
   position: absolute;
   border-radius: 50%;
   z-index: 1;
   pointer-events: none;
-  filter: blur(50px);
+  filter: blur(60px);
   animation: heroOrbFloat 16s ease-in-out infinite;
 }
 
@@ -283,7 +294,7 @@
   right: -100px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.1) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(29, 78, 216, 0.35) 0%, rgba(2, 132, 199, 0.12) 50%, transparent 70%);
   animation-duration: 16s;
 }
 
@@ -292,7 +303,7 @@
   left: -80px;
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(30, 58, 138, 0.4) 0%, rgba(23, 37, 84, 0.12) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(22, 163, 74, 0.28) 0%, rgba(16, 185, 129, 0.1) 50%, transparent 70%);
   animation-duration: 20s;
   animation-direction: reverse;
 }
@@ -318,9 +329,7 @@
   pointer-events: none;
 }
 
-/* ==========================================================================
-   SAITRONICS HERO STAGGERED BLUR-UP ENTRANCE
-   ========================================================================== */
+/* Hero Stagger */
 .hero-stagger > * {
   opacity: 0;
   animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -345,44 +354,7 @@
 }
 
 /* ==========================================================================
-   SAITRONICS HERO CORNER-ACCENT PANEL
-   ========================================================================== */
-.hero-panel {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-top: 3px solid #F59E0B;
-}
-
-.hero-panel::before,
-.hero-panel::after {
-  content: "";
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.hero-panel::before {
-  top: -1px;
-  right: -1px;
-  border-top: 3px solid #F59E0B;
-  border-right: 3px solid #F59E0B;
-}
-
-.hero-panel::after {
-  bottom: -1px;
-  left: -1px;
-  border-bottom: 3px solid #F59E0B;
-  border-left: 3px solid #F59E0B;
-}
-
-/* ==========================================================================
-   PREMIUM SCROLL REVEAL SYSTEM ([data-aos] WITH BLUR-FADE)
+   SCROLL REVEAL SYSTEM ([data-aos])
    ========================================================================== */
 [data-aos] {
   opacity: 0;
@@ -398,11 +370,6 @@
   filter: blur(6px);
 }
 
-[data-aos="fade-down"] {
-  transform: translateY(-32px);
-  filter: blur(6px);
-}
-
 [data-aos="fade-left"] {
   transform: translateX(48px);
   filter: blur(6px);
@@ -413,13 +380,8 @@
   filter: blur(6px);
 }
 
-[data-aos="fade"] {
-  transform: none;
-  filter: blur(4px);
-}
-
 [data-aos="zoom-in"] {
-  transform: scale(0.9);
+  transform: scale(0.92);
   filter: blur(4px);
 }
 
@@ -429,9 +391,7 @@
   filter: blur(0);
 }
 
-/* ==========================================================================
-   SAITRONICS CONTINUOUS LOGO MARQUEE SCROLL
-   ========================================================================== */
+/* Continuous Marquee */
 .logo-marquee-container {
   overflow: hidden;
   user-select: none;
@@ -451,88 +411,8 @@
 }
 
 @keyframes logoMarqueeScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* ==========================================================================
-   SAITRONICS WHATSAPP RADAR PULSE
-   ========================================================================== */
-.whatsapp-fab-pulse {
-  position: relative;
-}
-
-.whatsapp-fab-pulse::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: #25D366;
-  animation: whatsappPulse 2.4s ease-out infinite;
-  z-index: -1;
-}
-
-@keyframes whatsappPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-
-/* ==========================================================================
-   NAVBAR ANIMATED UNDERLINE & SCROLL HIDE
-   ========================================================================== */
-.nav-link-animated {
-  position: relative;
-  transition: color 0.25s ease;
-}
-
-.nav-link-animated::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: #F59E0B;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-link-animated:hover::after,
-.nav-link-animated.active::after {
-  width: 100%;
-}
-
-/* ==========================================================================
-   REDUCED MOTION SUPPORT
-   ========================================================================== */
-@media (prefers-reduced-motion: reduce) {
-  .hero-orb,
-  .whatsapp-fab-pulse::before,
-  .logo-marquee-track,
-  .hero-stagger > * {
-    animation: none !important;
-  }
-
-  [data-aos] {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
-
-  .btn-primary::before,
-  .btn-secondary::before {
-    display: none !important;
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* Custom Scrollbar */
@@ -540,12 +420,12 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f8fafc; 
+  background: #F1F5F9; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1; 
-  border-radius: 4px;
+  background: #CBD5E1; 
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; 
+  background: #94A3B8; 
 }

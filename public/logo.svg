@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Definitions for linear gradients and precision filters -->
+  <defs>
+    <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85D19"/>
+      <stop offset="100%" stop-color="#9C4208"/>
+    </linearGradient>
+    <linearGradient id="steelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2227"/>
+      <stop offset="100%" stop-color="#101214"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Precision Engineering Monogram Mark Container (64x64 at x=8, y=8) -->
+  <g transform="translate(8, 8)">
+    <!-- Base Chassis Shield with Chamfered Corners -->
+    <path d="M12 2 H52 L62 12 V52 L52 62 H12 L2 52 V12 Z" fill="url(#steelGrad)" stroke="#2C323A" stroke-width="1.5"/>
+    
+    <!-- 1px Technical Hairline Internal Guide Grid -->
+    <path d="M32 4 V60 M4 32 H60" stroke="#2C323A" stroke-width="0.75" stroke-dasharray="2 2" opacity="0.6"/>
+
+    <!-- Monogram M: Left Conductor Busbar -->
+    <path d="M14 48 V20 L24 34 L32 24 L40 34 L50 20 V48 H44 V29 L38 38 H36 L32 32 L28 38 H26 L20 29 V48 Z" fill="#E5E8EC" opacity="0.95"/>
+
+    <!-- High-Voltage Dynamic Conductor Surge Element (in pure Busbar Copper) -->
+    <path d="M32 14 L24 30 H34 L28 46 L42 28 H32 Z" fill="url(#copperGrad)"/>
+
+    <!-- Micro Terminal Bolt Markers (4 technical corners) -->
+    <circle cx="12" cy="12" r="1.5" fill="#B35010"/>
+    <circle cx="52" cy="12" r="1.5" fill="#4A525D"/>
+    <circle cx="12" cy="52" r="1.5" fill="#4A525D"/>
+    <circle cx="52" cy="52" r="1.5" fill="#0E639C"/>
+  </g>
+
+  <!-- Architectural Typography: MR. ELECTRICAL WORKS -->
+  <g transform="translate(86, 18)">
+    <!-- Main Logotype Wordmark -->
+    <text x="0" y="24" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.02em" fill="#121417">
+      MR. ELECTRICAL
+    </text>
+    <text x="178" y="24" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="0.04em" fill="#B35010">
+      WORKS
+    </text>
+
+    <!-- Technical Specification Descriptor -->
+    <text x="0" y="42" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="600" letter-spacing="0.14em" fill="#5C6470">
+      TURNKEY ENGINEERING &amp; CONTRACTING
+    </text>
+
+    <!-- Substation Grid Telemetry Tag -->
+    <g transform="translate(0, 48)">
+      <line x1="0" y1="0" x2="220" y2="0" stroke="#D7DBE0" stroke-width="1"/>
+      <text x="0" y="8" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="500" letter-spacing="0.08em" fill="#8892A0">
+        HT/LT SUBSTATIONS · 11kV/415V · PATANCHERU, HYDERABAD
+      </text>
+    </g>
+  </g>
+</svg>
