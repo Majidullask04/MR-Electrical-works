@@ -22,7 +22,7 @@ const FloatingButtons = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 sm:gap-2.5 pointer-events-none">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-1.5 sm:gap-2.5 pointer-events-none">
       
       {/* Scroll to Top */}
       <button

@@ -32,14 +32,14 @@ const Contact = () => {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-32 pb-20 bg-slate-950 text-white overflow-hidden">
+      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
         <div className="hero-orb hero-orb-2 opacity-60"></div>
         <div className="hero-grid-pattern"></div>
         
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-cyan-400">Direct Engineering Inquiry</span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight text-white">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
               Connect Directly With Our GM
             </h1>
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
@@ -52,17 +52,17 @@ const Contact = () => {
       {/* ============================== FORM & CONTACT INFO ============================== */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
             
             {/* Contact Form with WhatsApp Integration */}
             <div className="lg:col-span-7">
               <ScrollReveal variant="fade-right">
-                <div className="bg-white p-5 sm:p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-200/80">
+                <div className="bg-white p-4 xs:p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-200/80">
                   <span className="eyebrow">Immediate Response</span>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+                  <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-slate-900 mb-2 break-words">
                     Request Upfront Quote or Site Visit
                   </h2>
-                  <p className="text-sm text-slate-500 mb-6">
+                  <p className="text-xs sm:text-sm text-slate-500 mb-6">
                     Fill this quick form to send your project details directly to our engineering desk via WhatsApp or email.
                   </p>
 
@@ -75,8 +75,8 @@ const Contact = () => {
                     </div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                           Your Full Name *
@@ -85,7 +85,7 @@ const Contact = () => {
                           type="text" 
                           required 
                           placeholder="e.g. Ramesh Kumar"
-                          className="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          className="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
                         />
@@ -99,7 +99,7 @@ const Contact = () => {
                           type="tel" 
                           required 
                           placeholder="e.g. 9876543210"
-                          className="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          className="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         />

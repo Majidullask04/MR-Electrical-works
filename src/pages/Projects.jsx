@@ -15,14 +15,14 @@ const Projects = () => {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-32 pb-20 bg-slate-950 text-white overflow-hidden">
+      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
         <div className="hero-orb hero-orb-1 opacity-60"></div>
         <div className="hero-grid-pattern"></div>
         
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-cyan-400">Proven Track Record</span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight text-white">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
               Executed Projects &amp; Field Gallery
             </h1>
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
@@ -36,7 +36,7 @@ const Projects = () => {
       <section className="section-padding">
         <div className="container-custom">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
             {projects.map((project, idx) => (
               <ScrollReveal 
                 key={project.id} 
@@ -45,24 +45,24 @@ const Projects = () => {
               >
                 <div className="card group cursor-pointer h-full flex flex-col hover:border-blue-400">
                   {/* Card Media with Image Zoom */}
-                  <div className="card-media relative h-64 bg-slate-900">
+                  <div className="card-media relative h-52 xs:h-60 sm:h-64 bg-slate-900">
                     <img 
                       src={project.image} 
                       alt={project.title} 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="bg-blue-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                      <span className="bg-blue-600 text-white text-[10px] sm:text-[11px] font-extrabold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md">
                         {project.category}
                       </span>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                    <div className="absolute bottom-4 left-4 right-4 text-white z-10">
-                      <h3 className="text-xl font-bold group-hover:text-cyan-300 transition-colors flex items-center justify-between">
+                    <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white z-10">
+                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-cyan-300 transition-colors flex items-center justify-between break-words">
                         <span>{project.title}</span>
-                        <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0" />
                       </h3>
-                      <p className="text-xs text-slate-300 mt-1">{project.client}</p>
+                      <p className="text-xs text-slate-300 mt-0.5 sm:mt-1">{project.client}</p>
                     </div>
                   </div>
                   

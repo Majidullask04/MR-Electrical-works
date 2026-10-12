@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <div className="overflow-hidden bg-[#FCFCFD] text-[#121417]">
       {/* ============================== DRIBBBLE STYLE ARCHITECTURAL HERO ============================== */}
-      <section className="relative min-h-[92vh] flex items-center pt-32 pb-24 bg-[#0A0D12] text-white overflow-hidden border-b border-[#1E2430]">
+      <section className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center pt-24 xs:pt-28 sm:pt-32 pb-16 sm:pb-24 bg-[#0A0D12] text-white overflow-hidden border-b border-[#1E2430]">
         
         {/* Subtle CAD Draftsman Grid Lines with 1px Intersection Marks */}
         <div 
@@ -56,16 +56,16 @@ const Home = () => {
             <div className="lg:col-span-7 space-y-6">
               
               {/* Telemetry Status Bar */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#141821] border border-[#262E3D] text-[11px] font-mono tracking-wider text-[#CBD5E1]">
-                <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 xs:gap-2 px-2.5 xs:px-3 py-1.5 rounded-sm bg-[#141821] border border-[#262E3D] text-[10px] xs:text-[11px] font-mono tracking-wider text-[#CBD5E1] max-w-full flex-wrap">
+                <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse shrink-0" />
                 <span className="text-[#E57A36] font-bold">11kV/415V HT·LT EPC:</span>
-                <span>PATANCHERU &amp; HYDERABAD CORRIDOR</span>
+                <span className="truncate">PATANCHERU &amp; HYDERABAD</span>
               </div>
 
               {/* Architectural Main Headline */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.12] sm:leading-[1.08] tracking-tight">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.15] sm:leading-[1.08] tracking-tight break-words">
                 Turnkey Electrical Contracting &amp;{' '}
-                <span className="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-8">
+                <span className="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-4 sm:underline-offset-8">
                   Substation EPC.
                 </span>
               </h1>
@@ -76,16 +76,16 @@ const Home = () => {
               </p>
 
               {/* CAD Technical Specifications HUD */}
-              <div className="p-3.5 sm:p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-[11px]">
-                <div>
+              <div className="p-3 sm:p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-[11px]">
+                <div className="flex sm:block justify-between items-center sm:items-start border-b sm:border-b-0 pb-1.5 sm:pb-0 border-[#202735]">
                   <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">CHIEF ENGINEER:</span>
                   <span className="text-white font-semibold">NEKBOR SEIKH</span>
                 </div>
-                <div>
+                <div className="flex sm:block justify-between items-center sm:items-start border-b sm:border-b-0 pb-1.5 sm:pb-0 border-[#202735]">
                   <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">QUALIFICATION:</span>
                   <span className="text-[#E57A36] font-semibold">M.TECH (EEE)</span>
                 </div>
-                <div>
+                <div className="flex sm:block justify-between items-center sm:items-start">
                   <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">DISCOM STANDARDS:</span>
                   <span className="text-[#34D399] font-semibold">CEIG APPROVED</span>
                 </div>
@@ -136,7 +136,7 @@ const Home = () => {
                     <span className="absolute -bottom-1.5 -left-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
                     <span className="absolute -bottom-1.5 -right-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
 
-                    <div className="relative h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden rounded-sm bg-[#0A0D12]">
+                    <div className="relative h-[320px] xs:h-[380px] sm:h-[440px] lg:h-[480px] overflow-hidden rounded-sm bg-[#0A0D12]">
                       <img 
                         src={leadership.photo} 
                         alt="Mr. Nekbor Seikh (M.Tech - EEE) - General Manager Projects" 
@@ -147,31 +147,31 @@ const Home = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D12] via-[#0A0D12]/25 to-transparent" />
 
                       {/* Top Right CAD Coordinate Stamp */}
-                      <div className="absolute top-3 right-3 px-2 py-1 bg-[#0A0D12]/90 backdrop-blur-sm border border-[#262E3D] rounded-sm font-mono text-[9px] sm:text-[9.5px] text-[#8C96A5]">
+                      <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2 py-0.5 sm:py-1 bg-[#0A0D12]/90 backdrop-blur-sm border border-[#262E3D] rounded-sm font-mono text-[8.5px] sm:text-[9.5px] text-[#8C96A5]">
                         COORD: 17.5323° N, 78.2644° E
                       </div>
 
                       {/* Bottom Executive Telemetry Sheet */}
-                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 p-3 sm:p-4 bg-[#0E1116]/95 backdrop-blur-md border border-[#242A35] rounded-sm text-white">
+                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 p-2.5 sm:p-4 bg-[#0E1116]/95 backdrop-blur-md border border-[#242A35] rounded-sm text-white">
                         <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#202735]">
-                          <div>
-                            <div className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5 font-display">
+                          <div className="min-w-0 pr-2">
+                            <div className="text-xs xs:text-sm sm:text-base font-bold text-white flex items-center gap-1.5 font-display truncate">
                               <span>{leadership.name}</span>
-                              <CheckCircle2 size={15} className="text-[#34D399]" />
+                              <CheckCircle2 size={14} className="text-[#34D399] shrink-0" />
                             </div>
-                            <div className="text-[11px] sm:text-xs font-mono text-[#E57A36] font-semibold">
+                            <div className="text-[10px] xs:text-[11px] sm:text-xs font-mono text-[#E57A36] font-semibold truncate">
                               {leadership.qualification} · {leadership.role}
                             </div>
                           </div>
                           
-                          <div className="p-1.5 sm:p-2 bg-[#1A202C] border border-[#2D3748] rounded-sm text-[#E57A36]">
+                          <div className="p-1 sm:p-2 bg-[#1A202C] border border-[#2D3748] rounded-sm text-[#E57A36] shrink-0">
                             <LogoMark size={20} />
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-[11px] font-mono text-[#8C96A5]">
-                          <div>OFFICE: PATANCHERU, HYD</div>
-                          <div className="text-right text-[#34D399] font-semibold">100% PASS RATE</div>
+                        <div className="grid grid-cols-2 gap-2 text-[9px] xs:text-[10px] sm:text-[11px] font-mono text-[#8C96A5]">
+                          <div className="truncate">PATANCHERU, HYD</div>
+                          <div className="text-right text-[#34D399] font-semibold truncate">100% PASS RATE</div>
                         </div>
                       </div>
 
@@ -189,7 +189,7 @@ const Home = () => {
       {/* ============================== DRIBBBLE METRICS STRIP ============================== */}
       <section className="bg-[#12161F] border-b border-[#242A35] text-white py-6">
         <div className="container-custom">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {[
               { val: '1,250+', label: 'kVA Substation Capacity Commissioned', spec: '11kV/415V HT Panels' },
               { val: '450+', label: 'Villas & Industrial Projects Handed Over', spec: 'Zero Contractor Claims' },
@@ -224,10 +224,10 @@ const Home = () => {
           <ScrollReveal variant="fade-up">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/20">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/20">
                   TURNKEY EPC CAPABILITIES
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words">
                   Engineered Power Distribution Architecture
                 </h2>
               </div>
@@ -382,10 +382,10 @@ const Home = () => {
           
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B35010]/20 text-[#E57A36] text-[11px] font-mono font-bold uppercase tracking-wider mb-3 border border-[#B35010]/40">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B35010]/20 text-[#E57A36] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3 border border-[#B35010]/40">
                 ENGINEERING SPECIFICATION ARCHITECTURE
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight break-words">
                 Single Line Diagrams &amp; Circuit Schematics
               </h2>
               <p className="text-sm sm:text-base text-[#8C96A5] mt-2">
@@ -405,10 +405,10 @@ const Home = () => {
           
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#121417] text-white text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#121417] text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
                 REAL-TIME ENGINEERING UTILITY
               </div>
-              <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words">
                 Calculate Electrical Load &amp; Turnkey Estimate
               </h2>
               <p className="text-sm sm:text-base text-[#5C6470] mt-2">
@@ -434,7 +434,7 @@ const Home = () => {
                   TECHNICAL ACCREDITATION
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl font-display font-black text-[#121417] leading-tight">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] leading-tight break-words">
                   Direct Field Oversight by Mr. Nekbor Seikh (M.Tech - EEE)
                 </h2>
 
@@ -541,7 +541,7 @@ const Home = () => {
               <ShieldCheck size={32} />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 tracking-tight text-white">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 tracking-tight text-white break-words">
               Ready for Zero-Defect Electrical Execution?
             </h2>
 

@@ -132,12 +132,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[#1E2430] pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] font-mono text-[#6B7280] gap-3">
+        <div className="border-t border-[#1E2430] pt-6 flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-[11px] font-mono text-[#6B7280] gap-2.5 sm:gap-3 text-center sm:text-left">
           <p>&copy; {new Date().getFullYear()} {contactInfo.name}. All rights reserved.</p>
-          <p className="flex items-center gap-2">
-            <span>GENERAL MANAGER: NEKBOR SEIKH (M.TECH - EEE)</span>
-            <span>·</span>
-            <span>PATANCHERU, HYDERABAD, TELANGANA</span>
+          <p className="flex flex-wrap justify-center sm:justify-end items-center gap-1.5 sm:gap-2">
+            <span>GM: NEKBOR SEIKH (M.TECH - EEE)</span>
+            <span className="hidden xs:inline">·</span>
+            <span>PATANCHERU, HYDERABAD</span>
           </p>
         </div>
       </div>

@@ -16,17 +16,17 @@ const About = () => {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* ============================== PAGE HEADER WITH AMBIENT GLOW ============================== */}
-      <section className="relative pt-32 pb-20 bg-slate-950 text-white overflow-hidden">
+      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
         <div className="hero-orb hero-orb-1 opacity-70"></div>
         <div className="hero-orb hero-orb-2 opacity-50"></div>
         <div className="hero-grid-pattern"></div>
         
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-5">
-              <Award size={14} /> M.Tech (EEE) Qualified Engineering Leadership
+            <div className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-400 text-[11px] xs:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 max-w-full truncate">
+              <Award size={14} className="shrink-0" /> <span className="truncate">M.Tech (EEE) Qualified Engineering Leadership</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight text-white">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
               Engineering Precision. Zero Short-Circuits.
             </h1>
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
@@ -89,7 +89,7 @@ const About = () => {
                   <LogoMark size={18} /> Direct Project Leadership
                 </div>
                 
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight break-words">
                   Qualified Engineering Meets Real-World Craftsmanship
                 </h2>
 
@@ -159,13 +159,13 @@ const About = () => {
             {/* The Actual Physical Business Card Display */}
             <div className="lg:col-span-7">
               <ScrollReveal variant="zoom-in">
-                <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-slate-200 relative group">
-                  <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg border border-slate-200 relative group">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-700">Official Company Business Card</span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span className="text-[11px] xs:text-xs font-bold uppercase tracking-wider text-slate-700">Official Company Business Card</span>
                     </div>
-                    <span className="text-xs font-semibold text-slate-500">Patancheru • Hyderabad</span>
+                    <span className="text-[11px] xs:text-xs font-semibold text-slate-500">Patancheru • Hyderabad</span>
                   </div>
 
                   {/* Card Image Display with shadow & rounded borders */}
@@ -333,7 +333,7 @@ const About = () => {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
                   <ShieldAlert size={14} /> Rigorous Field Protocol
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-black mb-6 leading-tight">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-black mb-6 leading-tight break-words">
                   Safety Is Not A Policy. It Is Our Culture.
                 </h2>
                 <p className="text-slate-300 text-base leading-relaxed mb-8">

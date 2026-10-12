@@ -40,14 +40,14 @@ const Services = () => {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-32 pb-20 bg-slate-950 text-white overflow-hidden">
+      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
         <div className="hero-orb hero-orb-2 opacity-60"></div>
         <div className="hero-grid-pattern"></div>
         
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-amber-400">Engineering Solutions</span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight text-white">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
               End-To-End Electrical Services
             </h1>
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
@@ -70,12 +70,12 @@ const Services = () => {
                   variant="fade-up" 
                   delay={idx * 0.08}
                 >
-                  <div className="card p-8 h-full flex flex-col group border-t-3 hover:border-amber-500">
-                    <div className="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                      <Icon size={28} />
+                  <div className="card p-5 sm:p-8 h-full flex flex-col group border-t-3 hover:border-amber-500">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 sm:mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
+                      <Icon size={26} />
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 sm:mb-3 group-hover:text-amber-600 transition-colors break-words">
                       {service.title}
                     </h3>
                     
@@ -161,7 +161,7 @@ const Services = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="eyebrow !text-amber-400">Advanced Works</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-white">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-white break-words">
                 Specialized Engineering Solutions
               </h2>
               <p className="text-slate-300 text-base">

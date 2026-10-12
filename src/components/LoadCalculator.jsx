@@ -188,7 +188,7 @@ const LoadCalculator = () => {
                   }`}>
                     {isChecked ? '✓' : ''}
                   </span>
-                  <span className="text-left">{app.label}</span>
+                  <span className="text-left leading-tight">{app.label}</span>
                 </button>
               );
             })}
@@ -196,7 +196,7 @@ const LoadCalculator = () => {
         </div>
 
         {/* Calculated Specification Readout (Engineering Matrix in JetBrains Mono) */}
-        <div className="p-4 sm:p-6 bg-[#141820] border border-[#242A35] rounded-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+        <div className="p-3 sm:p-6 bg-[#141820] border border-[#242A35] rounded-sm grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-stretch">
           
           <div className="p-3.5 sm:p-4 rounded-sm bg-[#0E1116] border border-[#242A35] flex flex-col justify-between">
             <div>

@@ -88,10 +88,10 @@ const Navbar = () => {
       </div>
 
       <div className="container-custom">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-2 min-w-0">
           
           {/* Elite Bespoke Vector Brand Logo */}
-          <Link to="/" className="group focus:outline-none" aria-label="MR. ELECTRICAL WORKS Home">
+          <Link to="/" className="group focus:outline-none min-w-0 shrink" aria-label="MR. ELECTRICAL WORKS Home">
             <Logo size={isScrolled ? "sm" : "md"} variant="light" />
           </Link>
 
@@ -137,20 +137,20 @@ const Navbar = () => {
           </div>
 
           {/* Mobile and Tablet Menu Controls */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1.5 xs:gap-2 shrink-0">
             <a
               href={`tel:${contactInfo.phone}`}
-              className="p-2.5 rounded-sm bg-[#B35010] text-white border border-[#C25E1A]/40 flex items-center justify-center min-w-[42px] min-h-[42px] hover:bg-[#9C4208] transition-colors"
+              className="p-2 xs:p-2.5 rounded-sm bg-[#B35010] text-white border border-[#C25E1A]/40 flex items-center justify-center min-w-[38px] min-h-[38px] xs:min-w-[42px] xs:min-h-[42px] hover:bg-[#9C4208] transition-colors"
               aria-label="Direct Call General Manager"
             >
-              <Phone size={17} />
+              <Phone size={15} />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#9DA8B8] hover:text-white p-2.5 rounded-sm border border-[#242A35] focus:outline-none bg-[#141820] min-w-[42px] min-h-[42px] flex items-center justify-center transition-colors"
+              className="text-[#9DA8B8] hover:text-white p-2 xs:p-2.5 rounded-sm border border-[#242A35] focus:outline-none bg-[#141820] min-w-[38px] min-h-[38px] xs:min-w-[42px] xs:min-h-[42px] flex items-center justify-center transition-colors"
               aria-label="Toggle Navigation Menu"
             >
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -158,7 +158,7 @@ const Navbar = () => {
 
       {/* Dribbble Style Mobile/Tablet Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#0E1116] border-t border-[#242A35] shadow-2xl px-4 sm:px-6 py-4 sm:py-5 mt-2 animate-[fadeInUp_0.2s_ease]">
+        <div className="lg:hidden bg-[#0E1116] border-t border-[#242A35] shadow-2xl px-4 sm:px-6 py-4 sm:py-5 mt-2 max-h-[calc(100dvh-70px)] overflow-y-auto animate-[fadeInUp_0.2s_ease]">
           <div className="space-y-1.5">
             {navLinks.map((link) => (
               <Link

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '400px',
+      },
       colors: {
         // Tokens defined in DESIGN.md (Audited by @google/design.md)
         primary: {
