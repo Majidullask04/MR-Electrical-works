@@ -27,23 +27,41 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Verify Vercel Token & Account
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN secret is empty! Please add VERCEL_TOKEN in GitHub: Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+          # Sanitize token by stripping any accidental whitespace, tabs, carriage returns or newlines
+          CLEAN_TOKEN=$(printf '%s' "$VERCEL_TOKEN" | tr -d '\r\n\t ')
+
+          echo "🔍 Verifying token authentication with Vercel..."
+          if vercel whoami --token="$CLEAN_TOKEN"; then
+            echo "✅ Vercel token verified successfully!"
+          else
+            echo "::error::The Vercel token provided was rejected by Vercel."
+            echo "👉 Please visit https://vercel.com/account/tokens to create a new token (Scope: Full Account / No expiration)."
+            exit 1
+          fi
+
       - name: Deploy to Vercel Production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          if [ -z "$VERCEL_TOKEN" ]; then
-            echo "::error::VERCEL_TOKEN secret is not set! Please add VERCEL_TOKEN in your GitHub repository secrets."
-            exit 1
-          fi
+          CLEAN_TOKEN=$(printf '%s' "$VERCEL_TOKEN" | tr -d '\r\n\t ')
 
           if [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
-            echo "⚡ Deploying with prebuilt pipeline (Linked Vercel Project)..."
-            vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-            vercel build --prod --token=$VERCEL_TOKEN
-            vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+            echo "⚡ Deploying with prebuilt pipeline (Linked Project)..."
+            vercel pull --yes --environment=production --token="$CLEAN_TOKEN"
+            vercel build --prod --token="$CLEAN_TOKEN"
+            vercel deploy --prebuilt --prod --token="$CLEAN_TOKEN"
           else
-            echo "⚡ Deploying directly to Vercel with token..."
-            vercel deploy --prod --yes --token=$VERCEL_TOKEN
+            echo "⚡ Deploying project directly to production..."
+            vercel deploy --prod --yes --name "mr-electrical-works" --token="$CLEAN_TOKEN"
           fi
