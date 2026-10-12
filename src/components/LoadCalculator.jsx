@@ -64,7 +64,7 @@ const LoadCalculator = () => {
   };
 
   return (
-    <div className="bg-[#0E1116] border border-[#242A35] rounded-md p-6 sm:p-10 shadow-2xl relative overflow-hidden text-white">
+    <div className="bg-[#0E1116] border border-[#242A35] rounded-md p-4 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden text-white">
       {/* CAD Watermark Grid */}
       <div 
         className="absolute inset-0 opacity-5 pointer-events-none"
@@ -77,32 +77,32 @@ const LoadCalculator = () => {
       <div className="relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#242A35]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 pb-5 sm:pb-6 border-b border-[#242A35]">
           <div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/15 text-[#E57A36] text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/30">
               <Calculator size={13} />
               <span>ELECTRICAL TELEMETRY &amp; LOAD ESTIMATOR</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-display font-black text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-black text-white tracking-tight">
               Interactive Load &amp; Turnkey Cost Calculator
             </h3>
-            <p className="text-sm text-[#8C96A5] mt-1">
+            <p className="text-xs sm:text-sm text-[#8C96A5] mt-1">
               Real-time engineering calculation of sanctioned kilowatt demand, main incomer protection, and cable sizing according to Indian Electricity Rules.
             </p>
           </div>
           
-          <div className="flex items-center gap-2 self-start sm:self-auto p-2.5 rounded-sm bg-[#141820] border border-[#242A35] text-xs font-mono text-[#CBD5E1]">
+          <div className="flex items-center gap-2 self-start sm:self-auto p-2 sm:p-2.5 rounded-sm bg-[#141820] border border-[#242A35] text-[11px] sm:text-xs font-mono text-[#CBD5E1] shrink-0">
             <ShieldCheck size={16} className="text-[#34D399]" />
             <span>M.TECH (EEE) CALIBRATED</span>
           </div>
         </div>
 
         {/* Sector Selector */}
-        <div className="mb-8">
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#8C96A5] mb-3">
+        <div className="mb-6 sm:mb-8">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[#8C96A5] mb-2.5 sm:mb-3">
             01. SELECT SECTOR / ENVIRONMENT
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5">
             {[
               { id: 'residential', label: 'Residential (Villa / Apartment)', icon: Home },
               { id: 'commercial', label: 'Commercial (Office / Hub)', icon: Building },
@@ -114,7 +114,7 @@ const LoadCalculator = () => {
                 <button
                   key={type.id}
                   onClick={() => setProjectType(type.id)}
-                  className={`p-3.5 rounded-sm flex items-center justify-center gap-2.5 font-sans font-semibold text-xs uppercase tracking-wider transition-all border ${
+                  className={`p-3 sm:p-3.5 rounded-sm flex items-center justify-center gap-2.5 font-sans font-semibold text-xs uppercase tracking-wider transition-all border ${
                     isSelected
                       ? 'bg-[#B35010] text-white border-[#C25E1A] shadow-md shadow-[#B35010]/20'
                       : 'bg-[#141820] text-[#8C96A5] hover:text-white hover:bg-[#1A202A] border-[#242A35]'
@@ -129,12 +129,12 @@ const LoadCalculator = () => {
         </div>
 
         {/* Built-up Area Slider */}
-        <div className="mb-8 p-6 bg-[#07090C] border border-[#202632] rounded-sm">
+        <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-[#07090C] border border-[#202632] rounded-sm">
           <div className="flex justify-between items-center mb-3">
             <label htmlFor={areaSliderId} className="text-xs font-mono uppercase tracking-wider text-[#8C96A5]">
               02. BUILT-UP FLOOR AREA (SQ.FT)
             </label>
-            <div className="font-mono text-xl font-bold text-[#E57A36]">
+            <div className="font-mono text-lg sm:text-xl font-bold text-[#E57A36]">
               {area.toLocaleString()} <span className="text-xs text-[#8C96A5] font-normal">SQ.FT</span>
             </div>
           </div>
@@ -149,7 +149,7 @@ const LoadCalculator = () => {
             onChange={(e) => setArea(parseInt(e.target.value))}
             className="w-full h-2 bg-[#202632] rounded-sm appearance-none cursor-pointer accent-[#B35010]"
           />
-          <div className="flex justify-between text-[10px] font-mono text-[#6B7280] mt-2">
+          <div className="flex justify-between text-[9px] sm:text-[10px] font-mono text-[#6B7280] mt-2">
             <span>400 SQ.FT</span>
             <span>3,000 SQ.FT</span>
             <span>6,000 SQ.FT</span>
@@ -158,11 +158,11 @@ const LoadCalculator = () => {
         </div>
 
         {/* Heavy Load Toggles */}
-        <div className="mb-10">
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#8C96A5] mb-3">
+        <div className="mb-8 sm:mb-10">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[#8C96A5] mb-2.5 sm:mb-3">
             03. INCLUDED HIGH-DEMAND LOADS &amp; INFRASTRUCTURE
           </label>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2 sm:gap-2.5">
             {[
               { id: 'ac', label: 'Air Conditioning Units (Multi-Split / VRF)' },
               { id: 'geyser', label: 'Water Heating / Heavy Boilers' },
@@ -177,18 +177,18 @@ const LoadCalculator = () => {
                 <button
                   key={app.id}
                   onClick={() => toggleAppliance(app.id)}
-                  className={`px-3.5 py-2 rounded-sm text-xs font-mono font-medium transition-all flex items-center gap-2 border ${
+                  className={`px-3 py-2 rounded-sm text-xs font-mono font-medium transition-all flex items-center gap-2 border ${
                     isChecked
                       ? 'bg-[#B35010]/20 text-[#E57A36] border-[#B35010]/50'
                       : 'bg-[#141820] text-[#8C96A5] hover:text-white border-[#242A35]'
                   }`}
                 >
-                  <span className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center text-[10px] border ${
+                  <span className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center text-[10px] border shrink-0 ${
                     isChecked ? 'bg-[#B35010] text-white border-[#B35010]' : 'border-[#4A5568]'
                   }`}>
                     {isChecked ? '✓' : ''}
                   </span>
-                  <span>{app.label}</span>
+                  <span className="text-left">{app.label}</span>
                 </button>
               );
             })}
@@ -196,54 +196,62 @@ const LoadCalculator = () => {
         </div>
 
         {/* Calculated Specification Readout (Engineering Matrix in JetBrains Mono) */}
-        <div className="p-6 bg-[#141820] border border-[#242A35] rounded-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+        <div className="p-4 sm:p-6 bg-[#141820] border border-[#242A35] rounded-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
           
-          <div className="border-b md:border-b-0 md:border-r border-[#242A35] pb-4 md:pb-0 md:pr-4">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
-              SANCTIONED LOAD DEMAND
-            </span>
-            <div className="font-mono text-3xl font-bold text-[#E57A36]">
-              {specs.estimatedKW} <span className="text-sm font-normal text-white">kW</span>
+          <div className="p-3.5 sm:p-4 rounded-sm bg-[#0E1116] border border-[#242A35] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
+                SANCTIONED LOAD DEMAND
+              </span>
+              <div className="font-mono text-2xl sm:text-3xl font-bold text-[#E57A36]">
+                {specs.estimatedKW} <span className="text-sm font-normal text-white">kW</span>
+              </div>
             </div>
-            <span className="text-[11px] font-mono text-[#6B7280]">
+            <span className="text-[11px] font-mono text-[#6B7280] mt-2 block">
               {specs.estimatedKW > 7 ? '3-PHASE 415V' : 'SINGLE-PHASE 230V'}
             </span>
           </div>
 
-          <div className="border-b md:border-b-0 lg:border-r border-[#242A35] pb-4 md:pb-0 lg:pr-4">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
-              INCOMER BREAKER SPEC
-            </span>
-            <div className="font-mono text-sm font-bold text-[#38BDF8] leading-tight">
-              {specs.incomer}
+          <div className="p-3.5 sm:p-4 rounded-sm bg-[#0E1116] border border-[#242A35] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
+                INCOMER BREAKER SPEC
+              </span>
+              <div className="font-mono text-xs sm:text-sm font-bold text-[#38BDF8] leading-tight">
+                {specs.incomer}
+              </div>
             </div>
-            <span className="text-[11px] font-mono text-[#6B7280]">
+            <span className="text-[11px] font-mono text-[#6B7280] mt-2 block">
               {specs.rccb}
             </span>
           </div>
 
-          <div className="border-b md:border-b-0 md:border-r border-[#242A35] pb-4 md:pb-0 md:pr-4">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
-              RECOMMENDED CABLE
-            </span>
-            <div className="font-mono text-sm font-bold text-white leading-tight">
-              {specs.wireGauge}
+          <div className="p-3.5 sm:p-4 rounded-sm bg-[#0E1116] border border-[#242A35] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
+                RECOMMENDED CABLE
+              </span>
+              <div className="font-mono text-xs sm:text-sm font-bold text-white leading-tight">
+                {specs.wireGauge}
+              </div>
             </div>
-            <span className="text-[11px] font-mono text-[#34D399]">
+            <span className="text-[11px] font-mono text-[#34D399] mt-2 block">
               {specs.earthing}
             </span>
           </div>
 
-          <div>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
-              ESTIMATED TURNKEY BUDGET
-            </span>
-            <div className="font-mono text-2xl font-bold text-white">
-              ₹{specs.estimatedCost.toLocaleString()}
+          <div className="p-3.5 sm:p-4 rounded-sm bg-[#0E1116] border border-[#242A35] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C96A5] block mb-1">
+                ESTIMATED TURNKEY BUDGET
+              </span>
+              <div className="font-mono text-xl sm:text-2xl font-bold text-white">
+                ₹{specs.estimatedCost.toLocaleString()}
+              </div>
             </div>
             <button
               onClick={handleWhatsAppQuote}
-              className="mt-2 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-[11px] font-semibold uppercase tracking-wider transition-all"
+              className="mt-3 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-[11px] font-semibold uppercase tracking-wider transition-all"
             >
               <MessageSquare size={13} />
               <span>Get Itemized BOQ</span>

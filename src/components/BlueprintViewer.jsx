@@ -96,21 +96,21 @@ const BlueprintViewer = () => {
   return (
     <div className="bg-[#0E1116] border border-[#242A35] rounded-md overflow-hidden shadow-2xl">
       {/* Top Header Bar with CAD Window Tabs */}
-      <div className="bg-[#141820] border-b border-[#242A35] px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-[#141820] border-b border-[#242A35] px-3 sm:px-4 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1.5 mr-3">
+          <div className="flex gap-1.5 mr-2 sm:mr-3">
             <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80 inline-block" />
           </div>
-          <span className="font-mono text-xs font-semibold text-[#8C96A5] uppercase tracking-wider flex items-center gap-2">
-            <Layers size={14} className="text-[#B35010]" />
-            <span>CAD SCHEMATIC &amp; SLD BLUEPRINT INSPECTOR</span>
+          <span className="font-mono text-[11px] sm:text-xs font-semibold text-[#8C96A5] uppercase tracking-wider flex items-center gap-1.5 sm:gap-2">
+            <Layers size={14} className="text-[#B35010] shrink-0" />
+            <span className="truncate">CAD SCHEMATIC &amp; SLD BLUEPRINT INSPECTOR</span>
           </span>
         </div>
 
         {/* Technical Revision Stamp */}
-        <div className="flex items-center gap-3 font-mono text-[11px]">
+        <div className="flex items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px]">
           <span className="text-[#8C96A5]">REV: 2026.4</span>
           <span className="text-[#3A4352]">|</span>
           <span className="text-[#34D399] flex items-center gap-1 font-semibold">
@@ -121,26 +121,26 @@ const BlueprintViewer = () => {
       </div>
 
       {/* Dribbble Style Architectural Tab Switcher */}
-      <div className="grid grid-cols-2 md:grid-cols-4 bg-[#0A0D12] border-b border-[#242A35]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[#0A0D12] border-b border-[#242A35]">
         {blueprints.map((item) => {
           const isActive = item.id === activeTab;
           return (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`p-3.5 text-left border-r border-[#242A35] transition-all relative ${
+              className={`p-3 sm:p-3.5 text-left border-b sm:border-b-0 sm:border-r border-[#242A35] transition-all relative ${
                 isActive 
                   ? 'bg-[#141922] text-white' 
                   : 'text-[#8C96A5] hover:text-[#CBD5E1] hover:bg-[#101319]'
               }`}
             >
               {isActive && (
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#B35010]" />
+                <div className="absolute top-0 left-0 sm:right-0 bottom-0 sm:bottom-auto w-1 sm:w-auto sm:h-0.5 bg-[#B35010]" />
               )}
               <div className="text-[10px] font-mono uppercase tracking-wider text-[#B35010] mb-0.5">
                 {item.category}
               </div>
-              <div className="text-xs font-bold font-sans truncate">
+              <div className="text-xs font-bold font-sans">
                 {item.title}
               </div>
             </button>
@@ -149,10 +149,10 @@ const BlueprintViewer = () => {
       </div>
 
       {/* Main Interactive CAD Blueprint Canvas */}
-      <div className="p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#0D1016]">
+      <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start bg-[#0D1016]">
         
         {/* Left: Interactive Single Line Diagram (SLD) Visualization */}
-        <div className="lg:col-span-7 bg-[#07090C] border border-[#202632] rounded-sm p-6 relative overflow-hidden font-mono text-xs">
+        <div className="lg:col-span-7 bg-[#07090C] border border-[#202632] rounded-sm p-4 sm:p-6 relative overflow-hidden font-mono text-xs w-full">
           {/* Subtle Drafting Blueprint Grid */}
           <div 
             className="absolute inset-0 opacity-10 pointer-events-none"
@@ -163,9 +163,9 @@ const BlueprintViewer = () => {
           />
 
           <div className="relative z-10">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#1E2430]">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[#1E2430]">
               <span className="text-[11px] font-bold text-[#E57A36] uppercase tracking-wider flex items-center gap-2">
-                <Zap size={14} className="text-[#B35010]" />
+                <Zap size={14} className="text-[#B35010] shrink-0" />
                 <span>SINGLE LINE DIAGRAM (SLD) FLOW</span>
               </span>
               <span className="text-[10px] text-[#6B7280]">
@@ -174,22 +174,22 @@ const BlueprintViewer = () => {
             </div>
 
             {/* Schematic Flow Steps */}
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               {currentBlueprint.schematicNodes.map((node, i) => (
                 <div 
                   key={i} 
-                  className="p-3 bg-[#0F131A] border border-[#232A36] rounded-sm flex items-center justify-between gap-4 transition-all hover:border-[#B35010]/60"
+                  className="p-2.5 sm:p-3 bg-[#0F131A] border border-[#232A36] rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 transition-all hover:border-[#B35010]/60"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-sm bg-[#1A202C] text-[#8C96A5] text-[10px] font-bold flex items-center justify-center border border-[#2D3748]">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="w-5 h-5 rounded-sm bg-[#1A202C] text-[#8C96A5] text-[10px] font-bold flex items-center justify-center border border-[#2D3748] shrink-0">
                       0{i + 1}
                     </span>
-                    <span className="text-[#E2E8F0] font-sans font-medium text-xs">
+                    <span className="text-[#E2E8F0] font-sans font-medium text-xs leading-snug">
                       {node.label}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 pl-7 sm:pl-0 shrink-0">
                     <span className="text-[#38BDF8] text-[11px] font-mono font-semibold">
                       {node.metric}
                     </span>
@@ -202,7 +202,7 @@ const BlueprintViewer = () => {
             </div>
 
             {/* Bottom Status Legend */}
-            <div className="mt-5 pt-4 border-t border-[#1E2430] flex flex-wrap items-center justify-between text-[11px] text-[#8C96A5]">
+            <div className="mt-5 pt-4 border-t border-[#1E2430] flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] text-[#8C96A5]">
               <span>CIRCUIT CONTINUITY: 100% OK</span>
               <span>EARTH RESISTANCE: 0.72 Ω (&lt; 1.0 Ω PASSED)</span>
             </div>
@@ -210,7 +210,7 @@ const BlueprintViewer = () => {
         </div>
 
         {/* Right: Technical Specification Manifest */}
-        <div className="lg:col-span-5 space-y-5">
+        <div className="lg:col-span-5 space-y-5 w-full">
           <div>
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-[#B35010]/15 text-[#E57A36] text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/30">
               {currentBlueprint.category}
@@ -221,22 +221,22 @@ const BlueprintViewer = () => {
           </div>
 
           {/* Key Specifications Grid in JetBrains Mono */}
-          <div className="bg-[#141820] border border-[#242A35] rounded-sm p-4 space-y-3 font-mono text-xs">
-            <div className="flex justify-between border-b border-[#242A35] pb-2">
-              <span className="text-[#8C96A5]">OPERATING VOLTAGE:</span>
+          <div className="bg-[#141820] border border-[#242A35] rounded-sm p-3.5 sm:p-4 space-y-2.5 sm:space-y-3 font-mono text-xs">
+            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
+              <span className="text-[#8C96A5] text-[11px]">OPERATING VOLTAGE:</span>
               <span className="text-white font-semibold">{currentBlueprint.voltage}</span>
             </div>
-            <div className="flex justify-between border-b border-[#242A35] pb-2">
-              <span className="text-[#8C96A5]">DESIGN CAPACITY:</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
+              <span className="text-[#8C96A5] text-[11px]">DESIGN CAPACITY:</span>
               <span className="text-white font-semibold">{currentBlueprint.capacity}</span>
             </div>
-            <div className="flex justify-between border-b border-[#242A35] pb-2">
-              <span className="text-[#8C96A5]">CIRCUIT BREAKER:</span>
-              <span className="text-[#38BDF8] font-semibold text-right">{currentBlueprint.breaker}</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
+              <span className="text-[#8C96A5] text-[11px]">CIRCUIT BREAKER:</span>
+              <span className="text-[#38BDF8] font-semibold sm:text-right">{currentBlueprint.breaker}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-[#8C96A5]">EARTHING SPECS:</span>
-              <span className="text-[#34D399] font-semibold text-right">{currentBlueprint.protection}</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
+              <span className="text-[#8C96A5] text-[11px]">EARTHING SPECS:</span>
+              <span className="text-[#34D399] font-semibold sm:text-right">{currentBlueprint.protection}</span>
             </div>
           </div>
 

@@ -66,17 +66,17 @@ const Logo = ({
   const isLight = variant === "light";
   
   const sizeMap = {
-    sm: { mark: 34, title: "text-base", sub: "text-[8.5px]", telemetry: "text-[7px]" },
-    md: { mark: 44, title: "text-lg sm:text-xl", sub: "text-[9.5px]", telemetry: "text-[7.5px]" },
-    lg: { mark: 56, title: "text-2xl sm:text-3xl", sub: "text-[11px]", telemetry: "text-[8.5px]" },
+    sm: { mark: 30, title: "text-sm sm:text-base", sub: "text-[8px] sm:text-[8.5px]", telemetry: "text-[7px]" },
+    md: { mark: 38, title: "text-base sm:text-lg md:text-xl", sub: "text-[8.5px] sm:text-[9.5px]", telemetry: "text-[7.5px]" },
+    lg: { mark: 50, title: "text-xl sm:text-2xl md:text-3xl", sub: "text-[10px] sm:text-[11px]", telemetry: "text-[8.5px]" },
   };
 
   const currentSize = sizeMap[size] || sizeMap.md;
 
   return (
-    <div className="flex items-center gap-3 select-none group cursor-pointer">
+    <div className="flex items-center gap-2 sm:gap-3 select-none group cursor-pointer">
       {/* Precision Engineered Trademark Mark */}
-      <div className={`p-1.5 rounded-sm flex items-center justify-center transition-all duration-200 border ${
+      <div className={`p-1 sm:p-1.5 rounded-sm flex items-center justify-center transition-all duration-200 border shrink-0 ${
         isLight 
           ? "bg-[#16191D] border-[#2C323B] shadow-sm group-hover:border-[#B35010]" 
           : "bg-white border-[#D7DBE0] shadow-sm group-hover:border-[#B35010]"
@@ -84,27 +84,27 @@ const Logo = ({
         <LogoMark size={currentSize.mark} />
       </div>
 
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center min-w-0">
         {/* Authoritative Architectural Wordmark */}
-        <div className="flex items-baseline gap-1.5 leading-none">
+        <div className="flex items-baseline gap-1 sm:gap-1.5 leading-none">
           <span className={`font-display font-extrabold tracking-tight ${currentSize.title} ${
             isLight ? "text-white" : "text-[#121417]"
-          } transition-colors group-hover:text-[#B35010]`}>
+          } transition-colors group-hover:text-[#B35010] whitespace-nowrap`}>
             MR. ELECTRICAL
           </span>
-          <span className={`font-display font-extrabold tracking-wide ${currentSize.title} text-[#B35010]`}>
+          <span className={`font-display font-extrabold tracking-wide ${currentSize.title} text-[#B35010] whitespace-nowrap`}>
             WORKS
           </span>
         </div>
 
         {showSubtitle && (
-          <div className="flex flex-col mt-1 space-y-0.5">
-            <span className={`font-mono font-semibold tracking-[0.16em] uppercase leading-tight ${currentSize.sub} ${
+          <div className="flex flex-col mt-0.5 sm:mt-1 space-y-0.5">
+            <span className={`font-mono font-semibold tracking-[0.14em] sm:tracking-[0.16em] uppercase leading-tight ${currentSize.sub} ${
               isLight ? "text-[#9CA3AF]" : "text-[#5C6470]"
-            }`}>
-              TURNKEY ENGINEERING & CONTRACTING
+            } truncate`}>
+              TURNKEY ENGINEERING &amp; CONTRACTING
             </span>
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2">
               <span className={`font-mono font-medium ${currentSize.telemetry} tracking-wider ${
                 isLight ? "text-[#6B7280]" : "text-[#8892A0]"
               }`}>

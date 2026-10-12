@@ -57,7 +57,7 @@ const Contact = () => {
             {/* Contact Form with WhatsApp Integration */}
             <div className="lg:col-span-7">
               <ScrollReveal variant="fade-right">
-                <div className="bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-slate-200/80">
+                <div className="bg-white p-5 sm:p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-200/80">
                   <span className="eyebrow">Immediate Response</span>
                   <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
                     Request Upfront Quote or Site Visit

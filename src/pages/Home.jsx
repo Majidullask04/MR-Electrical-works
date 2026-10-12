@@ -63,7 +63,7 @@ const Home = () => {
               </div>
 
               {/* Architectural Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.08] tracking-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.12] sm:leading-[1.08] tracking-tight">
                 Turnkey Electrical Contracting &amp;{' '}
                 <span className="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-8">
                   Substation EPC.
@@ -71,31 +71,31 @@ const Home = () => {
               </h1>
 
               {/* Technical Proposition */}
-              <p className="text-[#8C96A5] text-base sm:text-lg font-sans max-w-2xl leading-relaxed">
+              <p className="text-[#8C96A5] text-sm sm:text-base lg:text-lg font-sans max-w-2xl leading-relaxed">
                 Supervised directly by <strong className="text-white">Mr. Nekbor Seikh (M.Tech - EEE)</strong>, General Manager (Projects). We execute zero-defect 11kV transformer yards, industrial LT switchgear, high-rise risers, and luxury villa electrification across Telangana.
               </p>
 
               {/* CAD Technical Specifications HUD */}
-              <div className="p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono text-[11px]">
+              <div className="p-3.5 sm:p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-[11px]">
                 <div>
-                  <span className="text-[#6B7280] block text-[9.5px]">CHIEF ENGINEER:</span>
+                  <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">CHIEF ENGINEER:</span>
                   <span className="text-white font-semibold">NEKBOR SEIKH</span>
                 </div>
                 <div>
-                  <span className="text-[#6B7280] block text-[9.5px]">QUALIFICATION:</span>
+                  <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">QUALIFICATION:</span>
                   <span className="text-[#E57A36] font-semibold">M.TECH (EEE)</span>
                 </div>
                 <div>
-                  <span className="text-[#6B7280] block text-[9.5px]">DISCOM STANDARDS:</span>
+                  <span className="text-[#6B7280] block text-[9px] sm:text-[9.5px]">DISCOM STANDARDS:</span>
                   <span className="text-[#34D399] font-semibold">CEIG APPROVED</span>
                 </div>
               </div>
 
               {/* Action Triggers */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-2">
                 <Link 
                   to="/contact" 
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25"
+                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25 w-full sm:w-auto"
                 >
                   <span>Request Site BOQ &amp; Drawings</span>
                   <ArrowRight size={15} />
@@ -105,7 +105,7 @@ const Home = () => {
                   href={contactInfo.whatsappUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40 w-full sm:w-auto"
                 >
                   <MessageSquare size={15} />
                   <span>Direct WhatsApp with GM</span>
@@ -113,7 +113,7 @@ const Home = () => {
 
                 <a
                   href={`tel:${contactInfo.phone}`}
-                  className="inline-flex items-center gap-2 px-4 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-[#CBD5E1] font-mono text-xs tracking-wider transition-all border border-[#242A35]"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-[#CBD5E1] font-mono text-xs tracking-wider transition-all border border-[#242A35] w-full sm:w-auto"
                 >
                   <Phone size={14} className="text-[#E57A36]" />
                   <span>{contactInfo.displayPhone}</span>
@@ -136,7 +136,7 @@ const Home = () => {
                     <span className="absolute -bottom-1.5 -left-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
                     <span className="absolute -bottom-1.5 -right-1.5 text-xs font-mono text-[#E57A36] leading-none font-bold">+</span>
 
-                    <div className="relative h-[430px] sm:h-[480px] overflow-hidden rounded-sm bg-[#0A0D12]">
+                    <div className="relative h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden rounded-sm bg-[#0A0D12]">
                       <img 
                         src={leadership.photo} 
                         alt="Mr. Nekbor Seikh (M.Tech - EEE) - General Manager Projects" 
@@ -147,29 +147,29 @@ const Home = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D12] via-[#0A0D12]/25 to-transparent" />
 
                       {/* Top Right CAD Coordinate Stamp */}
-                      <div className="absolute top-3 right-3 px-2 py-1 bg-[#0A0D12]/90 backdrop-blur-sm border border-[#262E3D] rounded-sm font-mono text-[9.5px] text-[#8C96A5]">
+                      <div className="absolute top-3 right-3 px-2 py-1 bg-[#0A0D12]/90 backdrop-blur-sm border border-[#262E3D] rounded-sm font-mono text-[9px] sm:text-[9.5px] text-[#8C96A5]">
                         COORD: 17.5323° N, 78.2644° E
                       </div>
 
                       {/* Bottom Executive Telemetry Sheet */}
-                      <div className="absolute bottom-3 left-3 right-3 p-4 bg-[#0E1116]/95 backdrop-blur-md border border-[#242A35] rounded-sm text-white">
+                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 p-3 sm:p-4 bg-[#0E1116]/95 backdrop-blur-md border border-[#242A35] rounded-sm text-white">
                         <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#202735]">
                           <div>
-                            <div className="text-base font-bold text-white flex items-center gap-1.5 font-display">
+                            <div className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5 font-display">
                               <span>{leadership.name}</span>
                               <CheckCircle2 size={15} className="text-[#34D399]" />
                             </div>
-                            <div className="text-xs font-mono text-[#E57A36] font-semibold">
+                            <div className="text-[11px] sm:text-xs font-mono text-[#E57A36] font-semibold">
                               {leadership.qualification} · {leadership.role}
                             </div>
                           </div>
                           
-                          <div className="p-2 bg-[#1A202C] border border-[#2D3748] rounded-sm text-[#E57A36]">
-                            <LogoMark size={22} />
+                          <div className="p-1.5 sm:p-2 bg-[#1A202C] border border-[#2D3748] rounded-sm text-[#E57A36]">
+                            <LogoMark size={20} />
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-[11px] font-mono text-[#8C96A5]">
+                        <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-[11px] font-mono text-[#8C96A5]">
                           <div>OFFICE: PATANCHERU, HYD</div>
                           <div className="text-right text-[#34D399] font-semibold">100% PASS RATE</div>
                         </div>
@@ -189,14 +189,14 @@ const Home = () => {
       {/* ============================== DRIBBBLE METRICS STRIP ============================== */}
       <section className="bg-[#12161F] border-b border-[#242A35] text-white py-6">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-[#242A35]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {[
               { val: '1,250+', label: 'kVA Substation Capacity Commissioned', spec: '11kV/415V HT Panels' },
               { val: '450+', label: 'Villas & Industrial Projects Handed Over', spec: 'Zero Contractor Claims' },
               { val: '0.72 Ω', label: 'Calibrated Earth Resistance Target', spec: 'IS 3043 Chemical Mesh' },
               { val: '100%', label: 'Statutory Electrical Inspector Passing', spec: 'CEIG Telangana Certified' },
             ].map((stat, idx) => (
-              <div key={idx} className="px-4 py-2 text-left">
+              <div key={idx} className="p-3.5 sm:px-4 sm:py-2 text-left rounded-sm bg-[#0E1116] sm:bg-transparent border border-[#242A35] sm:border-0 sm:border-r last:border-r-0">
                 <div className="font-mono text-2xl sm:text-3xl font-bold text-[#E57A36]">
                   {stat.val}
                 </div>
@@ -241,10 +241,10 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             
             {/* Bento Card 1: Wide Feature (HT/LT Substations) */}
-            <div className="md:col-span-8 bg-[#0E1116] border border-[#242A35] rounded-md p-8 text-white relative overflow-hidden group">
+            <div className="md:col-span-8 bg-[#0E1116] border border-[#242A35] rounded-md p-5 sm:p-8 text-white relative overflow-hidden group">
               <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
                 <div>
-                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#242A35]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#242A35]">
                     <span className="font-mono text-xs text-[#E57A36] uppercase tracking-wider font-semibold">
                       HEAVY INFRASTRUCTURE · 11kV/33kV
                     </span>
@@ -253,7 +253,7 @@ const Home = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-display font-black text-white mb-3">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-black text-white mb-3">
                     Substation Erection &amp; Vacuum Circuit Breakers (VCB)
                   </h3>
 
@@ -262,7 +262,7 @@ const Home = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 font-mono text-xs pt-4 border-t border-[#242A35]">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-4 border-t border-[#242A35]">
                   <div>
                     <span className="text-[#6B7280] block text-[10px]">VOLTAGE:</span>
                     <span className="text-white font-semibold">11,000V → 415V</span>
@@ -280,12 +280,12 @@ const Home = () => {
             </div>
 
             {/* Bento Card 2: Main LT Panels */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
               <div>
                 <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
                   CUSTOM PANEL FABRICATION
                 </span>
-                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
                   Main LT Switchgear &amp; APFC Capacitor Banks
                 </h3>
                 <p className="text-[#5C6470] text-sm leading-relaxed">
@@ -293,7 +293,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
                 <span className="text-[#121417] font-semibold">800A - 3200A BUSBARS</span>
                 <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
                   <span>SPECS</span>
@@ -303,12 +303,12 @@ const Home = () => {
             </div>
 
             {/* Bento Card 3: Industrial Pharma & Manufacturing */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
               <div>
                 <span className="font-mono text-xs text-[#0E639C] uppercase tracking-wider font-semibold block mb-2">
                   INDUSTRIAL MANUFACTURING
                 </span>
-                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
                   Pharma Cleanrooms &amp; Industrial Conduiting
                 </h3>
                 <p className="text-[#5C6470] text-sm leading-relaxed">
@@ -316,7 +316,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
                 <span className="text-[#121417] font-semibold">IP65 ENCLOSURES</span>
                 <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
                   <span>SPECS</span>
@@ -326,12 +326,12 @@ const Home = () => {
             </div>
 
             {/* Bento Card 4: Luxury Residential Villas */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
+            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
               <div>
                 <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
                   RESIDENTIAL LUXURY
                 </span>
-                <h3 className="text-xl font-display font-black text-[#121417] mb-3">
+                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
                   High-End Villa &amp; Gated Community Electrification
                 </h3>
                 <p className="text-[#5C6470] text-sm leading-relaxed">
@@ -339,7 +339,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-[#EAECEF] mt-6 flex justify-between items-center font-mono text-xs">
+              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
                 <span className="text-[#121417] font-semibold">30mA HUMAN SAFETY</span>
                 <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
                   <span>SPECS</span>
@@ -349,12 +349,12 @@ const Home = () => {
             </div>
 
             {/* Bento Card 5: Solar & DG Synchronization */}
-            <div className="md:col-span-4 bg-[#141821] border border-[#242A35] rounded-md p-8 text-white flex flex-col justify-between group hover:border-[#38BDF8] transition-all">
+            <div className="md:col-span-4 bg-[#141821] border border-[#242A35] rounded-md p-5 sm:p-8 text-white flex flex-col justify-between group hover:border-[#38BDF8] transition-all">
               <div>
                 <span className="font-mono text-xs text-[#38BDF8] uppercase tracking-wider font-semibold block mb-2">
                   BACKUP &amp; GREEN ENERGY
                 </span>
-                <h3 className="text-xl font-display font-black text-white mb-3">
+                <h3 className="text-lg sm:text-xl font-display font-black text-white mb-3">
                   Solar On-Grid &amp; DG Synchronizing Relays
                 </h3>
                 <p className="text-[#8C96A5] text-sm leading-relaxed">
@@ -362,7 +362,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-[#242A35] mt-6 flex justify-between items-center font-mono text-xs">
+              <div className="pt-5 sm:pt-6 border-t border-[#242A35] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
                 <span className="text-[#34D399] font-semibold">NET-METERING READY</span>
                 <Link to="/services" className="text-[#38BDF8] hover:underline flex items-center gap-1 font-semibold">
                   <span>SPECS</span>
@@ -458,10 +458,10 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="pt-2 flex flex-wrap gap-4">
+                <div className="pt-2 flex flex-col sm:flex-row gap-3">
                   <Link 
                     to="/about" 
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-sm bg-[#121417] hover:bg-[#202632] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-[#121417] hover:bg-[#202632] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all w-full sm:w-auto"
                   >
                     <span>Read Executive Credentials</span>
                     <ArrowRight size={14} />
@@ -471,7 +471,7 @@ const Home = () => {
                     href={leadership.businessCard} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-sm bg-white border border-[#D7DBE0] hover:border-[#121417] text-[#121417] font-mono text-xs font-semibold uppercase tracking-wider transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-white border border-[#D7DBE0] hover:border-[#121417] text-[#121417] font-mono text-xs font-semibold uppercase tracking-wider transition-all w-full sm:w-auto"
                   >
                     <FileText size={14} />
                     <span>View Registration Card</span>
@@ -549,10 +549,10 @@ const Home = () => {
               Connect with <strong>Mr. Nekbor Seikh (M.Tech - EEE)</strong> today for upfront engineering advice, single-line diagram analysis, or an itemized turnkey quotation for your project.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-xl mx-auto sm:max-w-none">
               <Link 
                 to="/contact" 
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#C25E1A]/40 shadow-lg shadow-[#B35010]/25 w-full sm:w-auto"
               >
                 <span>Request Site Inspection &amp; BOQ</span>
                 <ArrowRight size={15} />
@@ -560,7 +560,7 @@ const Home = () => {
               
               <a 
                 href={`tel:${contactInfo.phone}`} 
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-white font-mono text-xs tracking-wider transition-all border border-[#242A35]"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-sm bg-[#141821] hover:bg-[#1C222E] text-white font-mono text-xs tracking-wider transition-all border border-[#242A35] w-full sm:w-auto"
               >
                 <Phone size={15} className="text-[#E57A36]" />
                 <span>Call {contactInfo.displayPhone}</span>
@@ -570,7 +570,7 @@ const Home = () => {
                 href={contactInfo.whatsappUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-sm bg-[#102A1E] text-[#34D399] hover:bg-[#163828] font-mono text-xs font-semibold uppercase tracking-wider transition-all border border-[#059669]/40 w-full sm:w-auto"
               >
                 <MessageSquare size={15} />
                 <span>Instant WhatsApp Consultation</span>

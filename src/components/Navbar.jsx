@@ -136,18 +136,18 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile and Tablet Menu Controls */}
           <div className="lg:hidden flex items-center gap-2">
             <a
               href={`tel:${contactInfo.phone}`}
-              className="p-2 rounded-sm bg-[#B35010] text-white border border-[#C25E1A]/40 flex items-center justify-center"
-              aria-label="Direct Call"
+              className="p-2.5 rounded-sm bg-[#B35010] text-white border border-[#C25E1A]/40 flex items-center justify-center min-w-[42px] min-h-[42px] hover:bg-[#9C4208] transition-colors"
+              aria-label="Direct Call General Manager"
             >
-              <Phone size={16} />
+              <Phone size={17} />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#9DA8B8] hover:text-white p-2 rounded-sm border border-[#242A35] focus:outline-none bg-[#141820]"
+              className="text-[#9DA8B8] hover:text-white p-2.5 rounded-sm border border-[#242A35] focus:outline-none bg-[#141820] min-w-[42px] min-h-[42px] flex items-center justify-center transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -156,10 +156,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Dribbble Style Mobile Drawer */}
+      {/* Dribbble Style Mobile/Tablet Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#0E1116] border-t border-[#242A35] shadow-2xl px-6 py-5 mt-2 animate-[fadeInUp_0.2s_ease]">
-          <div className="space-y-2">
+        <div className="lg:hidden bg-[#0E1116] border-t border-[#242A35] shadow-2xl px-4 sm:px-6 py-4 sm:py-5 mt-2 animate-[fadeInUp_0.2s_ease]">
+          <div className="space-y-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

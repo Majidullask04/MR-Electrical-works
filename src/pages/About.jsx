@@ -115,10 +115,10 @@ const About = () => {
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                   <a
                     href={`tel:${contactInfo.phone}`}
-                    className="btn-primary flex items-center gap-2"
+                    className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto text-center"
                   >
                     <Phone size={16} />
                     <span>Speak with Mr. Nekbor: {contactInfo.displayPhone}</span>
@@ -127,7 +127,7 @@ const About = () => {
                     href={contactInfo.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-outline flex items-center gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50"
+                    className="btn-outline flex items-center justify-center gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50 w-full sm:w-auto text-center"
                   >
                     <Mail size={16} />
                     <span>WhatsApp Engineering Desk</span>
