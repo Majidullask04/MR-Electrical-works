@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { contactInfo, faqs, leadership } from '../data/mockData';
 import { MapPin, Phone, Mail, Send, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import BlurText from '../components/BlurText';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', serviceType: 'House Wiring', message: '' });
@@ -39,12 +40,26 @@ const Contact = () => {
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-cyan-400">Direct Engineering Inquiry</span>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
-              Connect Directly With Our GM
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Speak directly with <strong>Mr. Nekbor Seikh (M.Tech - EEE)</strong> for architectural electrical planning, industrial panel submittals, or immediate site visit quotations.
-            </p>
+            <BlurText
+              as="h1"
+              text="Connect Directly With Our GM"
+              highlight="Our GM"
+              highlightClassName="text-cyan-400"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
+              blurAmount="14px"
+              stagger={0.05}
+            />
+            <BlurText
+              as="p"
+              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Speak directly with Mr. Nekbor Seikh (M.Tech - EEE) for architectural electrical planning, industrial panel submittals, or immediate site visit quotations."
+              highlight="Mr. Nekbor Seikh (M.Tech - EEE)"
+              highlightClassName="text-white font-bold"
+            />
           </ScrollReveal>
         </div>
       </section>
@@ -262,10 +277,24 @@ const Contact = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="eyebrow">Clear Answers</span>
-              <h2 className="section-title">Frequently Asked Questions</h2>
-              <p className="section-subtitle">
-                Everything you need to know about our engineering approach, safety standards, and project timelines.
-              </p>
+              <BlurText
+                as="h2"
+                text="Frequently Asked Questions"
+                highlight="Asked Questions"
+                highlightClassName="text-blue-600"
+                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
+                blurAmount="14px"
+                stagger={0.05}
+              />
+              <BlurText
+                as="p"
+                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
+                animateBy="words"
+                blurAmount="10px"
+                stagger={0.02}
+                delay={0.15}
+                text="Everything you need to know about our engineering approach, safety standards, and project timelines."
+              />
             </div>
           </ScrollReveal>
 

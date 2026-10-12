@@ -1,6 +1,7 @@
 import { projects, leadership } from '../data/mockData';
 import { MapPin, Clock, Zap, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import BlurText from '../components/BlurText';
 
 const galleryImages = [
   { url: leadership.photo, caption: "Engineering Drawing & Circuit Analysis by Mr. Nekbor Seikh (M.Tech - EEE)" },
@@ -22,12 +23,24 @@ const Projects = () => {
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-cyan-400">Proven Track Record</span>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
-              Executed Projects &amp; Field Gallery
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Explore our executed electrical turnkey installations across Patancheru, Sangareddy, and the greater Hyderabad industrial and residential zones.
-            </p>
+            <BlurText
+              as="h1"
+              text="Executed Projects & Field Gallery"
+              highlight="Field Gallery"
+              highlightClassName="text-cyan-400"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
+              blurAmount="14px"
+              stagger={0.05}
+            />
+            <BlurText
+              as="p"
+              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Explore our executed electrical turnkey installations across Patancheru, Sangareddy, and the greater Hyderabad industrial and residential zones."
+            />
           </ScrollReveal>
         </div>
       </section>
@@ -92,10 +105,24 @@ const Projects = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="eyebrow">On-Site Execution</span>
-              <h2 className="section-title">Field Craftsmanship &amp; Engineering In Action</h2>
-              <p className="section-subtitle">
-                A glimpse into our neat conduit routing, robust panel terminations, and clean laser-aligned finishes.
-              </p>
+              <BlurText
+                as="h2"
+                text="Field Craftsmanship & Engineering In Action"
+                highlight="Engineering In Action"
+                highlightClassName="text-blue-600"
+                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
+                blurAmount="14px"
+                stagger={0.05}
+              />
+              <BlurText
+                as="p"
+                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
+                animateBy="words"
+                blurAmount="10px"
+                stagger={0.02}
+                delay={0.15}
+                text="A glimpse into our neat conduit routing, robust panel terminations, and clean laser-aligned finishes."
+              />
             </div>
           </ScrollReveal>
 

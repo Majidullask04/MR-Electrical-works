@@ -8,6 +8,7 @@ import Marquee from '../components/Marquee';
 import { LogoMark } from '../components/Logo';
 import LoadCalculator from '../components/LoadCalculator';
 import BlueprintViewer from '../components/BlueprintViewer';
+import BlurText from '../components/BlurText';
 
 const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
@@ -62,18 +63,30 @@ const Home = () => {
                 <span className="truncate">PATANCHERU &amp; HYDERABAD</span>
               </div>
 
-              {/* Architectural Main Headline */}
-              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.15] sm:leading-[1.08] tracking-tight break-words">
-                Turnkey Electrical Contracting &amp;{' '}
-                <span className="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-4 sm:underline-offset-8">
-                  Substation EPC.
-                </span>
-              </h1>
+              {/* Architectural Main Headline with Word Blur-to-Clear Reveal */}
+              <BlurText
+                as="h1"
+                text="Turnkey Electrical Contracting & Substation EPC."
+                highlight="Substation EPC."
+                highlightClassName="text-[#E57A36] underline decoration-[#B35010]/40 decoration-wavy underline-offset-4 sm:underline-offset-8"
+                className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-[1.15] sm:leading-[1.08] tracking-tight break-words"
+                stagger={0.06}
+                blurAmount="16px"
+                duration={0.75}
+              />
 
               {/* Technical Proposition */}
-              <p className="text-[#8C96A5] text-sm sm:text-base lg:text-lg font-sans max-w-2xl leading-relaxed">
-                Supervised directly by <strong className="text-white">Mr. Nekbor Seikh (M.Tech - EEE)</strong>, General Manager (Projects). We execute zero-defect 11kV transformer yards, industrial LT switchgear, high-rise risers, and luxury villa electrification across Telangana.
-              </p>
+              <BlurText
+                as="p"
+                className="text-[#8C96A5] text-sm sm:text-base lg:text-lg font-sans max-w-2xl leading-relaxed"
+                animateBy="words"
+                blurAmount="12px"
+                stagger={0.02}
+                delay={0.25}
+                text="Supervised directly by Mr. Nekbor Seikh (M.Tech - EEE), General Manager (Projects). We execute zero-defect 11kV transformer yards, industrial LT switchgear, high-rise risers, and luxury villa electrification across Telangana."
+                highlight="Mr. Nekbor Seikh (M.Tech - EEE)"
+                highlightClassName="text-white font-bold"
+              />
 
               {/* CAD Technical Specifications HUD */}
               <div className="p-3 sm:p-4 bg-[#10141C] border border-[#202735] rounded-sm grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-[11px]">
@@ -221,155 +234,173 @@ const Home = () => {
       <section className="section-padding bg-[#F9F9FB] border-b border-[#E2E6EC]">
         <div className="container-custom">
           
-          <ScrollReveal variant="fade-up">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/20">
-                  TURNKEY EPC CAPABILITIES
-                </div>
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words">
-                  Engineered Power Distribution Architecture
-                </h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-[#B35010]/10 text-[#B35010] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/20">
+                TURNKEY EPC CAPABILITIES
               </div>
-              <p className="text-sm font-sans text-[#5C6470] max-w-md">
-                Every circuit planned using electrical load schedule software, IS-standard earthing calculations, and verified harmonic mitigation.
-              </p>
+              <BlurText
+                as="h2"
+                text="Engineered Power Distribution Architecture"
+                className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words"
+                blurAmount="14px"
+                stagger={0.045}
+              />
             </div>
-          </ScrollReveal>
+            <BlurText
+              as="p"
+              className="text-sm font-sans text-[#5C6470] max-w-md"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Every circuit planned using electrical load schedule software, IS-standard earthing calculations, and verified harmonic mitigation."
+            />
+          </div>
 
           {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             
             {/* Bento Card 1: Wide Feature (HT/LT Substations) */}
-            <div className="md:col-span-8 bg-[#0E1116] border border-[#242A35] rounded-md p-5 sm:p-8 text-white relative overflow-hidden group">
-              <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
-                <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#242A35]">
-                    <span className="font-mono text-xs text-[#E57A36] uppercase tracking-wider font-semibold">
-                      HEAVY INFRASTRUCTURE · 11kV/33kV
-                    </span>
-                    <span className="px-2 py-0.5 rounded-sm bg-[#1A2230] text-[#38BDF8] font-mono text-[10px] border border-[#2D3A4F]">
-                      HT TRANSFORMER YARDS
-                    </span>
+            <ScrollReveal variant="blur-reveal" delay={0.1} className="md:col-span-8">
+              <div className="bg-[#0E1116] border border-[#242A35] rounded-md p-5 sm:p-8 text-white relative overflow-hidden group h-full">
+                <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#242A35]">
+                      <span className="font-mono text-xs text-[#E57A36] uppercase tracking-wider font-semibold">
+                        HEAVY INFRASTRUCTURE · 11kV/33kV
+                      </span>
+                      <span className="px-2 py-0.5 rounded-sm bg-[#1A2230] text-[#38BDF8] font-mono text-[10px] border border-[#2D3A4F]">
+                        HT TRANSFORMER YARDS
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-black text-white mb-3">
+                      Substation Erection &amp; Vacuum Circuit Breakers (VCB)
+                    </h3>
+
+                    <p className="text-[#8C96A5] text-sm leading-relaxed max-w-xl">
+                      Turnkey installation of outdoor &amp; indoor transformer yards, HT breaker panels, gang-operated air break (GOAB) switches, and drop-out fuses with statutory CEIG approvals.
+                    </p>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-black text-white mb-3">
-                    Substation Erection &amp; Vacuum Circuit Breakers (VCB)
-                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-4 border-t border-[#242A35]">
+                    <div>
+                      <span className="text-[#6B7280] block text-[10px]">VOLTAGE:</span>
+                      <span className="text-white font-semibold">11,000V → 415V</span>
+                    </div>
+                    <div>
+                      <span className="text-[#6B7280] block text-[10px]">BREAKERS:</span>
+                      <span className="text-[#E57A36] font-semibold">VCB &amp; SF6</span>
+                    </div>
+                    <div>
+                      <span className="text-[#6B7280] block text-[10px]">INSPECTION:</span>
+                      <span className="text-[#34D399] font-semibold">CEIG CLEARANCE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
 
-                  <p className="text-[#8C96A5] text-sm leading-relaxed max-w-xl">
-                    Turnkey installation of outdoor &amp; indoor transformer yards, HT breaker panels, gang-operated air break (GOAB) switches, and drop-out fuses with statutory CEIG approvals.
+            {/* Bento Card 2: Main LT Panels */}
+            <ScrollReveal variant="blur-reveal" delay={0.15} className="md:col-span-4">
+              <div className="bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all h-full">
+                <div>
+                  <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
+                    CUSTOM PANEL FABRICATION
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
+                    Main LT Switchgear &amp; APFC Capacitor Banks
+                  </h3>
+                  <p className="text-[#5C6470] text-sm leading-relaxed">
+                    Modular busbar chambers with Air Circuit Breakers (ACB), automatic power factor controllers, and harmonic detuned reactors.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-4 border-t border-[#242A35]">
-                  <div>
-                    <span className="text-[#6B7280] block text-[10px]">VOLTAGE:</span>
-                    <span className="text-white font-semibold">11,000V → 415V</span>
-                  </div>
-                  <div>
-                    <span className="text-[#6B7280] block text-[10px]">BREAKERS:</span>
-                    <span className="text-[#E57A36] font-semibold">VCB &amp; SF6</span>
-                  </div>
-                  <div>
-                    <span className="text-[#6B7280] block text-[10px]">INSPECTION:</span>
-                    <span className="text-[#34D399] font-semibold">CEIG CLEARANCE</span>
-                  </div>
+                <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
+                  <span className="text-[#121417] font-semibold">800A - 3200A BUSBARS</span>
+                  <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                    <span>SPECS</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
                 </div>
               </div>
-            </div>
-
-            {/* Bento Card 2: Main LT Panels */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
-              <div>
-                <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
-                  CUSTOM PANEL FABRICATION
-                </span>
-                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
-                  Main LT Switchgear &amp; APFC Capacitor Banks
-                </h3>
-                <p className="text-[#5C6470] text-sm leading-relaxed">
-                  Modular busbar chambers with Air Circuit Breakers (ACB), automatic power factor controllers, and harmonic detuned reactors.
-                </p>
-              </div>
-
-              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
-                <span className="text-[#121417] font-semibold">800A - 3200A BUSBARS</span>
-                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
-                  <span>SPECS</span>
-                  <ArrowUpRight size={13} />
-                </Link>
-              </div>
-            </div>
+            </ScrollReveal>
 
             {/* Bento Card 3: Industrial Pharma & Manufacturing */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
-              <div>
-                <span className="font-mono text-xs text-[#0E639C] uppercase tracking-wider font-semibold block mb-2">
-                  INDUSTRIAL MANUFACTURING
-                </span>
-                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
-                  Pharma Cleanrooms &amp; Industrial Conduiting
-                </h3>
-                <p className="text-[#5C6470] text-sm leading-relaxed">
-                  Heavy galvanized perforated cable trays, flame-retardant low-smoke (FRLS) wiring, and explosion-safe fittings for Patancheru industrial units.
-                </p>
-              </div>
+            <ScrollReveal variant="blur-reveal" delay={0.1} className="md:col-span-4">
+              <div className="bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all h-full">
+                <div>
+                  <span className="font-mono text-xs text-[#0E639C] uppercase tracking-wider font-semibold block mb-2">
+                    INDUSTRIAL MANUFACTURING
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
+                    Pharma Cleanrooms &amp; Industrial Conduiting
+                  </h3>
+                  <p className="text-[#5C6470] text-sm leading-relaxed">
+                    Heavy galvanized perforated cable trays, flame-retardant low-smoke (FRLS) wiring, and explosion-safe fittings for Patancheru industrial units.
+                  </p>
+                </div>
 
-              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
-                <span className="text-[#121417] font-semibold">IP65 ENCLOSURES</span>
-                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
-                  <span>SPECS</span>
-                  <ArrowUpRight size={13} />
-                </Link>
+                <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
+                  <span className="text-[#121417] font-semibold">IP65 ENCLOSURES</span>
+                  <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                    <span>SPECS</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Bento Card 4: Luxury Residential Villas */}
-            <div className="md:col-span-4 bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all">
-              <div>
-                <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
-                  RESIDENTIAL LUXURY
-                </span>
-                <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
-                  High-End Villa &amp; Gated Community Electrification
-                </h3>
-                <p className="text-[#5C6470] text-sm leading-relaxed">
-                  Concealed wiring, smart distribution boards, EV charger circuits, and dedicated 30mA RCCB shock prevention for families.
-                </p>
-              </div>
+            <ScrollReveal variant="blur-reveal" delay={0.15} className="md:col-span-4">
+              <div className="bg-white border border-[#D7DBE0] rounded-md p-5 sm:p-8 flex flex-col justify-between group hover:border-[#B35010] transition-all h-full">
+                <div>
+                  <span className="font-mono text-xs text-[#B35010] uppercase tracking-wider font-semibold block mb-2">
+                    RESIDENTIAL LUXURY
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-display font-black text-[#121417] mb-3">
+                    High-End Villa &amp; Gated Community Electrification
+                  </h3>
+                  <p className="text-[#5C6470] text-sm leading-relaxed">
+                    Concealed wiring, smart distribution boards, EV charger circuits, and dedicated 30mA RCCB shock prevention for families.
+                  </p>
+                </div>
 
-              <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
-                <span className="text-[#121417] font-semibold">30mA HUMAN SAFETY</span>
-                <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
-                  <span>SPECS</span>
-                  <ArrowUpRight size={13} />
-                </Link>
+                <div className="pt-5 sm:pt-6 border-t border-[#EAECEF] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
+                  <span className="text-[#121417] font-semibold">30mA HUMAN SAFETY</span>
+                  <Link to="/services" className="text-[#B35010] hover:underline flex items-center gap-1 font-semibold">
+                    <span>SPECS</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Bento Card 5: Solar & DG Synchronization */}
-            <div className="md:col-span-4 bg-[#141821] border border-[#242A35] rounded-md p-5 sm:p-8 text-white flex flex-col justify-between group hover:border-[#38BDF8] transition-all">
-              <div>
-                <span className="font-mono text-xs text-[#38BDF8] uppercase tracking-wider font-semibold block mb-2">
-                  BACKUP &amp; GREEN ENERGY
-                </span>
-                <h3 className="text-lg sm:text-xl font-display font-black text-white mb-3">
-                  Solar On-Grid &amp; DG Synchronizing Relays
-                </h3>
-                <p className="text-[#8C96A5] text-sm leading-relaxed">
-                  Automatic transfer switches (ATS), net-metering integration with DISCOM, and synchronous AMF panels for uninterrupted power.
-                </p>
-              </div>
+            <ScrollReveal variant="blur-reveal" delay={0.2} className="md:col-span-4">
+              <div className="bg-[#141821] border border-[#242A35] rounded-md p-5 sm:p-8 text-white flex flex-col justify-between group hover:border-[#38BDF8] transition-all h-full">
+                <div>
+                  <span className="font-mono text-xs text-[#38BDF8] uppercase tracking-wider font-semibold block mb-2">
+                    BACKUP &amp; GREEN ENERGY
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-display font-black text-white mb-3">
+                    Solar On-Grid &amp; DG Synchronizing Relays
+                  </h3>
+                  <p className="text-[#8C96A5] text-sm leading-relaxed">
+                    Automatic transfer switches (ATS), net-metering integration with DISCOM, and synchronous AMF panels for uninterrupted power.
+                  </p>
+                </div>
 
-              <div className="pt-5 sm:pt-6 border-t border-[#242A35] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
-                <span className="text-[#34D399] font-semibold">NET-METERING READY</span>
-                <Link to="/services" className="text-[#38BDF8] hover:underline flex items-center gap-1 font-semibold">
-                  <span>SPECS</span>
-                  <ArrowUpRight size={13} />
-                </Link>
+                <div className="pt-5 sm:pt-6 border-t border-[#242A35] mt-5 sm:mt-6 flex justify-between items-center font-mono text-xs">
+                  <span className="text-[#34D399] font-semibold">NET-METERING READY</span>
+                  <Link to="/services" className="text-[#38BDF8] hover:underline flex items-center gap-1 font-semibold">
+                    <span>SPECS</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
           </div>
 
@@ -380,19 +411,27 @@ const Home = () => {
       <section className="section-padding bg-[#0A0D12] text-white border-b border-[#242A35]">
         <div className="container-custom">
           
-          <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B35010]/20 text-[#E57A36] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3 border border-[#B35010]/40">
-                ENGINEERING SPECIFICATION ARCHITECTURE
-              </div>
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight break-words">
-                Single Line Diagrams &amp; Circuit Schematics
-              </h2>
-              <p className="text-sm sm:text-base text-[#8C96A5] mt-2">
-                Inspect authentic circuit flow parameters, transformer protection tiers, and statutory clearances calibrated by our Chief Engineer.
-              </p>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B35010]/20 text-[#E57A36] text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3 border border-[#B35010]/40">
+              ENGINEERING SPECIFICATION ARCHITECTURE
             </div>
-          </ScrollReveal>
+            <BlurText
+              as="h2"
+              text="Single Line Diagrams & Circuit Schematics"
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight break-words"
+              blurAmount="14px"
+              stagger={0.045}
+            />
+            <BlurText
+              as="p"
+              className="text-sm sm:text-base text-[#8C96A5] mt-2"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Inspect authentic circuit flow parameters, transformer protection tiers, and statutory clearances calibrated by our Chief Engineer."
+            />
+          </div>
 
           <BlueprintViewer />
 
@@ -403,20 +442,27 @@ const Home = () => {
       <section className="section-padding bg-[#F4F5F7] border-b border-[#D7DBE0]">
         <div className="container-custom">
           
-          <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#121417] text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
-                REAL-TIME ENGINEERING UTILITY
-              </div>
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words">
-                Calculate Electrical Load &amp; Turnkey Estimate
-              </h2>
-              <p className="text-sm sm:text-base text-[#5C6470] mt-2">
-                Estimate your required breaker amperage, main cable cross-section, and total project budget in seconds.
-              </p>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#121417] text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
+              REAL-TIME ENGINEERING UTILITY
             </div>
-          </ScrollReveal>
-
+            <BlurText
+              as="h2"
+              text="Calculate Electrical Load & Turnkey Estimate"
+              className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] tracking-tight break-words"
+              blurAmount="14px"
+              stagger={0.045}
+            />
+            <BlurText
+              as="p"
+              className="text-sm sm:text-base text-[#5C6470] mt-2"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Estimate your required breaker amperage, main cable cross-section, and total project budget in seconds."
+            />
+          </div>
           <LoadCalculator />
 
         </div>
@@ -434,9 +480,15 @@ const Home = () => {
                   TECHNICAL ACCREDITATION
                 </div>
 
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] leading-tight break-words">
-                  Direct Field Oversight by Mr. Nekbor Seikh (M.Tech - EEE)
-                </h2>
+                <BlurText
+                  as="h2"
+                  text="Direct Field Oversight by Mr. Nekbor Seikh (M.Tech - EEE)"
+                  highlight="Mr. Nekbor Seikh (M.Tech - EEE)"
+                  highlightClassName="text-[#E57A36]"
+                  className="text-2xl xs:text-3xl sm:text-4xl font-display font-black text-[#121417] leading-tight break-words"
+                  blurAmount="14px"
+                  stagger={0.045}
+                />
 
                 <p className="text-[#5C6470] text-sm leading-relaxed">
                   Electrical installations fail when contractors cut corners with undersized cable gauges, unbalanced phase loads, or substandard earthing pits.
@@ -541,13 +593,27 @@ const Home = () => {
               <ShieldCheck size={32} />
             </div>
 
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 tracking-tight text-white break-words">
-              Ready for Zero-Defect Electrical Execution?
-            </h2>
+            <BlurText
+              as="h2"
+              text="Ready for Zero-Defect Electrical Execution?"
+              highlight="Zero-Defect Electrical Execution?"
+              highlightClassName="text-[#E57A36]"
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 tracking-tight text-white break-words"
+              blurAmount="14px"
+              stagger={0.05}
+            />
 
-            <p className="text-[#8C96A5] max-w-2xl mx-auto mb-8 text-sm sm:text-base leading-relaxed font-sans">
-              Connect with <strong>Mr. Nekbor Seikh (M.Tech - EEE)</strong> today for upfront engineering advice, single-line diagram analysis, or an itemized turnkey quotation for your project.
-            </p>
+            <BlurText
+              as="p"
+              className="text-[#8C96A5] max-w-2xl mx-auto mb-8 text-sm sm:text-base leading-relaxed font-sans"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Connect with Mr. Nekbor Seikh (M.Tech - EEE) today for upfront engineering advice, single-line diagram analysis, or an itemized turnkey quotation for your project."
+              highlight="Mr. Nekbor Seikh (M.Tech - EEE)"
+              highlightClassName="text-white font-bold"
+            />
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-xl mx-auto sm:max-w-none">
               <Link 

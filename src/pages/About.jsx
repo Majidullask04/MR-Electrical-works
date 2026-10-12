@@ -2,6 +2,7 @@ import { CheckCircle2, ShieldAlert, Award, Compass, Target, ShieldCheck, Phone, 
 import ScrollReveal from '../components/ScrollReveal';
 import { leadership, contactInfo } from '../data/mockData';
 import { LogoMark } from '../components/Logo';
+import BlurText from '../components/BlurText';
 
 const About = () => {
   const values = [
@@ -26,12 +27,26 @@ const About = () => {
             <div className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-400 text-[11px] xs:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 max-w-full truncate">
               <Award size={14} className="shrink-0" /> <span className="truncate">M.Tech (EEE) Qualified Engineering Leadership</span>
             </div>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
-              Engineering Precision. Zero Short-Circuits.
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Founded in Patancheru, Hyderabad, <strong>MR. ELECTRICAL WORKS</strong> delivers certified turnkey electrical engineering for homes, commercial complexes, and industrial plants.
-            </p>
+            <BlurText
+              as="h1"
+              text="Engineering Precision. Zero Short-Circuits."
+              highlight="Zero Short-Circuits."
+              highlightClassName="text-[#E57A36]"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
+              blurAmount="14px"
+              stagger={0.05}
+            />
+            <BlurText
+              as="p"
+              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="Founded in Patancheru, Hyderabad, MR. ELECTRICAL WORKS delivers certified turnkey electrical engineering for homes, commercial complexes, and industrial plants."
+              highlight="MR. ELECTRICAL WORKS"
+              highlightClassName="text-white font-bold"
+            />
           </ScrollReveal>
         </div>
       </section>
@@ -89,9 +104,15 @@ const About = () => {
                   <LogoMark size={18} /> Direct Project Leadership
                 </div>
                 
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight break-words">
-                  Qualified Engineering Meets Real-World Craftsmanship
-                </h2>
+                <BlurText
+                  as="h2"
+                  text="Qualified Engineering Meets Real-World Craftsmanship"
+                  highlight="Real-World Craftsmanship"
+                  highlightClassName="text-blue-600"
+                  className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight break-words"
+                  blurAmount="14px"
+                  stagger={0.05}
+                />
 
                 <div className="prose text-slate-600 text-base leading-relaxed space-y-4">
                   <p>
@@ -147,10 +168,24 @@ const About = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="eyebrow">Proof of Authenticity</span>
-              <h2 className="section-title">Verified Contractor Identity &amp; Physical Office</h2>
-              <p className="section-subtitle">
-                We operate with complete commercial transparency. Here is our physical business card, registered office location, and direct GM contact line.
-              </p>
+              <BlurText
+                as="h2"
+                text="Verified Contractor Identity & Physical Office"
+                highlight="Physical Office"
+                highlightClassName="text-blue-600"
+                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
+                blurAmount="14px"
+                stagger={0.05}
+              />
+              <BlurText
+                as="p"
+                className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
+                animateBy="words"
+                blurAmount="10px"
+                stagger={0.02}
+                delay={0.15}
+                text="We operate with complete commercial transparency. Here is our physical business card, registered office location, and direct GM contact line."
+              />
             </div>
           </ScrollReveal>
 

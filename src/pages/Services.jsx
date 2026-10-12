@@ -2,6 +2,7 @@ import { services, industries } from '../data/mockData';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, Shield, Cpu, Sun, BatteryCharging, Flame } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import BlurText from '../components/BlurText';
 
 const Services = () => {
   const specialized = [
@@ -47,12 +48,24 @@ const Services = () => {
         <div className="container-custom relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="eyebrow !text-amber-400">Engineering Solutions</span>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words">
-              End-To-End Electrical Services
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              From residential wiring to multi-megawatt industrial power distribution, we build robust electrical systems designed for longevity and safety.
-            </p>
+            <BlurText
+              as="h1"
+              text="End-To-End Electrical Services"
+              highlight="Electrical Services"
+              highlightClassName="text-amber-400"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
+              blurAmount="14px"
+              stagger={0.05}
+            />
+            <BlurText
+              as="p"
+              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
+              animateBy="words"
+              blurAmount="10px"
+              stagger={0.02}
+              delay={0.15}
+              text="From residential wiring to multi-megawatt industrial power distribution, we build robust electrical systems designed for longevity and safety."
+            />
           </ScrollReveal>
         </div>
       </section>
@@ -121,10 +134,24 @@ const Services = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="eyebrow">Sectors Covered</span>
-              <h2 className="section-title">Industries Powered By MR Electrical</h2>
-              <p className="section-subtitle">
-                Tailored electrical solutions respecting the unique load, uptime, and safety codes of various environments.
-              </p>
+              <BlurText
+                as="h2"
+                text="Industries Powered By MR Electrical"
+                highlight="MR Electrical"
+                highlightClassName="text-amber-500"
+                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
+                blurAmount="14px"
+                stagger={0.05}
+              />
+              <BlurText
+                as="p"
+                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
+                animateBy="words"
+                blurAmount="10px"
+                stagger={0.02}
+                delay={0.15}
+                text="Tailored electrical solutions respecting the unique load, uptime, and safety codes of various environments."
+              />
             </div>
           </ScrollReveal>
 
@@ -161,12 +188,24 @@ const Services = () => {
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="eyebrow !text-amber-400">Advanced Works</span>
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-white break-words">
-                Specialized Engineering Solutions
-              </h2>
-              <p className="text-slate-300 text-base">
-                Beyond conventional installations, we engineer backup power, surge immunity, and automation infrastructure.
-              </p>
+              <BlurText
+                as="h2"
+                text="Specialized Engineering Solutions"
+                highlight="Engineering Solutions"
+                highlightClassName="text-amber-400"
+                className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-white break-words"
+                blurAmount="14px"
+                stagger={0.05}
+              />
+              <BlurText
+                as="p"
+                className="text-slate-300 text-base"
+                animateBy="words"
+                blurAmount="10px"
+                stagger={0.02}
+                delay={0.15}
+                text="Beyond conventional installations, we engineer backup power, surge immunity, and automation infrastructure."
+              />
             </div>
           </ScrollReveal>
 
