@@ -108,13 +108,33 @@ mr-electrical/
 
 ---
 
+## 🚀 Automated Deployment to Vercel (GitHub Actions)
+
+The repository includes an automated CI/CD pipeline in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) that builds and deploys the site to Vercel upon pushing to the `main` branch.
+
+### Required GitHub Repository Secrets
+
+To enable deployment, navigate to your GitHub repository:
+**Settings** → **Secrets and variables** → **Actions** → **New repository secret**:
+
+| Secret Name | Required? | How to get it |
+| :--- | :--- | :--- |
+| `VERCEL_TOKEN` | **Yes (Mandatory)** | In Vercel: Account Settings → **Tokens** → Create Token (Copy value) |
+| `VERCEL_ORG_ID` | Optional / Recommended | Run `npx vercel link` locally or check `.vercel/project.json` (orgId) |
+| `VERCEL_PROJECT_ID` | Optional / Recommended | Run `npx vercel link` locally or check `.vercel/project.json` (projectId) |
+
+> **Note:** Even if `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` are omitted initially, the workflow will automatically fall back to deploying directly using `VERCEL_TOKEN`.
+
+---
+
 ## 📞 Business Contact Details
 
 - **Business Name**: MR. ELECTRICAL WORKS
 - **Lead Engineer**: Nekbor Seikh (M.Tech - EEE)
 - **Phone**: [+91 8519949762](tel:8519949762)
 - **Email**: mrelectricalworks02@gmail.com
-- **Address**: No.83, Gokul Nagar, Patancheru, Hyderabad, Telangana 502319
+- **Address**: No. 83, Gokul Nagar, Patancheru, Hyderabad, Telangana 502319
 
 ---
 *Created for MR. ELECTRICAL WORKS — Safe, Reliable & Professional Electrical Solutions.*
+
