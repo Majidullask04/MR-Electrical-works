@@ -45,7 +45,7 @@ const ScrollReveal = ({
   delay = 0,
   duration = 0.8,
   className = '',
-  viewport = { once: true, amount: 0.12 }
+  viewport = { once: false, amount: 0.12, margin: "0px 0px -40px 0px" }
 }) => {
   const selectedVariant = variantsMap[variant] || variantsMap['fade-up'];
 

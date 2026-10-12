@@ -14,16 +14,36 @@ const BlurText = ({
   className = '',
   delay = 0,
   stagger = 0.045,
-  duration = 0.65,
+  duration = 0.75,
   animateBy = 'words', // 'words' | 'letters' | 'none'
-  blurAmount = '14px',
-  once = true,
-  threshold = 0.1,
+  blurAmount = '16px',
+  once = false, // Bidirectional: triggers on every up and down scroll
+  threshold = 0.12,
   children
 }) => {
   const content = text || (typeof children === 'string' ? children : '');
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, amount: threshold });
+  const isInView = useInView(ref, { 
+    once, 
+    amount: threshold,
+    margin: "0px 0px -30px 0px"
+  });
+
+  // Track active scroll direction (up vs down)
+  const [scrollDirection, setScrollDirection] = React.useState('down');
+
+  React.useEffect(() => {
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (Math.abs(currentY - lastY) > 5) {
+        setScrollDirection(currentY > lastY ? 'down' : 'up');
+        lastY = currentY;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Helper to determine if a word matches the highlight string/array
   const checkHighlight = (word) => {
@@ -42,6 +62,9 @@ const BlurText = ({
     return cleanHighlight.includes(cleanWord) || cleanWord.includes(cleanHighlight);
   };
 
+  // Directional Y offset: floating up when scrolling down, floating down when reverse-scrolling up
+  const yOffset = scrollDirection === 'up' ? -18 : 18;
+
   // Word-by-word animation
   if (animateBy === 'words' && content) {
     const words = content.split(' ');
@@ -57,7 +80,7 @@ const BlurText = ({
                 className={`inline-block ${isHighlighted ? highlightClassName : ''}`}
                 initial={{
                   opacity: 0,
-                  y: 18,
+                  y: yOffset,
                   filter: `blur(${blurAmount})`,
                   scale: 0.98,
                 }}
@@ -71,7 +94,7 @@ const BlurText = ({
                       }
                     : {
                         opacity: 0,
-                        y: 18,
+                        y: yOffset,
                         filter: `blur(${blurAmount})`,
                         scale: 0.98,
                       }
@@ -79,7 +102,7 @@ const BlurText = ({
                 transition={{
                   duration,
                   delay: delay + index * stagger,
-                  ease: [0.16, 1, 0.3, 1], // Linear / Dribbble cubic-bezier curve
+                  ease: [0.16, 1, 0.3, 1], // Dribbble / Linear signature curve
                 }}
               >
                 {word}
@@ -103,7 +126,7 @@ const BlurText = ({
             className="inline-block"
             initial={{
               opacity: 0,
-              y: 12,
+              y: yOffset * 0.7,
               filter: `blur(${blurAmount})`,
             }}
             animate={
@@ -115,7 +138,7 @@ const BlurText = ({
                   }
                 : {
                     opacity: 0,
-                    y: 12,
+                    y: yOffset * 0.7,
                     filter: `blur(${blurAmount})`,
                   }
             }
@@ -139,7 +162,7 @@ const BlurText = ({
         className="w-full inline-block"
         initial={{
           opacity: 0,
-          y: 20,
+          y: yOffset,
           filter: `blur(${blurAmount})`,
         }}
         animate={
@@ -151,7 +174,7 @@ const BlurText = ({
               }
             : {
                 opacity: 0,
-                y: 20,
+                y: yOffset,
                 filter: `blur(${blurAmount})`,
               }
         }
