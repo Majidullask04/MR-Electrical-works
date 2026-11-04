@@ -1,7 +1,6 @@
 import { projects, leadership } from '../data/mockData';
-import { MapPin, Clock, Zap, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
-import BlurText from '../components/BlurText';
+import { Link } from 'react-router-dom';
 
 const galleryImages = [
   { url: leadership.photo, caption: "Engineering Drawing & Circuit Analysis by Mr. Nekbor Seikh (M.Tech - EEE)" },
@@ -14,145 +13,144 @@ const galleryImages = [
 
 const Projects = () => {
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <>
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
-        <div className="hero-orb hero-orb-1 opacity-60"></div>
-        <div className="hero-grid-pattern"></div>
-        
-        <div className="container-custom relative z-10 text-center">
+      <section className="relative pt-32 sm:pt-40 pb-10 sm:pb-14 border-b border-border bg-subtle">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none grid-copper grid-copper-coarse" aria-hidden="true" />
+        <div className="container-custom">
           <ScrollReveal variant="fade-up">
-            <span className="eyebrow !text-cyan-400">Proven Track Record</span>
-            <BlurText
-              as="h1"
-              text="Executed Projects & Field Gallery"
-              highlight="Field Gallery"
-              highlightClassName="text-cyan-400"
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
-              blurAmount="14px"
-              stagger={0.05}
-            />
-            <BlurText
-              as="p"
-              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
-              animateBy="words"
-              blurAmount="10px"
-              stagger={0.02}
-              delay={0.15}
-              text="Explore our executed electrical turnkey installations across Patancheru, Sangareddy, and the greater Hyderabad industrial and residential zones."
-            />
+            <h1 className="font-display font-bold text-3xl sm:text-5xl text-on-surface mt-4 max-w-3xl">
+              Executed projects &amp; field gallery
+            </h1>
+            <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed max-w-2xl">
+              Executed electrical turnkey installations across Patancheru, Sangareddy, and greater Hyderabad.
+            </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ============================== FEATURED PROJECTS ============================== */}
-      <section className="section-padding">
+      {/* ============================== COMMISSION RECORDS ============================== */}
+      <section className="section-padding bg-surface">
         <div className="container-custom">
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
+          <div className="space-y-6">
             {projects.map((project, idx) => (
-              <ScrollReveal 
-                key={project.id} 
-                variant="fade-up" 
-                delay={idx * 0.1}
-              >
-                <div className="card group cursor-pointer h-full flex flex-col hover:border-blue-400">
-                  {/* Card Media with Image Zoom */}
-                  <div className="card-media relative h-52 xs:h-60 sm:h-64 bg-slate-900">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
-                      <span className="bg-blue-600 text-white text-[10px] sm:text-[11px] font-extrabold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md">
+              <ScrollReveal key={project.id} variant="fade-up" delay={Math.min(idx * 0.08, 0.3)}>
+                <article className="border border-border rounded-md bg-surface overflow-hidden">
+                  <div className="grid grid-cols-1 md:grid-cols-12">
+                    {/* Site photograph — pinned to the card so a portrait source can't inflate the row (Gate 44d) */}
+                    <div className="md:col-span-5 min-w-0 bg-panel-chassis md:relative">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-56 md:absolute md:inset-0 md:w-full md:h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Spec sheet — floor height keeps every dossier card on one visual rhythm */}
+                    <div className="md:col-span-7 min-w-0 p-6 sm:p-8 md:min-h-[440px]">
+                      <span className="inline-block px-2.5 py-1 rounded-sm bg-tertiary-light text-tertiary font-mono text-[11px] whitespace-nowrap">
                         {project.category}
                       </span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                    <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white z-10">
-                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-cyan-300 transition-colors flex items-center justify-between break-words">
-                        <span>{project.title}</span>
-                        <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0" />
+                      <h3 className="font-display font-bold text-xl text-on-surface mt-3">
+                        {project.title}
                       </h3>
-                      <p className="text-xs text-slate-300 mt-0.5 sm:mt-1">{project.client}</p>
+                      <p className="text-[13px] text-muted mt-1">{project.client}</p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border rounded-sm overflow-hidden mt-5">
+                        <div className="bg-surface p-3">
+                          <span className="label-tech">Sector</span>
+                          <p className="text-[13px] text-on-surface mt-1.5">{project.category}</p>
+                        </div>
+                        <div className="bg-surface p-3">
+                          <span className="label-tech">Location</span>
+                          <p className="text-[13px] text-on-surface mt-1.5">{project.location}</p>
+                        </div>
+                        <div className="bg-surface p-3">
+                          <span className="label-tech">Installed systems</span>
+                          <p className="text-[13px] text-on-surface mt-1.5">{project.services}</p>
+                        </div>
+                        <div className="bg-surface p-3">
+                          <span className="label-tech">Commissioning window</span>
+                          <p className="font-mono tabular-data text-[13px] text-on-surface mt-1.5">{project.duration}</p>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-border mt-5 pt-4 flex items-center justify-between gap-4">
+                        <span className="text-[13px] text-muted">
+                          Reference available on request
+                        </span>
+                        <Link
+                          to="/contact"
+                          className="font-sans text-[13px] font-semibold text-primary hover:underline underline-offset-4 whitespace-nowrap"
+                        >
+                          Discuss a similar scope
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="p-6 flex-1 flex flex-col justify-between">
-                    <div className="flex items-center gap-2 text-slate-700 mb-4 text-xs font-semibold">
-                      <Zap size={16} className="text-blue-600 shrink-0"/> 
-                      <span>{project.services}</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-medium text-slate-500">
-                      <span className="flex items-center gap-1.5">
-                        <MapPin size={15} className="text-blue-600" /> 
-                        {project.location}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock size={15} className="text-emerald-600" /> 
-                        {project.duration}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                </article>
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* ============================== PHOTO GALLERY ============================== */}
+      {/* ============================== FIELD GALLERY ============================== */}
+      <section className="bg-neutral border-y border-border">
+        <div className="container-custom section-padding">
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="eyebrow">On-Site Execution</span>
-              <BlurText
-                as="h2"
-                text="Field Craftsmanship & Engineering In Action"
-                highlight="Engineering In Action"
-                highlightClassName="text-blue-600"
-                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
-                blurAmount="14px"
-                stagger={0.05}
-              />
-              <BlurText
-                as="p"
-                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
-                animateBy="words"
-                blurAmount="10px"
-                stagger={0.02}
-                delay={0.15}
-                text="A glimpse into our neat conduit routing, robust panel terminations, and clean laser-aligned finishes."
-              />
+            <div className="max-w-2xl">
+              <h2 className="font-display font-bold text-2xl sm:text-4xl text-on-surface mt-4">
+                Field craftsmanship in action
+              </h2>
+              <p className="text-base text-muted leading-relaxed mt-4">
+                A glimpse into our neat conduit routing, precise panel terminations, and clean laser-aligned finishes.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-10 sm:mt-12">
             {galleryImages.map((item, idx) => (
-              <ScrollReveal 
-                key={idx} 
-                variant="zoom-in" 
-                delay={idx * 0.06}
-              >
-                <div className="card-media group relative h-64 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-slate-900 cursor-pointer">
-                  <img 
-                    src={item.url} 
-                    alt={item.caption} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                    <div className="text-white">
-                      <span className="text-xs font-bold text-cyan-400 block uppercase tracking-wider">Site Execution</span>
-                      <p className="text-sm font-semibold">{item.caption}</p>
-                    </div>
+              <ScrollReveal key={idx} variant="zoom-in" delay={Math.min(idx * 0.05, 0.3)}>
+                <figure className="min-w-0 group">
+                  <div className="border border-border rounded-sm overflow-hidden bg-panel-chassis transition-[border-color] duration-200 group-hover:border-primary">
+                    <img
+                      src={item.url}
+                      alt={item.caption}
+                      loading="lazy"
+                      className="h-56 sm:h-64 w-full object-cover"
+                    />
                   </div>
-                </div>
+                  <figcaption className="bg-surface mt-2 p-3">
+                    <p className="text-[13px] text-muted leading-snug">{item.caption}</p>
+                  </figcaption>
+                </figure>
               </ScrollReveal>
             ))}
           </div>
-          
         </div>
       </section>
-    </div>
+
+      {/* ============================== CLOSING STRIP ============================== */}
+      <section className="bg-panel-chassis py-14">
+        <div className="container-custom">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-2xl">
+              <h2 className="font-display font-bold text-2xl sm:text-4xl text-surface">
+                Your site could be dossier number four
+              </h2>
+              <Link
+                to="/contact"
+                className="inline-flex items-center bg-primary hover:bg-primary-hover text-surface font-sans font-semibold text-sm px-5 py-2.5 rounded-sm whitespace-nowrap transition-colors duration-150 mt-6"
+              >
+                Request a site inspection
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+  </>
   );
 };
 

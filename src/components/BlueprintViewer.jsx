@@ -1,85 +1,85 @@
 import { useState } from 'react';
-import { Layers, Zap, Cpu, Sun, FileCheck, ArrowUpRight, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { contactInfo } from '../data/mockData';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 const blueprints = [
   {
     id: 'substation',
     title: '11kV/415V Substation & Transformer Yard',
-    category: 'Heavy Industrial EPC',
-    voltage: '11,000V → 415V 3-Phase',
+    category: 'Heavy industrial EPC',
+    voltage: '11,000V → 415V 3-phase',
     capacity: '500 kVA to 2,500 kVA',
-    breaker: '11kV Vacuum Circuit Breaker (VCB) with IDMT Relays',
-    protection: 'Dual Earth Pit System (Chemical & Pipe-in-Pipe) < 1.0 Ω',
+    breaker: '11kV VCB with IDMT relays',
+    protection: 'Dual earth pit (chemical & pipe-in-pipe) < 1.0 Ω',
     schematicNodes: [
-      { label: 'TSSPDCL 11kV Grid Incomer', status: 'Energized', metric: '11.0 kV AC' },
-      { label: 'Gang Operated Air Break (GOAB) Switch', status: 'Closed', metric: '630A Rated' },
-      { label: 'HT VCB Panel with Numerical Relay', status: 'Armed', metric: '25kA / 3s' },
-      { label: 'Step-Down Copper Transformer', status: 'Loaded', metric: '1,250 kVA' },
-      { label: 'Main LT Air Circuit Breaker (ACB)', status: 'Online', metric: '1,600A 4P' },
+      { label: 'TSSPDCL 11kV grid incomer', status: 'Energized', metric: '11.0 kV AC' },
+      { label: 'Gang operated air break (GOAB) switch', status: 'Closed', metric: '630A rated' },
+      { label: 'HT VCB panel with numerical relay', status: 'Armed', metric: '25kA / 3s' },
+      { label: 'Step-down copper transformer', status: 'Loaded', metric: '1,250 kVA' },
+      { label: 'Main LT air circuit breaker (ACB)', status: 'Online', metric: '1,600A 4P' },
     ],
     features: [
-      'Statutory Telangana CEIG Electrical Inspectorate Approval Handling',
-      'Step-and-Touch Potential Grounding Grid as per IEEE 80 Standards',
-      'Nitrogen Injection Fire Protection System (NIFPS) Integration',
+      'Statutory Telangana CEIG electrical inspectorate approval handling',
+      'Step-and-touch potential grounding grid as per IEEE 80 standards',
+      'Nitrogen injection fire protection system (NIFPS) integration',
     ]
   },
   {
     id: 'switchgear',
     title: 'Main LT Power Distribution & APFC Panels',
-    category: 'Commercial & Manufacturing',
+    category: 'Commercial & manufacturing',
     voltage: '415V AC, 50Hz, 3P+N+E',
-    capacity: '800A to 4,000A Incomer',
-    breaker: 'Microprocessor-based ACB with LSIG Protection',
-    protection: 'Class-I + II Surge Protection Device (SPD)',
+    capacity: '800A to 4,000A incomer',
+    breaker: 'Microprocessor-based ACB with LSIG protection',
+    protection: 'Class-I + II surge protection device (SPD)',
     schematicNodes: [
-      { label: 'Incoming Busduct / Copper Busbar', status: 'Energized', metric: '415V LT' },
-      { label: 'Automatic Power Factor Controller (APFC)', status: 'Active', metric: '0.99 PF Target' },
-      { label: 'Harmonic De-tuned Reactor Banks', status: 'Filtered', metric: '7% Detuned' },
-      { label: 'Outgoing Motor Control Centers (MCC)', status: 'Running', metric: '48 Feeders' },
-      { label: 'Digital Multi-Function Power Meter', status: 'Telemetry', metric: 'Class 0.2S' },
+      { label: 'Incoming busduct / copper busbar', status: 'Energized', metric: '415V LT' },
+      { label: 'Automatic power factor controller (APFC)', status: 'Active', metric: '0.99 PF target' },
+      { label: 'Harmonic de-tuned reactor banks', status: 'Filtered', metric: '7% detuned' },
+      { label: 'Outgoing motor control centers (MCC)', status: 'Running', metric: '48 feeders' },
+      { label: 'Digital multi-function power meter', status: 'Telemetry', metric: 'Class 0.2S' },
     ],
     features: [
-      'Type-Tested CPRI Certified Enclosures up to IP55 / IP65',
-      'Electrolytic E91E Grade High-Conductivity Aluminum/Copper Busbars',
-      'Interlocking Bus Coupler for Dual Utility/DG Power Sources',
+      'Type-tested CPRI certified enclosures up to IP55 / IP65',
+      'Electrolytic E91E grade high-conductivity busbars',
+      'Interlocking bus coupler for dual utility/DG power sources',
     ]
   },
   {
     id: 'riser',
     title: 'High-Rise Riser Conduit & Villa Electrification',
-    category: 'Residential Luxury & Villas',
-    voltage: '230V Single-Phase / 415V Three-Phase',
-    capacity: '10 kW to 250 kW per Block',
-    breaker: 'Four-Pole MCB Incomer with 30mA RCCB Shock Protection',
-    protection: 'Copper Bonded Maintenance-Free Earth Rods',
+    category: 'Residential villas',
+    voltage: '230V single-phase / 415V three-phase',
+    capacity: '10 kW to 250 kW per block',
+    breaker: 'Four-pole MCB incomer with 30mA RCCB protection',
+    protection: 'Copper-bonded maintenance-free earth rods',
     schematicNodes: [
-      { label: 'Main Metering Panel at Ground Floor', status: 'Monitored', metric: 'Multi-Tariff' },
-      { label: 'Sandwich Busbar Riser Conduit (BBM)', status: 'Installed', metric: '400A Vertical' },
-      { label: 'Floor Tap-Off Isolation Units', status: 'Connected', metric: '63A / Floor' },
-      { label: 'Villa Distribution Board (VDB)', status: 'Live', metric: '16-Way TPN' },
-      { label: 'FRLS Zero-Halogen Wire Mesh', status: 'Fire-Safe', metric: 'ISI Mark' },
+      { label: 'Main metering panel at ground floor', status: 'Monitored', metric: 'Multi-tariff' },
+      { label: 'Sandwich busbar riser conduit (BBM)', status: 'Installed', metric: '400A vertical' },
+      { label: 'Floor tap-off isolation units', status: 'Connected', metric: '63A / floor' },
+      { label: 'Villa distribution board (VDB)', status: 'Live', metric: '16-way TPN' },
+      { label: 'FRLS zero-halogen wire mesh', status: 'Fire-safe', metric: 'ISI mark' },
     ],
     features: [
       'Dedicated neutral per circuit to prevent harmonics & neutral overheat',
-      '30mA Residual Current Circuit Breaker (RCCB) for human shock safety',
+      '30mA RCCB for human shock safety',
       'Laser-aligned concealed PVC conduits with concealed pull-boxes',
     ]
   },
   {
     id: 'solar',
     title: 'Solar On-Grid Rooftop & DG Auto-Sync System',
-    category: 'Green Tech & Backup Power',
-    voltage: '415V Synchronized Grid Interconnect',
-    capacity: '25 kWp to 500 kWp Rooftop Solar',
-    breaker: 'Motorized MCCB with Under/Over Voltage Trip',
-    protection: 'Type-1 DC Surge Arrestor & Lightning Rod Arrester',
+    category: 'Green tech & backup',
+    voltage: '415V synchronized grid interconnect',
+    capacity: '25 kWp to 500 kWp rooftop solar',
+    breaker: 'Motorized MCCB with under/over voltage trip',
+    protection: 'Type-1 DC surge arrestor & lightning rod arrester',
     schematicNodes: [
-      { label: 'Mono-PERC Bifacial Solar PV Array', status: 'Generating', metric: '150 kWp DC' },
-      { label: 'Three-Phase String Solar Inverter', status: 'Online', metric: 'MPPT Tracked' },
-      { label: 'Automatic Transfer Switch (ATS)', status: 'Standby', metric: '< 20ms Switch' },
-      { label: 'Diesel Generator (DG) Synchronizer', status: 'Ready', metric: '250 kVA AMF' },
-      { label: 'Discom Net-Metering Bi-Directional Meter', status: 'Exporting', metric: 'Export/Import' },
+      { label: 'Mono-PERC bifacial solar PV array', status: 'Generating', metric: '150 kWp DC' },
+      { label: 'Three-phase string solar inverter', status: 'Online', metric: 'MPPT tracked' },
+      { label: 'Automatic transfer switch (ATS)', status: 'Standby', metric: '< 20ms switch' },
+      { label: 'Diesel generator (DG) synchronizer', status: 'Ready', metric: '250 kVA AMF' },
+      { label: 'Discom net-metering bi-directional meter', status: 'Exporting', metric: 'Export / import' },
     ],
     features: [
       'Zero-export device integration when operating on emergency DG set',
@@ -92,55 +92,46 @@ const blueprints = [
 const BlueprintViewer = () => {
   const [activeTab, setActiveTab] = useState(blueprints[0].id);
   const currentBlueprint = blueprints.find(b => b.id === activeTab) || blueprints[0];
+  const reduced = useReducedMotion();
 
   return (
-    <div className="bg-[#0E1116] border border-[#242A35] rounded-md overflow-hidden shadow-2xl">
-      {/* Top Header Bar with CAD Window Tabs */}
-      <div className="bg-[#141820] border-b border-[#242A35] px-3 sm:px-4 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2 sm:gap-4">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5 mr-2 sm:mr-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80 inline-block" />
-          </div>
-          <span className="font-mono text-[11px] sm:text-xs font-semibold text-[#8C96A5] uppercase tracking-wider flex items-center gap-1.5 sm:gap-2">
-            <Layers size={14} className="text-[#B35010] shrink-0" />
-            <span className="truncate">CAD SCHEMATIC &amp; SLD BLUEPRINT INSPECTOR</span>
-          </span>
-        </div>
+    <div className="bg-panel-chassis border border-panel-line rounded-md overflow-hidden shadow-tech-lg min-w-0">
 
-        {/* Technical Revision Stamp */}
-        <div className="flex items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px]">
-          <span className="text-[#8C96A5]">REV: 2026.4</span>
-          <span className="text-[#3A4352]">|</span>
-          <span className="text-[#34D399] flex items-center gap-1 font-semibold">
-            <CheckCircle2 size={12} />
-            <span>M.TECH VERIFIED</span>
+      {/* Inspector title bar — a stamp, not a fake browser window */}
+      <div className="bg-panel-steel border-b border-panel-line px-4 sm:px-5 py-3 flex flex-wrap items-center justify-between gap-2 sm:gap-4 min-w-0">
+        <span className="font-mono text-[11px] font-semibold text-panel-dimmed whitespace-nowrap">
+          CAD schematic &amp; SLD blueprint inspector
+        </span>
+
+        {/* Technical revision stamp */}
+        <div className="flex items-center gap-3 font-mono text-[10px] sm:text-[11px] whitespace-nowrap">
+          <span className="text-panel-dimmed">Rev 2026.4</span>
+          <span className="border-l border-panel-line pl-3 text-tertiary-light">
+            M.Tech verified
           </span>
         </div>
       </div>
 
-      {/* Dribbble Style Architectural Tab Switcher */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[#0A0D12] border-b border-[#242A35]">
+      {/* Layer tabs — the active layer lights its copper rule; inactive layers dim */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-b border-panel-line" role="tablist" aria-label="Schematic layers">
         {blueprints.map((item) => {
           const isActive = item.id === activeTab;
           return (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`p-3 sm:p-3.5 text-left border-b sm:border-b-0 sm:border-r border-[#242A35] transition-all relative ${
-                isActive 
-                  ? 'bg-[#141922] text-white' 
-                  : 'text-[#8C96A5] hover:text-[#CBD5E1] hover:bg-[#101319]'
+              role="tab"
+              aria-selected={isActive}
+              className={`p-3 sm:p-3.5 text-left border-b sm:border-b-0 sm:border-r border-panel-line last:border-r-0 transition-[background-color,color] duration-150 ${
+                isActive
+                  ? 'bg-panel-chassis text-surface'
+                  : 'text-panel-dimmed hover:text-secondary-light'
               }`}
             >
-              {isActive && (
-                <div className="absolute top-0 left-0 sm:right-0 bottom-0 sm:bottom-auto w-1 sm:w-auto sm:h-0.5 bg-[#B35010]" />
-              )}
-              <div className="text-[10px] font-mono uppercase tracking-wider text-[#B35010] mb-0.5">
+              <div className={`font-mono text-[10px] mb-1 ${isActive ? 'text-primary-light' : 'text-panel-dimmed'}`}>
                 {item.category}
               </div>
-              <div className="text-xs font-bold font-sans">
+              <div className="text-xs font-bold font-sans leading-snug whitespace-normal">
                 {item.title}
               </div>
             </button>
@@ -148,126 +139,141 @@ const BlueprintViewer = () => {
         })}
       </div>
 
-      {/* Main Interactive CAD Blueprint Canvas */}
-      <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start bg-[#0D1016]">
-        
-        {/* Left: Interactive Single Line Diagram (SLD) Visualization */}
-        <div className="lg:col-span-7 bg-[#07090C] border border-[#202632] rounded-sm p-4 sm:p-6 relative overflow-hidden font-mono text-xs w-full">
-          {/* Subtle Drafting Blueprint Grid */}
-          <div 
-            className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{
-              backgroundImage: 'linear-gradient(#B35010 1px, transparent 1px), linear-gradient(90deg, #B35010 1px, transparent 1px)',
-              backgroundSize: '24px 24px'
-            }}
+      {/* Blueprint canvas */}
+      <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+
+        {/* Left: single line diagram with animated copper circuit spine */}
+        <div className="lg:col-span-7 bg-panel-chassis border border-panel-line rounded-sm p-4 sm:p-6 relative overflow-hidden min-w-0">
+          {/* Drafting grid */}
+          <div
+            className="absolute inset-0 opacity-[0.08] pointer-events-none grid-copper grid-copper-fine"
+            aria-hidden="true"
           />
 
           <div className="relative z-10">
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[#1E2430]">
-              <span className="text-[11px] font-bold text-[#E57A36] uppercase tracking-wider flex items-center gap-2">
-                <Zap size={14} className="text-[#B35010] shrink-0" />
-                <span>SINGLE LINE DIAGRAM (SLD) FLOW</span>
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-panel-line">
+              <span className="font-mono text-[11px] font-semibold text-primary-light">
+                Single line diagram: energization flow
               </span>
-              <span className="text-[10px] text-[#6B7280]">
-                TELEMETRY: LIVE SIMULATION
+              <span className="font-mono text-[10px] text-panel-dimmed">
+                Telemetry: live simulation
               </span>
             </div>
 
-            {/* Schematic Flow Steps */}
-            <div className="space-y-2.5 sm:space-y-3">
-              {currentBlueprint.schematicNodes.map((node, i) => (
-                <div 
-                  key={i} 
-                  className="p-2.5 sm:p-3 bg-[#0F131A] border border-[#232A36] rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 transition-all hover:border-[#B35010]/60"
+            <div className="relative space-y-2.5 sm:space-y-3" key={activeTab}>
+              {/* Copper circuit spine drawn once per layer change (pathLength 0 → 1) */}
+              {!reduced && (
+                <svg
+                  className="absolute left-[15px] top-2 bottom-2 w-5 h-[calc(100%-16px)] pointer-events-none"
+                  viewBox="0 0 20 100"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
                 >
-                  <div className="flex items-center gap-2.5 sm:gap-3">
-                    <span className="w-5 h-5 rounded-sm bg-[#1A202C] text-[#8C96A5] text-[10px] font-bold flex items-center justify-center border border-[#2D3748] shrink-0">
-                      0{i + 1}
-                    </span>
-                    <span className="text-[#E2E8F0] font-sans font-medium text-xs leading-snug">
-                      {node.label}
-                    </span>
-                  </div>
+                  <motion.path
+                    d="M10 4 L10 96"
+                    stroke="rgb(179 80 16)"
+                    strokeWidth="2"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                  />
+                </svg>
+              )}
 
-                  <div className="flex items-center justify-between sm:justify-end gap-3 pl-7 sm:pl-0 shrink-0">
-                    <span className="text-[#38BDF8] text-[11px] font-mono font-semibold">
+              {currentBlueprint.schematicNodes.map((node, i) => (
+                <motion.div
+                  key={activeTab + i}
+                  initial={reduced ? false : { opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={reduced ? { duration: 0 } : { duration: 0.3, delay: i * 0.06, ease: 'easeOut' }}
+                  className="relative pl-9 pr-3 py-2.5 sm:py-3 bg-panel-steel border border-panel-line rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 hover:border-primary/50 transition-colors duration-150"
+                >
+                  <span className="absolute left-2 top-1/2 -translate-y-1/2 w-5 h-5 bg-panel-chassis border border-panel-line text-panel-dimmed text-[10px] font-bold flex items-center justify-center rounded-sm z-10">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-sans font-semibold text-[13px] text-secondary-light leading-snug">
+                    {node.label}
+                  </span>
+
+                  <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                    <span className="font-mono text-[11px] font-semibold text-tertiary-light tabular-data whitespace-nowrap">
                       {node.metric}
                     </span>
-                    <span className="px-2 py-0.5 rounded-sm bg-[#102A1E] text-[#34D399] text-[9.5px] uppercase tracking-wider font-semibold border border-[#059669]/30">
+                    <span className="px-2 py-0.5 rounded-sm border border-tertiary/40 text-tertiary-light font-mono text-[9.5px] whitespace-nowrap">
                       {node.status}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            {/* Bottom Status Legend */}
-            <div className="mt-5 pt-4 border-t border-[#1E2430] flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] text-[#8C96A5]">
-              <span>CIRCUIT CONTINUITY: 100% OK</span>
-              <span>EARTH RESISTANCE: 0.72 Ω (&lt; 1.0 Ω PASSED)</span>
+            {/* Bottom status legend */}
+            <div className="mt-5 pt-4 border-t border-panel-line flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-panel-dimmed">
+              <span>Circuit continuity: 100% OK</span>
+              <span className="tabular-data">Earth resistance 0.72 Ω (under the 1.0 Ω pass mark)</span>
             </div>
           </div>
         </div>
 
-        {/* Right: Technical Specification Manifest */}
-        <div className="lg:col-span-5 space-y-5 w-full">
+        {/* Right: technical specification manifest */}
+        <div className="lg:col-span-5 space-y-5 min-w-0">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-[#B35010]/15 text-[#E57A36] text-[11px] font-mono font-bold uppercase tracking-wider mb-2 border border-[#B35010]/30">
+            <div className="font-mono text-[11px] font-semibold text-primary-light mb-1.5">
               {currentBlueprint.category}
             </div>
-            <h3 className="text-xl sm:text-2xl font-display font-black text-white leading-tight">
+            <h3 className="text-xl sm:text-2xl font-display font-bold text-surface leading-tight">
               {currentBlueprint.title}
             </h3>
           </div>
 
-          {/* Key Specifications Grid in JetBrains Mono */}
-          <div className="bg-[#141820] border border-[#242A35] rounded-sm p-3.5 sm:p-4 space-y-2.5 sm:space-y-3 font-mono text-xs">
-            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
-              <span className="text-[#8C96A5] text-[11px]">OPERATING VOLTAGE:</span>
-              <span className="text-white font-semibold">{currentBlueprint.voltage}</span>
+          {/* Key specifications — tabular rows in mono */}
+          <div className="bg-panel-steel border border-panel-line rounded-sm p-4 space-y-3 font-mono text-xs min-w-0">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-2 border-b border-panel-line pb-2.5">
+              <span className="text-panel-dimmed text-[11px]">Operating voltage</span>
+              <span className="text-surface font-semibold sm:text-right">{currentBlueprint.voltage}</span>
             </div>
-            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
-              <span className="text-[#8C96A5] text-[11px]">DESIGN CAPACITY:</span>
-              <span className="text-white font-semibold">{currentBlueprint.capacity}</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-2 border-b border-panel-line pb-2.5">
+              <span className="text-panel-dimmed text-[11px]">Design capacity</span>
+              <span className="text-surface font-semibold sm:text-right">{currentBlueprint.capacity}</span>
             </div>
-            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-[#242A35] pb-2 gap-0.5 sm:gap-2">
-              <span className="text-[#8C96A5] text-[11px]">CIRCUIT BREAKER:</span>
-              <span className="text-[#38BDF8] font-semibold sm:text-right">{currentBlueprint.breaker}</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-2 border-b border-panel-line pb-2.5">
+              <span className="text-panel-dimmed text-[11px]">Circuit breaker</span>
+              <span className="text-tertiary-light font-semibold sm:text-right">{currentBlueprint.breaker}</span>
             </div>
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
-              <span className="text-[#8C96A5] text-[11px]">EARTHING SPECS:</span>
-              <span className="text-[#34D399] font-semibold sm:text-right">{currentBlueprint.protection}</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-2">
+              <span className="text-panel-dimmed text-[11px]">Earthing</span>
+              <span className="text-primary-light font-semibold sm:text-right">{currentBlueprint.protection}</span>
             </div>
           </div>
 
-          {/* Compliance Checklist */}
+          {/* Compliance checklist */}
           <div className="space-y-2">
-            <div className="text-xs font-mono font-bold uppercase text-[#8C96A5] tracking-wider">
-              ENGINEERING GUARANTEES:
+            <div className="font-mono text-[11px] font-semibold text-panel-dimmed">
+              Engineering guarantees
             </div>
-            {currentBlueprint.features.map((feat, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-xs text-[#CBD5E1]">
-                <ShieldCheck size={14} className="text-[#B35010] shrink-0 mt-0.5" />
-                <span>{feat}</span>
-              </div>
-            ))}
+            <ul className="space-y-1.5">
+              {currentBlueprint.features.map((feat, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-[13px] text-secondary-light pl-3 border-l-2 border-primary/40">
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Action Trigger */}
+          {/* Direct dispatch */}
           <div className="pt-2">
             <a
               href={`https://wa.me/918519949762?text=Hello%20Mr.%20Nekbor%20Seikh,%20I%20am%20interested%20in%20a%20turnkey%20engineering%20quote%20for%20${encodeURIComponent(currentBlueprint.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/50 shadow-md shadow-[#B35010]/20"
+              className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
             >
-              <span>Request CAD Drawings &amp; Quotation</span>
-              <ArrowUpRight size={15} />
+              <span>Request CAD drawings &amp; quotation</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
-
         </div>
-
       </div>
     </div>
   );

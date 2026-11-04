@@ -1,29 +1,30 @@
 import { useState } from 'react';
 import { contactInfo, faqs, leadership } from '../data/mockData';
-import { MapPin, Phone, Mail, Send, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, ExternalLink } from 'lucide-react';
+import { Mail, MessageSquare, ChevronDown, CheckCircle2, Send, ShieldCheck } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
-import BlurText from '../components/BlurText';
+
+const fieldClass =
+  'w-full bg-surface border border-muted rounded-sm px-3.5 py-2.5 text-sm text-on-surface placeholder:text-secondary focus:border-tertiary transition-colors duration-150';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', serviceType: 'House Wiring', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    serviceType: 'Residential House / Villa Wiring',
+    message: ''
+  });
   const [openFaq, setOpenFaq] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
+  // Honest dispatch: instant handoff to the engineering desk. No fake spinner.
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    
-    // Create WhatsApp direct link with form info
     const msg = encodeURIComponent(
       `Hello Mr. Nekbor Seikh (MR. ELECTRICAL WORKS),\n\nMy Name: ${formData.name}\nPhone: ${formData.phone}\nRequirement: ${formData.serviceType}\nDetails: ${formData.message}`
     );
-    const waUrl = `https://wa.me/91${contactInfo.phone}?text=${msg}`;
-
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-      setSubmitted(false);
-      setFormData({ name: '', phone: '', email: '', serviceType: 'House Wiring', message: '' });
-    }, 1200);
+    window.open(`https://wa.me/91${contactInfo.phone}?text=${msg}`, '_blank');
+    setSubmitted(true);
   };
 
   const toggleFaq = (index) => {
@@ -31,103 +32,89 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <>
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
-        <div className="hero-orb hero-orb-2 opacity-60"></div>
-        <div className="hero-grid-pattern"></div>
-        
-        <div className="container-custom relative z-10 text-center">
+      <section className="relative pt-32 sm:pt-40 pb-10 sm:pb-14 border-b border-border">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none grid-copper grid-copper-coarse" aria-hidden="true" />
+        <div className="container-custom">
           <ScrollReveal variant="fade-up">
-            <span className="eyebrow !text-cyan-400">Direct Engineering Inquiry</span>
-            <BlurText
-              as="h1"
-              text="Connect Directly With Our GM"
-              highlight="Our GM"
-              highlightClassName="text-cyan-400"
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
-              blurAmount="14px"
-              stagger={0.05}
-            />
-            <BlurText
-              as="p"
-              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
-              animateBy="words"
-              blurAmount="10px"
-              stagger={0.02}
-              delay={0.15}
-              text="Speak directly with Mr. Nekbor Seikh (M.Tech - EEE) for architectural electrical planning, industrial panel submittals, or immediate site visit quotations."
-              highlight="Mr. Nekbor Seikh (M.Tech - EEE)"
-              highlightClassName="text-white font-bold"
-            />
+            <h1 className="mt-4 text-3xl sm:text-5xl font-display font-bold text-on-surface max-w-2xl">
+              Connect directly with our GM
+            </h1>
+            <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed max-w-2xl">
+              Call Mr. Nekbor Seikh directly for quotes, panel submittals, or site visits.
+            </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ============================== FORM & CONTACT INFO ============================== */}
+      {/* ============================== DISPATCH CONSOLE ============================== */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-            
-            {/* Contact Form with WhatsApp Integration */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+            {/* LEFT — dispatch form */}
             <div className="lg:col-span-7">
-              <ScrollReveal variant="fade-right">
-                <div className="bg-white p-4 xs:p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-200/80">
-                  <span className="eyebrow">Immediate Response</span>
-                  <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-slate-900 mb-2 break-words">
-                    Request Upfront Quote or Site Visit
+              <ScrollReveal variant="fade-up">
+                <div className="bg-surface border border-border rounded-md p-6 sm:p-8 shadow-tech-md">
+                  <h2 className="text-xl sm:text-2xl font-display font-bold text-on-surface">
+                    Request an upfront quote or site visit
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 mb-6">
-                    Fill this quick form to send your project details directly to our engineering desk via WhatsApp or email.
+                  <p className="mt-2 text-[13px] text-muted">
+                    Submits straight to the engineering desk on WhatsApp: nothing is stored, nothing
+                    waits behind a fake progress bar.
                   </p>
 
                   {submitted && (
-                    <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-3 animate-[fadeInUp_0.3s_ease]">
-                      <CheckCircle2 size={20} className="text-emerald-600 shrink-0" />
-                      <div className="text-sm font-semibold">
-                        Thank you! Opening WhatsApp to connect you directly with Mr. Nekbor Seikh...
-                      </div>
+                    <div
+                      role="status"
+                      className="mt-5 bg-tertiary-light border border-tertiary/30 rounded-sm p-3.5 flex items-center gap-2.5 text-[13px] text-tertiary font-semibold"
+                    >
+                      <CheckCircle2 size={18} className="shrink-0" />
+                      <span>Opening WhatsApp with your project brief…</span>
                     </div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 mt-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                          Your Full Name *
+                        <label htmlFor="contact-name" className="block text-[13px] font-sans font-semibold text-on-surface mb-2">
+                          Full name
                         </label>
-                        <input 
-                          type="text" 
-                          required 
+                        <input
+                          id="contact-name"
+                          type="text"
+                          required
                           placeholder="e.g. Ramesh Kumar"
-                          className="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          className={fieldClass}
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
                         />
                       </div>
-                      
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                          Mobile Number *
+                        <label htmlFor="contact-phone" className="block text-[13px] font-sans font-semibold text-on-surface mb-2">
+                          Mobile number
                         </label>
-                        <input 
-                          type="tel" 
-                          required 
+                        <input
+                          id="contact-phone"
+                          type="tel"
+                          required
                           placeholder="e.g. 9876543210"
-                          className="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          className={fieldClass}
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                          Project Category *
+                        <label htmlFor="contact-service" className="block text-[13px] font-sans font-semibold text-on-surface mb-2">
+                          Project category
                         </label>
                         <select
-                          className="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          id="contact-service"
+                          className={fieldClass}
                           value={formData.serviceType}
                           onChange={(e) => setFormData({...formData, serviceType: e.target.value})}
                         >
@@ -139,130 +126,137 @@ const Contact = () => {
                           <option value="Chemical Earthing & Lightning Arrester">Chemical Earthing &amp; Lightning Arrester</option>
                         </select>
                       </div>
-
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                          Email Address (Optional)
+                        <label htmlFor="contact-email" className="block text-[13px] font-sans font-semibold text-on-surface mb-2">
+                          Email address (optional)
                         </label>
-                        <input 
-                          type="email" 
+                        <input
+                          id="contact-email"
+                          type="email"
                           placeholder="yourname@gmail.com"
-                          className="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none bg-slate-50 focus:bg-white"
+                          className={fieldClass}
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                         />
                       </div>
                     </div>
-                    
+
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                        Project Details / Site Location *
+                      <label htmlFor="contact-message" className="block text-[13px] font-sans font-semibold text-on-surface mb-2">
+                        Project details / site location
                       </label>
-                      <textarea 
+                      <textarea
+                        id="contact-message"
                         rows="4"
-                        required 
+                        required
                         placeholder="Tell us about the site location (e.g. Patancheru, Miyapur, Hitec City), number of floors, square footage, or specific electrical requirements..."
-                        className="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none resize-none bg-slate-50 focus:bg-white"
+                        className={fieldClass}
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      ></textarea>
+                      />
                     </div>
-                    
-                    <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2 text-base !py-3.5">
-                      <span>Submit &amp; Open WhatsApp Chat</span>
-                      <Send size={18} />
+
+                    <button
+                      type="submit"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans font-semibold whitespace-nowrap transition-colors duration-150"
+                    >
+                      Send project brief via WhatsApp
+                      <Send size={16} />
                     </button>
+
+                    <p className="label-tech">Opens the desk chat with Nekbor Seikh on +91 85199 49762.</p>
+
+                    <a
+                      href="mailto:mrelectricalworks02@gmail.com?subject=Project%20brief%20for%20MR.%20ELECTRICAL%20WORKS"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-sm border border-border bg-surface hover:bg-neutral text-on-surface font-sans font-semibold whitespace-nowrap transition-colors duration-150"
+                    >
+                      Open in email client instead
+                      <Mail size={15} />
+                    </a>
                   </form>
                 </div>
               </ScrollReveal>
             </div>
 
-            {/* Side Information: Leadership Photo, Business Card & Office Info */}
-            <div className="lg:col-span-5 space-y-6">
+            {/* RIGHT — engineering desk dossier */}
+            <div className="lg:col-span-5">
               <ScrollReveal variant="fade-left" delay={0.15}>
-                {/* Executive Headshot Card */}
-                <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-xl border border-slate-800">
-                  <div className="flex items-center gap-4 mb-5 pb-4 border-b border-slate-800">
-                    <img 
-                      src={leadership.photoSquare} 
-                      alt={leadership.name} 
-                      className="w-16 h-16 rounded-xl object-cover border-2 border-emerald-400 shrink-0"
+                <div className="bg-panel-chassis border border-panel-line rounded-md p-6 text-surface">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={leadership.photoSquare}
+                      alt={leadership.name}
+                      className="w-16 h-16 rounded-sm object-cover border border-panel-line shrink-0"
                     />
-                    <div>
-                      <div className="text-base font-bold text-white flex items-center gap-1.5">
-                        <span>{leadership.name}</span>
-                        <ShieldCheck size={16} className="text-emerald-400" />
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold text-surface truncate">{leadership.name}</span>
+                        <ShieldCheck size={15} className="text-tertiary-light shrink-0" />
                       </div>
-                      <div className="text-xs text-amber-400 font-semibold">{leadership.role}</div>
-                      <div className="text-[11px] text-slate-400">{leadership.qualification}</div>
+                      <div className="mt-0.5 font-mono text-[11px] text-primary-light">{leadership.role}</div>
+                      <div className="mt-0.5 font-mono text-[10px] text-panel-dimmed">{leadership.qualification}</div>
                     </div>
                   </div>
 
-                  <div className="space-y-4 text-xs text-slate-300">
-                    <div className="flex items-start gap-3">
-                      <MapPin size={18} className="text-amber-400 shrink-0 mt-0.5" />
-                      <div>
-                        <strong className="text-white block mb-0.5">Physical Registered Office:</strong>
-                        <span>{contactInfo.address}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Phone size={18} className="text-emerald-400 shrink-0" />
-                      <div>
-                        <strong className="text-white block mb-0.5">Direct GM Contact:</strong>
-                        <a href={`tel:${contactInfo.phone}`} className="hover:text-emerald-400 font-bold text-sm text-emerald-300">
-                          {contactInfo.displayPhone}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Mail size={18} className="text-cyan-400 shrink-0" />
-                      <div>
-                        <strong className="text-white block mb-0.5">Official Email:</strong>
-                        <a href={`mailto:${contactInfo.email}`} className="hover:text-cyan-400 text-slate-300 break-all">
-                          {contactInfo.email}
-                        </a>
-                      </div>
-                    </div>
+                  <div className="border-t border-panel-line pt-3 mt-5">
+                    <div className="font-mono text-[10px] text-panel-dimmed">Registered office</div>
+                    <p className="mt-1 text-[13px] text-secondary-light leading-relaxed">{contactInfo.address}</p>
                   </div>
 
-                  <div className="mt-6 pt-5 border-t border-slate-800 flex gap-3">
+                  <div className="border-t border-panel-line pt-3 mt-3">
+                    <div className="font-mono text-[10px] text-panel-dimmed">Direct GM line</div>
                     <a
-                      href={contactInfo.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-colors"
+                      href={`tel:${contactInfo.phone}`}
+                      className="mt-1 inline-block font-mono tabular-data font-semibold text-surface whitespace-nowrap hover:text-primary-light transition-colors duration-150"
                     >
-                      <span>Google Maps</span>
-                      <ExternalLink size={14} />
+                      {contactInfo.displayPhone}
                     </a>
+                  </div>
+
+                  <div className="border-t border-panel-line pt-3 mt-3">
+                    <div className="font-mono text-[10px] text-panel-dimmed">Official email</div>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="mt-1 inline-block text-[13px] text-secondary-light break-all hover:text-surface transition-colors duration-150"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </div>
+
+                  <div className="flex gap-2.5 mt-5">
                     <a
                       href={contactInfo.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-sm bg-primary hover:bg-primary-hover text-surface text-xs font-semibold whitespace-nowrap transition-colors duration-150"
                     >
                       <MessageSquare size={14} />
-                      <span>WhatsApp</span>
+                      WhatsApp the desk
+                    </a>
+                    <a
+                      href={contactInfo.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-sm border border-panel-line text-surface hover:bg-panel-steel text-xs font-semibold whitespace-nowrap transition-colors duration-150"
+                    >
+                      Google Maps
                     </a>
                   </div>
                 </div>
 
-                {/* Oriented Business Card Mini Preview */}
-                <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-md">
-                  <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2 flex items-center justify-between">
-                    <span>Official Business Card</span>
-                    <span className="text-[10px] text-emerald-600 font-bold">Verified</span>
+                {/* Business-card mini panel */}
+                <div className="bg-surface border border-border rounded-md p-5 mt-6">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="label-tech">Official business card</span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-sm bg-tertiary-light text-tertiary font-mono text-[10px] font-semibold">
+                      Verified
+                    </span>
                   </div>
-                  <div className="rounded-lg overflow-hidden border border-slate-200 shadow-inner">
-                    <img 
-                      src={leadership.businessCard} 
-                      alt="MR. ELECTRICAL WORKS business card" 
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
+                  <img
+                    src={leadership.businessCard}
+                    className="w-full object-contain border border-border rounded-sm mt-3"
+                    alt="MR. ELECTRICAL WORKS business card"
+                  />
                 </div>
               </ScrollReveal>
             </div>
@@ -271,56 +265,38 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* ============================== FAQS SECTION ============================== */}
-      <section className="section-padding bg-white border-t border-slate-200/70">
+      {/* ============================== FAQ LEDGER ============================== */}
+      <section className="section-padding bg-neutral border-t border-border">
         <div className="container-custom">
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="eyebrow">Clear Answers</span>
-              <BlurText
-                as="h2"
-                text="Frequently Asked Questions"
-                highlight="Asked Questions"
-                highlightClassName="text-blue-600"
-                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
-                blurAmount="14px"
-                stagger={0.05}
-              />
-              <BlurText
-                as="p"
-                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
-                animateBy="words"
-                blurAmount="10px"
-                stagger={0.02}
-                delay={0.15}
-                text="Everything you need to know about our engineering approach, safety standards, and project timelines."
-              />
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="mt-4 text-2xl sm:text-4xl font-display font-bold text-on-surface">
+                Frequently asked questions
+              </h2>
+              <p className="mt-4 text-base text-muted leading-relaxed">
+                Answers on our engineering approach, safety standards, and project timelines.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="max-w-3xl mx-auto space-y-3">
             {faqs.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
-                <ScrollReveal 
-                  key={index} 
-                  variant="fade-up" 
-                  delay={index * 0.06}
-                >
-                  <div className="rounded-2xl border border-slate-200/90 overflow-hidden bg-slate-50 transition-all duration-300 hover:border-blue-400/50">
+                <ScrollReveal key={index} variant="fade-up" delay={index * 0.06}>
+                  <div className="border border-border bg-surface rounded-sm overflow-hidden">
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="w-full px-6 py-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 transition-colors"
+                      aria-expanded={isOpen}
+                      className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 cursor-pointer transition-colors duration-150 hover:bg-neutral"
                     >
-                      <span className="text-base">{faq.question}</span>
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-300 shrink-0 ${
-                        isOpen ? 'bg-blue-600 text-white rotate-180' : 'bg-slate-200 text-slate-700'
-                      }`}>
-                        <ChevronDown size={18} />
-                      </div>
+                      <span className="text-[15px] font-sans font-semibold text-on-surface">{faq.question}</span>
+                      <span className="w-7 h-7 rounded-sm border border-border flex items-center justify-center transition-transform duration-200 shrink-0">
+                        <ChevronDown size={16} className={`text-secondary ${isOpen ? 'rotate-180' : ''}`} />
+                      </span>
                     </button>
                     {isOpen && (
-                      <div className="px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100/60 animate-[fadeInUp_0.25s_ease]">
+                      <div className="px-5 pb-5 pt-1 text-[13px] text-muted leading-relaxed border-t border-border">
                         {faq.answer}
                       </div>
                     )}
@@ -331,7 +307,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </div>
+  </>
   );
 };
 

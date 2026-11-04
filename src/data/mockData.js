@@ -1,4 +1,4 @@
-import { Home, Lightbulb, Zap, Factory, Shield, HeartPulse, Building2, HardHat, Warehouse, Award, CheckCircle } from 'lucide-react';
+import { Home, Lightbulb, Zap, Factory, Shield, HeartPulse, Building2, HardHat, Warehouse } from 'lucide-react';
 
 export const services = [
   {
@@ -103,7 +103,7 @@ export const leadership = {
     'Specialist in Load Balancing, Circuit Breakers (MCB/RCCB) & IS Code Compliance',
     'Expertise in LT/HT Panel Design, Busbar Trunking & Chemical Earthing'
   ],
-  quote: "Electrical safety isn't an afterthought—it's engineered into every wire, breaker, and panel board before current ever flows."
+  quote: "Electrical safety isn't an afterthought: it's engineered into every wire, breaker, and panel board before current ever flows."
 };
 
 export const contactInfo = {

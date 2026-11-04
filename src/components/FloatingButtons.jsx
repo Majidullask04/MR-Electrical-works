@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Phone, ArrowUp, MessageSquare } from 'lucide-react';
 import { contactInfo } from '../data/mockData';
 
 const FloatingButtons = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
+
+  // On the contact desk page the same call/WhatsApp actions sit inside the
+  // dossier panel itself — the floating pair would only duplicate and clip them.
+  const isDeskPage = location.pathname === '/contact';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,57 +21,66 @@ const FloatingButtons = () => {
   }, []);
 
   const scrollToTop = () => {
+    // Reduced-motion users get the instant jump (Gate 27).
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: reduced ? 'auto' : 'smooth'
     });
   };
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-1.5 sm:gap-2.5 pointer-events-none">
-      
-      {/* Scroll to Top */}
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
+
+      {/* Scroll to top */}
       <button
         onClick={scrollToTop}
-        className={`pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-sm bg-[#12161F] text-[#8C96A5] hover:text-white border border-[#242A35] shadow-xl flex items-center justify-center hover:bg-[#1A202A] transition-all duration-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        className={`pointer-events-auto w-10 h-10 rounded-sm bg-panel-chassis text-secondary-light hover:text-surface hover:bg-panel-steel border border-panel-line shadow-tech-md flex items-center justify-center transition-[opacity,transform,background-color,color] duration-200 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
         }`}
-        title="Scroll to Top"
-        aria-label="Scroll to Top"
+        title="Scroll to top"
+        aria-label="Scroll to top"
       >
-        <ArrowUp size={15} />
+        <ArrowUp size={16} aria-hidden="true" />
       </button>
 
-      {/* Direct Call Trigger */}
-      <a 
-        href={`tel:${contactInfo.phone}`}
-        className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/50 shadow-xl shadow-[#B35010]/20"
-        title="Call Mr. Nekbor Seikh"
-        aria-label="Call Mr. Nekbor Seikh"
-      >
-        <Phone size={13} className="shrink-0" />
-        <span className="hidden sm:inline">
-          CALL GM: {contactInfo.displayPhone}
-        </span>
-        <span className="sm:hidden">
-          CALL GM
-        </span>
-      </a>
+      {/* Direct call + WhatsApp triggers — bloom in after the fold, like the scroll-top */}
+      {!isDeskPage && (
+        <>
+          <a
+            href={`tel:${contactInfo.phone}`}
+            className={`pointer-events-auto flex items-center gap-2 px-3.5 py-2.5 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-xs font-semibold shadow-tech-md transition-[background-color,opacity,transform] duration-200 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+            }`}
+            title="Call Mr. Nekbor Seikh"
+            aria-label="Call Mr. Nekbor Seikh"
+          >
+            <Phone size={14} className="shrink-0" aria-hidden="true" />
+            <span className="hidden sm:inline whitespace-nowrap">
+              Call GM: {contactInfo.displayPhone}
+            </span>
+            <span className="sm:hidden whitespace-nowrap">
+              Call GM
+            </span>
+          </a>
 
-      {/* WhatsApp Quick Trigger */}
-      <a 
-        href={contactInfo.whatsappUrl}
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 py-2.5 px-3 sm:py-3 sm:px-4 rounded-sm bg-[#102A1E] hover:bg-[#163828] text-[#34D399] font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#059669]/50 shadow-xl shadow-emerald-950/40"
-        title="Chat on WhatsApp"
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageSquare size={14} className="shrink-0" />
-        <span className="hidden sm:inline">WHATSAPP CONSULTATION</span>
-        <span className="sm:hidden">WHATSAPP</span>
-      </a>
-
+          {/* WhatsApp quick trigger */}
+          <a
+            href={contactInfo.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`pointer-events-auto flex items-center gap-2 py-2.5 px-3.5 rounded-sm bg-panel-chassis hover:bg-panel-steel text-surface border border-panel-line font-sans text-xs font-semibold shadow-tech-md transition-[background-color,opacity,transform] duration-200 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+            }`}
+            title="Chat on WhatsApp"
+            aria-label="Chat on WhatsApp"
+          >
+            <MessageSquare size={14} className="shrink-0" aria-hidden="true" />
+            <span className="hidden sm:inline whitespace-nowrap">WhatsApp consultation</span>
+            <span className="sm:hidden whitespace-nowrap">WhatsApp</span>
+          </a>
+        </>
+      )}
     </div>
   );
 };

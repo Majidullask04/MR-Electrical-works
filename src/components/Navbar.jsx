@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare, Shield, Activity } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { contactInfo } from '../data/mockData';
 import Logo from './Logo';
 
@@ -13,9 +13,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Engineering & Leadership', path: '/about' },
-    { name: 'Turnkey Services', path: '/services' },
-    { name: 'Projects & Schematics', path: '/projects' },
+    { name: 'Engineering & leadership', path: '/about' },
+    { name: 'Turnkey services', path: '/services' },
+    { name: 'Projects & schematics', path: '/projects' },
     { name: 'Contact & BOQ', path: '/contact' },
   ];
 
@@ -56,57 +56,64 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isHidden ? '-translate-y-full' : 'translate-y-0'
-      } ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b ${
         isScrolled
-          ? 'bg-[#0E1116]/95 backdrop-blur-md border-b border-[#242A35] py-2.5 shadow-2xl'
-          : 'bg-[#0E1116]/85 backdrop-blur-sm border-b border-[#1E232D] py-3.5'
-      }`}
+          ? 'bg-surface border-border shadow-tech-sm'
+          : 'bg-surface/95 border-transparent'
+      } ${
+        isHidden ? '-translate-y-full' : 'translate-y-0'
+      } transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out`}
     >
-      {/* Top Technical Telemetry Strip */}
-      <div className="hidden xl:block bg-[#08090C] border-b border-[#1A1F29] py-1 text-[11px] font-mono text-[#8C96A5]">
-        <div className="container-custom flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-[#38BDF8]">
-              <Activity size={12} className="animate-pulse text-[#38BDF8]" />
-              <span className="font-semibold text-white">PATANCHERU & HYDERABAD DESK:</span> ACTIVE
+      {/* Top technical telemetry strip */}
+      <div className="hidden xl:block bg-panel-chassis border-b border-panel-line py-1.5">
+        <div className="container-custom flex justify-between items-center gap-4 min-w-0">
+          <div className="flex items-center gap-4 min-w-0">
+            <span className="font-mono text-[11px] text-panel-dimmed whitespace-nowrap">
+              Patancheru &amp; Hyderabad desk: <span className="text-surface font-semibold">active</span>
             </span>
-            <span className="text-[#3A4352]">|</span>
-            <span>HT/LT LICENSED ELECTRICAL CONTRACTOR</span>
-            <span className="text-[#3A4352]">|</span>
-            <span>M.TECH (EEE) DIRECTED TURNKEY EPC</span>
+            <span className="font-mono text-[11px] text-panel-dimmed whitespace-nowrap">
+              HT/LT licensed electrical contractor
+            </span>
+            <span className="font-mono text-[11px] text-panel-dimmed whitespace-nowrap hidden 2xl:inline">
+              M.Tech (EEE) directed turnkey EPC
+            </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-[#CBD5E1]">TELANGANA CEIG &amp; DISCOM STANDARDS</span>
-            <span className="text-[#3A4352]">|</span>
-            <a href={`tel:${contactInfo.phone}`} className="text-[#E57A36] hover:underline font-semibold">
-              HOTLINE: {contactInfo.displayPhone}
+            <span className="font-mono text-[11px] text-panel-dimmed whitespace-nowrap hidden 2xl:inline">
+              Telangana CEIG &amp; DISCOM standards
+            </span>
+            <a
+              href={`tel:${contactInfo.phone}`}
+              className="font-mono text-[11px] text-tertiary-light whitespace-nowrap hover:underline"
+            >
+              Hotline: {contactInfo.displayPhone}
             </a>
           </div>
         </div>
       </div>
 
       <div className="container-custom">
-        <div className="flex justify-between items-center gap-2 min-w-0">
-          
-          {/* Elite Bespoke Vector Brand Logo */}
-          <Link to="/" className="group focus:outline-none min-w-0 shrink" aria-label="MR. ELECTRICAL WORKS Home">
-            <Logo size={isScrolled ? "sm" : "md"} variant="light" />
+        <div className={`flex justify-between items-center gap-3 min-w-0 transition-[padding] duration-200 ease-out ${
+          isScrolled ? 'py-2.5' : 'py-3.5'
+        }`}>
+
+          {/* Brand */}
+          <Link to="/" className="group min-w-0 shrink" aria-label="MR. ELECTRICAL WORKS Home">
+            <Logo size={isScrolled ? "sm" : "md"} variant="dark" />
           </Link>
 
-          {/* Dribbble Style Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop navigation — sentence case, untracked */}
+          <div className="hidden lg:flex items-center whitespace-nowrap">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3.5 py-1.5 rounded-sm font-sans text-xs uppercase tracking-wider font-semibold transition-all duration-200 ${
-                    active 
-                      ? 'bg-[#B35010]/20 text-[#E57A36] border border-[#B35010]/40 shadow-sm' 
-                      : 'text-[#9DA8B8] hover:text-white hover:bg-white/5 border border-transparent'
+                  className={`px-3 py-1.5 font-sans text-[13px] font-semibold rounded-sm transition-colors duration-150 ${
+                    active
+                      ? 'text-primary'
+                      : 'text-secondary hover:text-on-surface'
                   }`}
                 >
                   {link.name}
@@ -114,41 +121,42 @@ const Navbar = () => {
               );
             })}
 
-            <div className="pl-4 ml-2 border-l border-[#242A35] flex items-center gap-3">
+            <div className="pl-4 ml-2 border-l border-border flex items-center gap-2.5">
               <a
                 href={contactInfo.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#102A1E] text-[#34D399] border border-[#059669]/40 hover:bg-[#163828] text-xs font-mono font-semibold transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm border border-border bg-surface hover:bg-neutral text-on-surface text-xs font-sans font-semibold transition-colors duration-150"
                 title="Direct WhatsApp with GM Projects"
               >
                 <MessageSquare size={13} />
-                <span>WHATSAPP</span>
+                <span>WhatsApp</span>
               </a>
 
               <a
                 href={`tel:${contactInfo.phone}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-[#C25E1A]/40 shadow-md shadow-[#B35010]/20"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-sm bg-primary hover:bg-primary-hover text-surface text-xs font-sans font-semibold transition-colors duration-150"
               >
                 <Phone size={13} />
-                <span>CALL GM</span>
+                <span>Call GM</span>
               </a>
             </div>
           </div>
 
-          {/* Mobile and Tablet Menu Controls */}
-          <div className="lg:hidden flex items-center gap-1.5 xs:gap-2 shrink-0">
+          {/* Mobile and tablet controls */}
+          <div className="lg:hidden flex items-center gap-2 shrink-0">
             <a
               href={`tel:${contactInfo.phone}`}
-              className="p-2 xs:p-2.5 rounded-sm bg-[#B35010] text-white border border-[#C25E1A]/40 flex items-center justify-center min-w-[38px] min-h-[38px] xs:min-w-[42px] xs:min-h-[42px] hover:bg-[#9C4208] transition-colors"
-              aria-label="Direct Call General Manager"
+              className="p-2.5 rounded-sm bg-primary text-surface flex items-center justify-center min-w-[40px] min-h-[40px] hover:bg-primary-hover transition-colors duration-150"
+              aria-label="Direct call to the general manager"
             >
               <Phone size={15} />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#9DA8B8] hover:text-white p-2 xs:p-2.5 rounded-sm border border-[#242A35] focus:outline-none bg-[#141820] min-w-[38px] min-h-[38px] xs:min-w-[42px] xs:min-h-[42px] flex items-center justify-center transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="text-on-surface p-2.5 rounded-sm border border-border bg-surface min-w-[40px] min-h-[40px] flex items-center justify-center transition-colors duration-150"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -156,42 +164,42 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Dribbble Style Mobile/Tablet Drawer */}
+      {/* Mobile / tablet drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#0E1116] border-t border-[#242A35] shadow-2xl px-4 sm:px-6 py-4 sm:py-5 mt-2 max-h-[calc(100dvh-70px)] overflow-y-auto animate-[fadeInUp_0.2s_ease]">
-          <div className="space-y-1.5">
+        <div className="lg:hidden bg-surface border-t border-border px-5 py-4 mt-1">
+          <div className="space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-sm text-xs font-mono uppercase tracking-wider font-semibold transition-all ${
+                className={`block px-4 py-3 rounded-sm text-sm font-sans font-semibold transition-colors duration-150 whitespace-nowrap ${
                   isActive(link.path)
-                    ? 'text-[#E57A36] bg-[#B35010]/20 border border-[#B35010]/40'
-                    : 'text-[#9DA8B8] hover:text-white hover:bg-white/5 border border-transparent'
+                    ? 'bg-primary-light text-primary-hover'
+                    : 'text-on-surface hover:bg-neutral'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
 
-            <div className="pt-4 border-t border-[#242A35] space-y-2.5">
+            <div className="pt-3 mt-2 border-t border-border space-y-2.5">
               <a
                 href={`tel:${contactInfo.phone}`}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-sm bg-[#B35010] hover:bg-[#9C4208] text-white font-mono text-xs font-semibold uppercase tracking-wider"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-sm font-semibold whitespace-nowrap"
               >
                 <Phone size={14} />
-                <span>Call GM - Projects: {contactInfo.displayPhone}</span>
+                <span>Call GM: {contactInfo.displayPhone}</span>
               </a>
 
               <a
                 href={contactInfo.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-sm bg-[#102A1E] text-[#34D399] border border-[#059669]/40 font-mono text-xs font-semibold uppercase tracking-wider"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-sm border border-border bg-surface hover:bg-neutral text-on-surface font-sans text-sm font-semibold whitespace-nowrap"
               >
                 <MessageSquare size={14} />
-                <span>Instant WhatsApp Consultation</span>
+                <span>WhatsApp consultation</span>
               </a>
             </div>
           </div>

@@ -1,41 +1,34 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
+/**
+ * Scroll reveal — GPU-composited transform/opacity only (Gate 10a).
+ * No filter: blur, no layout-property animation. Fires once per element
+ * and renders fully visible markup under prefers-reduced-motion (Gates 27, 62).
+ */
 const variantsMap = {
   'fade-up': {
-    hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)' }
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0 }
   },
   'fade-down': {
-    hidden: { opacity: 0, y: -32, filter: 'blur(12px)' },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)' }
+    hidden: { opacity: 0, y: -16 },
+    visible: { opacity: 1, y: 0 }
   },
   'fade-left': {
-    hidden: { opacity: 0, x: 40, filter: 'blur(12px)' },
-    visible: { opacity: 1, x: 0, filter: 'blur(0px)' }
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0 }
   },
   'fade-right': {
-    hidden: { opacity: 0, x: -40, filter: 'blur(12px)' },
-    visible: { opacity: 1, x: 0, filter: 'blur(0px)' }
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 }
   },
   'zoom-in': {
-    hidden: { opacity: 0, scale: 0.92, filter: 'blur(10px)' },
-    visible: { opacity: 1, scale: 1, filter: 'blur(0px)' }
+    hidden: { opacity: 0, scale: 0.97 },
+    visible: { opacity: 1, scale: 1 }
   },
   'fade': {
-    hidden: { opacity: 0, filter: 'blur(12px)' },
-    visible: { opacity: 1, filter: 'blur(0px)' }
-  },
-  'blur-text': {
-    hidden: { opacity: 0, y: 20, filter: 'blur(14px)' },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)' }
-  },
-  'blur-reveal': {
-    hidden: { opacity: 0, y: 28, filter: 'blur(16px)', scale: 0.98 },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }
-  },
-  'blur-scale': {
-    hidden: { opacity: 0, scale: 0.95, filter: 'blur(16px)' },
-    visible: { opacity: 1, scale: 1, filter: 'blur(0px)' }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   }
 };
 
@@ -43,25 +36,38 @@ const ScrollReveal = ({
   children,
   variant = 'fade-up',
   delay = 0,
-  duration = 0.8,
-  className = '',
-  viewport = { once: false, amount: 0.12, margin: "0px 0px -40px 0px" }
+  duration = 0.45,
+  className = ''
 }) => {
+  const prefersReducedMotion = useReducedMotion();
   const selectedVariant = variantsMap[variant] || variantsMap['fade-up'];
+
+  // Gate 27/62: under reduced motion every variant lands immediately at rest.
+  if (prefersReducedMotion) {
+    return (
+      <div
+        className={className}
+        style={{ opacity: 1, transform: 'none' }}
+        data-reveal={variant}
+      >
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div
       variants={selectedVariant}
       initial="hidden"
       whileInView="visible"
-      viewport={viewport}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{
         duration,
         delay,
-        ease: [0.16, 1, 0.3, 1] // Saitronics signature cubic-bezier curve
+        ease: [0.22, 1, 0.36, 1]
       }}
       className={className}
-      data-aos={variant}
+      data-reveal={variant}
     >
       {children}
     </motion.div>

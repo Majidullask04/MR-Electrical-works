@@ -1,241 +1,229 @@
-import { services, industries } from '../data/mockData';
+import { services, industries, contactInfo } from '../data/mockData';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Zap, Shield, Cpu, Sun, BatteryCharging, Flame } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
-import BlurText from '../components/BlurText';
+
+const specialized = [
+  {
+    title: 'DG Set & Generator Setup',
+    desc: 'Automatic Mains Failure (AMF) panel wiring and changeover switchgear for uninterrupted operations.'
+  },
+  {
+    title: 'Central Online UPS Systems',
+    desc: 'Clean power isolation and harmonic filter installation for sensitive IT and lab hardware.'
+  },
+  {
+    title: 'Solar Inverter Works',
+    desc: 'Grid-tie & hybrid solar electrical cabling, DCDB/ACDB integration, and surge protection.'
+  },
+  {
+    title: 'Chemical & Plate Earthing',
+    desc: 'Low-impedance earth pits with copper/GI electrodes and conductivity enhancing compounds.'
+  },
+  {
+    title: 'Industrial Automation Cabling',
+    desc: 'PLC control panel wiring, VFD starter setups, sensor loops, and emergency stops.'
+  },
+  {
+    title: 'Fire Alarm & Safety Circuits',
+    desc: 'Emergency evacuation lighting, heat/smoke sensor circuitry, and siren loops.'
+  }
+];
+
+const protocolLines = [
+  'IS-compliant wiring gauge selection',
+  'Thermal inspection & insulation testing',
+  'Workmanship guarantee on all installations'
+];
 
 const Services = () => {
-  const specialized = [
-    {
-      title: 'DG Set & Generator Setup',
-      desc: 'Automatic Mains Failure (AMF) panel wiring and changeover switchgear for uninterrupted operations.',
-      icon: Zap
-    },
-    {
-      title: 'Central Online UPS Systems',
-      desc: 'Clean power isolation and harmonic filter installation for sensitive IT and lab hardware.',
-      icon: BatteryCharging
-    },
-    {
-      title: 'Solar Inverter Works',
-      desc: 'Grid-tie & hybrid solar electrical cabling, DCDB/ACDB integration, and surge protection.',
-      icon: Sun
-    },
-    {
-      title: 'Chemical & Plate Earthing',
-      desc: 'Low-impedance earth pits with copper/GI electrodes and conductivity enhancing compounds.',
-      icon: Shield
-    },
-    {
-      title: 'Industrial Automation Cabling',
-      desc: 'PLC control panel wiring, VFD starter setups, sensor loops, and emergency stops.',
-      icon: Cpu
-    },
-    {
-      title: 'Fire Alarm & Safety Circuits',
-      desc: 'Emergency evacuation lighting, heat/smoke sensor circuitry, and siren loops.',
-      icon: Flame
-    }
-  ];
-
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <>
+
       {/* ============================== PAGE HEADER ============================== */}
-      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
-        <div className="hero-orb hero-orb-2 opacity-60"></div>
-        <div className="hero-grid-pattern"></div>
-        
-        <div className="container-custom relative z-10 text-center">
-          <ScrollReveal variant="fade-up">
-            <span className="eyebrow !text-amber-400">Engineering Solutions</span>
-            <BlurText
-              as="h1"
-              text="End-To-End Electrical Services"
-              highlight="Electrical Services"
-              highlightClassName="text-amber-400"
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
-              blurAmount="14px"
-              stagger={0.05}
-            />
-            <BlurText
-              as="p"
-              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
-              animateBy="words"
-              blurAmount="10px"
-              stagger={0.02}
-              delay={0.15}
-              text="From residential wiring to multi-megawatt industrial power distribution, we build robust electrical systems designed for longevity and safety."
-            />
-          </ScrollReveal>
+      <section>
+        <div className="container-custom">
+          <div className="relative pt-32 sm:pt-40 pb-10 sm:pb-14 border-b border-border">
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none grid-copper grid-copper-coarse" aria-hidden="true" />
+            <ScrollReveal variant="fade-up">
+              <h1 className="mt-3 text-3xl xs:text-4xl sm:text-5xl font-display font-bold text-on-surface max-w-[16ch]">
+                End-to-end electrical services
+              </h1>
+              <p className="mt-4 max-w-[60ch] text-sm sm:text-[15px] leading-relaxed text-muted">
+                Wiring to multi-megawatt industrial distribution, each scope quoted from a site inspection.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* ============================== MAIN SERVICES GRID ============================== */}
+      {/* ============================== CAPABILITY LEDGER ============================== */}
       <section className="section-padding">
         <div className="container-custom">
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, idx) => {
-              const Icon = service.icon;
-              return (
-                <ScrollReveal 
-                  key={service.id} 
-                  variant="fade-up" 
-                  delay={idx * 0.08}
-                >
-                  <div className="card p-5 sm:p-8 h-full flex flex-col group border-t-3 hover:border-amber-500">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 sm:mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
-                      <Icon size={26} />
-                    </div>
-                    
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 sm:mb-3 group-hover:text-amber-600 transition-colors break-words">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
-                      {service.description}
-                    </p>
-
-                    <ul className="space-y-2.5 mb-8 text-xs font-medium text-slate-600">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-amber-500 shrink-0" />
-                        <span>IS-compliant wiring gauge selection</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-amber-500 shrink-0" />
-                        <span>Thermal inspection &amp; insulation testing</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-amber-500 shrink-0" />
-                        <span>Workmanship guarantee on all installations</span>
-                      </li>
-                    </ul>
-
-                    <Link 
-                      to="/contact" 
-                      className="card-arrow-link text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-auto pt-4 border-t border-slate-100"
-                    >
-                      <span>Request quote for {service.title}</span>
-                      <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ============================== INDUSTRIES WE SERVE ============================== */}
-      <section className="section-padding bg-white border-y border-slate-200/70">
-        <div className="container-custom">
-          
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="eyebrow">Sectors Covered</span>
-              <BlurText
-                as="h2"
-                text="Industries Powered By MR Electrical"
-                highlight="MR Electrical"
-                highlightClassName="text-amber-500"
-                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
-                blurAmount="14px"
-                stagger={0.05}
-              />
-              <BlurText
-                as="p"
-                className="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"
-                animateBy="words"
-                blurAmount="10px"
-                stagger={0.02}
-                delay={0.15}
-                text="Tailored electrical solutions respecting the unique load, uptime, and safety codes of various environments."
-              />
+            <div className="max-w-[60ch]">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-on-surface">
+                Core scopes of work
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Each scope below is delivered with the same three verifications: compliant gauge selection, thermal
+                and insulation testing, and a workmanship guarantee on completion.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
-            {industries.map((ind, idx) => {
-              const Icon = ind.icon;
-              return (
-                <ScrollReveal 
-                  key={idx} 
-                  variant="zoom-in" 
-                  delay={idx * 0.05}
-                >
-                  <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-amber-400 hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 group cursor-default">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
-                      <Icon size={24} />
-                    </div>
-                    <span className="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition-colors">
-                      {ind.name}
+          <div className="mt-10 grid grid-cols-1 gap-px bg-border border border-border rounded-sm overflow-hidden">
+            {services.map((service, idx) => (
+              <ScrollReveal key={service.id} variant="fade-up" delay={Math.min(idx * 0.06, 0.3)}>
+                <article className="bg-surface p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+                  <div className="md:col-span-1">
+                    <span className="font-mono text-sm font-semibold text-primary tabular-data" aria-hidden="true">
+                      {String(idx + 1).padStart(2, '0')}
                     </span>
                   </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
 
+                  <div className="md:col-span-7 min-w-0">
+                    <h3 className="text-lg sm:text-xl font-display font-bold text-on-surface">
+                      {service.title}
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                      {service.description}
+                    </p>
+                    <ul className="mt-5 max-w-[46ch]">
+                      {protocolLines.map((line, lineIdx) => (
+                        <li
+                          key={lineIdx}
+                          className="border-t border-border pt-2 mt-2 text-[12.5px] leading-snug text-on-surface first:mt-0"
+                        >
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="md:col-span-4 md:self-center">
+                    <span className="label-tech">Direct consultation</span>
+                    <div className="mt-2">
+                      <Link
+                        to="/contact"
+                        className="font-sans text-[13px] font-semibold text-primary hover:underline underline-offset-4 whitespace-nowrap"
+                      >
+                        Request this scope
+                        <span className="sr-only">: {service.title}</span>
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============================== SPECIALIZED SOLUTIONS ============================== */}
-      <section className="section-padding bg-slate-900 text-white relative overflow-hidden">
-        <div className="hero-orb hero-orb-1 opacity-20"></div>
-
-        <div className="container-custom relative z-10">
+      {/* ============================== SECTORS COVERED ============================== */}
+      <section className="section-padding bg-neutral border-b border-border">
+        <div className="container-custom">
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="eyebrow !text-amber-400">Advanced Works</span>
-              <BlurText
-                as="h2"
-                text="Specialized Engineering Solutions"
-                highlight="Engineering Solutions"
-                highlightClassName="text-amber-400"
-                className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-white break-words"
-                blurAmount="14px"
-                stagger={0.05}
-              />
-              <BlurText
-                as="p"
-                className="text-slate-300 text-base"
-                animateBy="words"
-                blurAmount="10px"
-                stagger={0.02}
-                delay={0.15}
-                text="Beyond conventional installations, we engineer backup power, surge immunity, and automation infrastructure."
-              />
+            <div className="max-w-[60ch]">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-on-surface">
+                Industries powered by MR Electrical
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Tailored electrical solutions that respect the unique load, uptime, and safety codes of each
+                environment.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {specialized.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <ScrollReveal 
-                  key={idx} 
-                  variant="fade-up" 
-                  delay={idx * 0.07}
+          <ScrollReveal variant="fade-up" delay={0.1}>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+              {industries.map((ind, idx) => (
+                <div
+                  key={ind.name}
+                  className={`bg-surface px-5 py-4 flex items-center gap-4 min-w-0 ${
+                    idx === industries.length - 1 ? 'sm:col-span-2 lg:col-span-3' : ''
+                  }`}
                 >
-                  <div className="p-7 rounded-2xl bg-slate-800/80 border border-slate-700/70 hover:border-amber-400/60 hover:bg-slate-800 transition-all duration-300 group">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                      <Icon size={24} />
-                    </div>
-                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+                  <span className="font-mono text-xs font-semibold text-primary tabular-data shrink-0" aria-hidden="true">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-sans text-sm font-semibold text-on-surface min-w-0">
+                    {ind.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
-    </div>
+
+      {/* ============================== SPECIALIZED ENGINEERING ============================== */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-[60ch]">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-on-surface">
+                Specialized engineering solutions
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Beyond conventional installations, we engineer backup power, surge immunity, and automation
+                infrastructure.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-up" delay={0.1}>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-sm overflow-hidden">
+              {specialized.map((item, idx) => (
+                <div key={item.title} className="bg-surface p-5 sm:p-6 min-w-0">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] font-semibold text-tertiary tabular-data shrink-0" aria-hidden="true">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-sans text-[15px] font-semibold text-on-surface min-w-0">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ============================== CTA STRIP ============================== */}
+      <section className="py-14 sm:py-16 bg-panel-chassis border-t border-border">
+        <div className="container-custom text-center">
+          <ScrollReveal variant="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-surface max-w-[42ch] mx-auto">
+              Specialized works are quoted from a site inspection
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-panel-dimmed max-w-[56ch] mx-auto">
+              Share your load schedule or project scope with the engineering desk, and receive an itemized
+              quotation with material specifications.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
+              >
+                Request an itemized quote
+              </Link>
+              <a
+                href={contactInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-sm border border-panel-line text-surface hover:bg-panel-steel font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
+              >
+                WhatsApp the engineering desk
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+  </>
   );
 };
 

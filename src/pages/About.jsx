@@ -1,8 +1,6 @@
-import { CheckCircle2, ShieldAlert, Award, Compass, Target, ShieldCheck, Phone, Mail, MapPin, Download, Check } from 'lucide-react';
+import { ShieldCheck, Phone } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import { leadership, contactInfo } from '../data/mockData';
-import { LogoMark } from '../components/Logo';
-import BlurText from '../components/BlurText';
 
 const About = () => {
   const values = [
@@ -14,272 +12,191 @@ const About = () => {
     { title: 'Transparent Upfront Pricing', desc: 'Itemized material specs and labor quotes with zero surprise add-ons during or after project execution.' },
   ];
 
+  const safetyProtocols = [
+    '1000V certified insulated tools & equipment',
+    'Full personal protective equipment (PPE) on-site',
+    'Chemical earth pit Megger resistance testing',
+    'FRLS flame-retardant copper wiring standard',
+    'Calibrated 30mA RCCB shock prevention units',
+    'Standardized circuit numbering & phase tags',
+  ];
+
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* ============================== PAGE HEADER WITH AMBIENT GLOW ============================== */}
-      <section className="relative pt-24 xs:pt-28 sm:pt-32 pb-14 sm:pb-20 bg-slate-950 text-white overflow-hidden">
-        <div className="hero-orb hero-orb-1 opacity-70"></div>
-        <div className="hero-orb hero-orb-2 opacity-50"></div>
-        <div className="hero-grid-pattern"></div>
-        
-        <div className="container-custom relative z-10 text-center">
-          <ScrollReveal variant="fade-up">
-            <div className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-400 text-[11px] xs:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 max-w-full truncate">
-              <Award size={14} className="shrink-0" /> <span className="truncate">M.Tech (EEE) Qualified Engineering Leadership</span>
-            </div>
-            <BlurText
-              as="h1"
-              text="Engineering Precision. Zero Short-Circuits."
-              highlight="Zero Short-Circuits."
-              highlightClassName="text-[#E57A36]"
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-5 tracking-tight text-white break-words"
-              blurAmount="14px"
-              stagger={0.05}
-            />
-            <BlurText
-              as="p"
-              className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
-              animateBy="words"
-              blurAmount="10px"
-              stagger={0.02}
-              delay={0.15}
-              text="Founded in Patancheru, Hyderabad, MR. ELECTRICAL WORKS delivers certified turnkey electrical engineering for homes, commercial complexes, and industrial plants."
-              highlight="MR. ELECTRICAL WORKS"
-              highlightClassName="text-white font-bold"
-            />
-          </ScrollReveal>
+    <>
+
+      {/* ============================== PAGE HEADER — principal consultant dossier ============================== */}
+      <section className="relative pt-32 sm:pt-40 pb-10 sm:pb-14 border-b border-border">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none grid-copper grid-copper-coarse" aria-hidden="true" />
+        <div className="container-custom">
+          <h1 className="mt-4 font-display font-bold text-3xl sm:text-5xl text-on-surface leading-[1.08] tracking-tight max-w-3xl">
+            Engineering precision. No short-circuits.
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed max-w-[62ch]">
+            Founded in Patancheru: certified turnkey electrical engineering for homes, commerce, and industry.
+          </p>
         </div>
       </section>
 
-      {/* ============================== LEADERSHIP SPOTLIGHT: MR. NEKBOR SEIKH ============================== */}
-      <section className="section-padding bg-white border-b border-slate-200/80">
+      {/* ============================== CONSULTANT DOSSIER ============================== */}
+      <section className="scroll section-padding">
         <div className="container-custom">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Real Executive Portrait */}
-            <div className="lg:col-span-5">
-              <ScrollReveal variant="fade-right">
-                <div className="relative group">
-                  {/* Subtle accent frame glow */}
-                  <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-emerald-500 to-amber-500 rounded-3xl opacity-30 blur-lg group-hover:opacity-50 transition duration-500"></div>
-                  
-                  <div className="relative rounded-2xl overflow-hidden bg-slate-900 border-2 border-slate-800 shadow-2xl">
-                    <img 
-                      src={leadership.photo} 
-                      alt="Mr. Nekbor Seikh (M.Tech - EEE) - GM Projects" 
-                      className="w-full h-auto object-cover object-top max-h-[540px] transform group-hover:scale-102 transition duration-500"
-                    />
-                    
-                    {/* Dark gradient overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          <ScrollReveal variant="fade-up">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-                    {/* Verified Leader Badge on Photo */}
-                    <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-xl">
-                      <div className="flex items-center justify-between mb-1">
-                        <div className="text-lg font-black text-white flex items-center gap-1.5">
-                          <span>{leadership.name}</span>
-                          <CheckCircle2 size={18} className="text-emerald-400 fill-emerald-400/20" />
-                        </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                          {leadership.role}
-                        </span>
-                      </div>
-                      <div className="text-xs text-amber-400 font-semibold mb-2">
-                        {leadership.qualification}
-                      </div>
-                      <p className="text-[11px] text-slate-300 italic border-t border-slate-800 pt-2">
-                        "{leadership.quote}"
-                      </p>
-                    </div>
+              {/* Machined portrait frame with solid caption sheet */}
+              <div className="lg:col-span-5 min-w-0">
+                <div className="border border-border rounded-md shadow-tech-md overflow-hidden bg-neutral">
+                  <img
+                    src={leadership.photo}
+                    alt="Mr. Nekbor Seikh (M.Tech - EEE), GM - Projects, on site"
+                    className="w-full h-auto object-cover object-top max-h-[540px]"
+                  />
+                  <div className="bg-panel-chassis px-4 py-3.5">
+                    <p className="font-sans text-base font-bold text-surface">{leadership.name}</p>
+                    <p className="mt-1 font-mono text-[10px] text-panel-dimmed leading-relaxed">{leadership.role}</p>
+                    <p className="font-mono text-[10px] text-panel-dimmed leading-relaxed">{leadership.qualification}</p>
                   </div>
                 </div>
-              </ScrollReveal>
-            </div>
+              </div>
 
-            {/* Leadership Biography & Engineering Credentials */}
-            <div className="lg:col-span-7">
-              <ScrollReveal variant="fade-left" delay={0.15}>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
-                  <LogoMark size={18} /> Direct Project Leadership
-                </div>
-                
-                <BlurText
-                  as="h2"
-                  text="Qualified Engineering Meets Real-World Craftsmanship"
-                  highlight="Real-World Craftsmanship"
-                  highlightClassName="text-blue-600"
-                  className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight break-words"
-                  blurAmount="14px"
-                  stagger={0.05}
-                />
+              {/* Biography, credentials ledger & actions */}
+              <div className="lg:col-span-7 min-w-0">
+                <h2 className="mt-4 font-display font-bold text-2xl sm:text-4xl text-on-surface leading-tight tracking-tight">
+                  Qualified engineering meets field craftsmanship
+                </h2>
 
-                <div className="prose text-slate-600 text-base leading-relaxed space-y-4">
+                <blockquote className="mt-6 border-l-2 border-primary pl-4 text-muted text-sm sm:text-base leading-relaxed">
+                  {`“${leadership.quote}”`}
+                </blockquote>
+
+                <div className="mt-6 space-y-4 text-sm sm:text-base text-muted leading-relaxed max-w-[64ch]">
                   <p>
-                    Unlike traditional uncertified electricians who rely on guesswork and unmeasured loads, <strong>MR. ELECTRICAL WORKS</strong> was founded in Patancheru, Hyderabad under the direct engineering leadership of <strong>Mr. Nekbor Seikh</strong>.
+                    Unlike traditional uncertified electricians who rely on guesswork and unmeasured loads, <strong className="text-on-surface">MR. ELECTRICAL WORKS</strong> was founded in Patancheru, Hyderabad under the direct engineering leadership of <strong className="text-on-surface">Mr. Nekbor Seikh</strong>.
                   </p>
                   <p>
-                    Holding a <strong>Master of Technology (M.Tech) in Electrical &amp; Electronics Engineering (EEE)</strong> and serving as <strong>GM - Projects</strong>, Mr. Nekbor brings scientific rigor to every wire, conduit, and panel board.
+                    Holding a <strong className="text-on-surface">Master of Technology (M.Tech) in Electrical &amp; Electronics Engineering (EEE)</strong> and serving as <strong className="text-on-surface">GM, Projects</strong>, Mr. Nekbor brings scientific rigor to every wire, conduit, and panel board.
                   </p>
                   <p>
                     From high-rise residential installations to heavy manufacturing plants in the Patancheru, Pashamylaram, and Bolarum industrial corridors, our solutions prioritize human life safety, IS Code conformity, and fault-proof power resilience.
                   </p>
                 </div>
 
-                {/* Key Credentials List */}
-                <div className="mt-6 space-y-2.5">
+                {/* Indexed credentials */}
+                <div className="mt-8">
                   {leadership.credentials.map((cred, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
-                      <ShieldCheck size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                      <span className="text-sm font-semibold text-slate-800">{cred}</span>
+                    <div key={idx} className="flex items-start gap-4 border-t border-border first:border-t-0 pt-3 pb-3">
+                      <span className="font-mono tabular-data text-xs text-primary pt-0.5 shrink-0">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-[13px] font-semibold text-on-surface leading-relaxed">{cred}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                {/* Actions */}
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <a
                     href={`tel:${contactInfo.phone}`}
-                    className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
                   >
-                    <Phone size={16} />
+                    <Phone size={15} aria-hidden="true" />
                     <span>Speak with Mr. Nekbor: {contactInfo.displayPhone}</span>
                   </a>
                   <a
                     href={contactInfo.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-outline flex items-center justify-center gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50 w-full sm:w-auto text-center"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-sm border border-border hover:border-secondary bg-surface text-on-surface font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
                   >
-                    <Mail size={16} />
-                    <span>WhatsApp Engineering Desk</span>
+                    <span>WhatsApp engineering desk</span>
                   </a>
                 </div>
-              </ScrollReveal>
-            </div>
+              </div>
 
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ============================== AUTHENTIC BUSINESS CARD & OFFICE VERIFICATION ============================== */}
-      <section className="section-padding bg-slate-100 border-b border-slate-200/70">
-        <div className="container-custom">
-          
+      {/* ============================== IDENTITY VERIFICATION ============================== */}
+      <section className="bg-neutral border-y border-border">
+        <div className="container-custom section-padding">
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="eyebrow">Proof of Authenticity</span>
-              <BlurText
-                as="h2"
-                text="Verified Contractor Identity & Physical Office"
-                highlight="Physical Office"
-                highlightClassName="text-blue-600"
-                className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight break-words"
-                blurAmount="14px"
-                stagger={0.05}
-              />
-              <BlurText
-                as="p"
-                className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
-                animateBy="words"
-                blurAmount="10px"
-                stagger={0.02}
-                delay={0.15}
-                text="We operate with complete commercial transparency. Here is our physical business card, registered office location, and direct GM contact line."
-              />
+            <div className="max-w-2xl">
+              <h2 className="mt-4 font-display font-bold text-2xl sm:text-4xl text-on-surface leading-tight tracking-tight">
+                Verified contractor identity &amp; physical office
+              </h2>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* The Actual Physical Business Card Display */}
-            <div className="lg:col-span-7">
-              <ScrollReveal variant="zoom-in">
-                <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg border border-slate-200 relative group">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span className="text-[11px] xs:text-xs font-bold uppercase tracking-wider text-slate-700">Official Company Business Card</span>
-                    </div>
-                    <span className="text-[11px] xs:text-xs font-semibold text-slate-500">Patancheru • Hyderabad</span>
-                  </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                  {/* Card Image Display with shadow & rounded borders */}
-                  <div className="rounded-xl overflow-hidden shadow-md border border-slate-200/90 relative group-hover:shadow-xl transition-shadow duration-300">
-                    <img 
-                      src={leadership.businessCard} 
-                      alt="Official Business Card of MR. ELECTRICAL WORKS - Mr. Nekbor Seikh" 
-                      className="w-full h-auto object-contain bg-white"
+            {/* Physical business card, machined panel */}
+            <div className="lg:col-span-7 min-w-0">
+              <ScrollReveal variant="fade-up" delay={0.1}>
+                <div className="border border-border bg-surface rounded-md p-4">
+                  <span className="label-tech">Official company business card</span>
+                  <div className="mt-3 rounded-sm overflow-hidden border border-border">
+                    <img
+                      src={leadership.businessCard}
+                      alt="Official business card of MR. ELECTRICAL WORKS — Mr. Nekbor Seikh"
+                      className="w-full h-auto object-contain bg-surface"
                     />
                   </div>
-
-                  <p className="text-xs text-slate-500 text-center mt-3">
+                  <p className="mt-3 font-mono text-[11px] text-muted leading-relaxed">
                     Physical card registered at No. 83, Gokul Nagar, Patancheru, Telangana 502319
                   </p>
                 </div>
               </ScrollReveal>
             </div>
 
-            {/* Address & Verified Office Contact Details */}
-            <div className="lg:col-span-5 space-y-4">
-              <ScrollReveal variant="fade-left" delay={0.1}>
-                
-                <div className="card p-6 border-l-4 border-blue-600 bg-white">
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 shrink-0">
-                      <MapPin size={22} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Office Address</h4>
-                      <p className="text-slate-700 font-semibold mt-1 text-sm leading-relaxed">
-                        {contactInfo.address}
-                      </p>
-                      <a 
-                        href={contactInfo.googleMapsUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 mt-2"
-                      >
-                        <span>Open in Google Maps</span>
-                        <span>&rarr;</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+            {/* Contact ledger — single divided panel */}
+            <div className="lg:col-span-5 min-w-0">
+              <ScrollReveal variant="fade-up" delay={0.15}>
+                <div className="border border-border bg-surface rounded-md divide-y divide-border">
 
-                <div className="card p-6 border-l-4 border-emerald-600 bg-white">
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 shrink-0">
-                      <Phone size={22} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Direct Line / WhatsApp</h4>
-                      <p className="text-slate-900 font-extrabold mt-1 text-base">
-                        {contactInfo.displayPhone}
-                      </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Attended by Mr. Nekbor Seikh (GM - Projects)
-                      </p>
-                    </div>
+                  <div className="p-4 sm:p-5">
+                    <span className="label-tech">Office address</span>
+                    <p className="mt-2 text-sm font-semibold text-on-surface leading-relaxed">
+                      {contactInfo.address}
+                    </p>
+                    <a
+                      href={contactInfo.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block text-[13px] font-semibold text-primary underline-offset-2 hover:underline whitespace-nowrap"
+                    >
+                      Open in Google Maps
+                    </a>
                   </div>
-                </div>
 
-                <div className="card p-6 border-l-4 border-cyan-600 bg-white">
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2.5 rounded-xl bg-cyan-50 text-cyan-600 shrink-0">
-                      <Mail size={22} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Official Email</h4>
-                      <p className="text-slate-800 font-semibold mt-1 text-sm break-all">
-                        {contactInfo.email}
-                      </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Direct quotation &amp; drawing submittals
-                      </p>
-                    </div>
+                  <div className="p-4 sm:p-5">
+                    <span className="label-tech">Direct line</span>
+                    <a
+                      href={`tel:${contactInfo.phone}`}
+                      className="mt-2 inline-block font-mono tabular-data text-sm font-semibold text-on-surface hover:text-primary transition-colors duration-150"
+                    >
+                      {contactInfo.displayPhone}
+                    </a>
+                    <p className="mt-1 font-mono text-[11px] text-muted">
+                      Attended by Mr. Nekbor Seikh (GM, Projects)
+                    </p>
                   </div>
-                </div>
 
+                  <div className="p-4 sm:p-5">
+                    <span className="label-tech">Official email</span>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="mt-2 block text-sm font-semibold text-on-surface break-all hover:text-primary transition-colors duration-150"
+                    >
+                      {contactInfo.email}
+                    </a>
+                    <p className="mt-1 font-mono text-[11px] text-muted">
+                      Direct quotation &amp; drawing submittals
+                    </p>
+                  </div>
+
+                </div>
               </ScrollReveal>
             </div>
 
@@ -287,136 +204,97 @@ const About = () => {
         </div>
       </section>
 
-      {/* ============================== MISSION & VISION DUAL CARDS ============================== */}
-      <section className="section-padding bg-slate-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <ScrollReveal variant="fade-right">
-              <div className="card p-8 md:p-10 h-full border-t-4 border-emerald-600 bg-white shadow-sm hover:shadow-xl transition-all">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-6">
-                  <Target size={26} />
-                </div>
-                <h3 className="text-2xl font-extrabold text-slate-900 mb-4">Our Engineering Mission</h3>
-                <p className="text-slate-600 text-base leading-relaxed">
-                  To eliminate electrical fire hazards and power breakdowns across Telangana by executing strict engineering load design, genuine certified components, and flawless workmanship.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fade-left" delay={0.15}>
-              <div className="card p-8 md:p-10 h-full border-t-4 border-blue-900 bg-white shadow-sm hover:shadow-xl transition-all">
-                <div className="w-12 h-12 rounded-xl bg-blue-900/10 text-blue-900 flex items-center justify-center mb-6">
-                  <Compass size={26} />
-                </div>
-                <h3 className="text-2xl font-extrabold text-slate-900 mb-4">Our Industry Vision</h3>
-                <p className="text-slate-600 text-base leading-relaxed">
-                  To become the most dependable and technically sound electrical contracting firm in Telangana, recognized for engineering expertise, zero-defect handovers, and absolute client trust.
-                </p>
-              </div>
-            </ScrollReveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============================== CORE VALUES GRID ============================== */}
-      <section className="section-padding bg-white">
+      {/* ============================== PRINCIPLES INDEX ============================== */}
+      <section className="section-padding">
         <div className="container-custom">
           <ScrollReveal variant="fade-up">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="eyebrow">The Engineering Code</span>
-              <h2 className="section-title">The Principles Behind Every Wire &amp; Panel</h2>
-              <p className="section-subtitle">
+            <div className="max-w-2xl">
+              <h2 className="mt-4 font-display font-bold text-2xl sm:text-4xl text-on-surface leading-tight tracking-tight">
+                The principles behind every wire &amp; panel
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
                 Our team abides by standardized procedures that ensure long-lasting electrical safety.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((val, idx) => (
-              <ScrollReveal 
-                key={idx} 
-                variant="zoom-in" 
-                delay={idx * 0.08}
-              >
-                <div className="card p-6 h-full flex flex-col justify-between hover:border-blue-300">
-                  <div>
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
-                      <CheckCircle2 size={22} />
-                    </div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">{val.title}</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">{val.desc}</p>
-                  </div>
+          <ScrollReveal variant="fade-up" delay={0.1}>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-sm overflow-hidden">
+              {values.map((val, idx) => (
+                <div key={idx} className="bg-surface p-5">
+                  <span className="font-mono tabular-data text-xs text-primary">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-2.5 text-sm sm:text-[15px] font-semibold text-on-surface leading-snug">
+                    {val.title}
+                  </h3>
+                  <p className="mt-1.5 text-[13px] text-muted leading-relaxed">
+                    {val.desc}
+                  </p>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ============================== SAFETY CULTURE PROTOCOL ============================== */}
-      <section className="section-padding bg-slate-950 text-white relative overflow-hidden">
-        <div className="hero-orb hero-orb-2 opacity-40"></div>
-        <div className="hero-grid-pattern"></div>
+      {/* ============================== FIELD SAFETY PROTOCOL — dark closing ============================== */}
+      <section className="bg-panel-chassis py-16">
+        <div className="container-custom">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-2xl">
+              <h2 className="font-display font-bold text-2xl sm:text-4xl text-surface leading-tight tracking-tight">
+                Safety is not a policy. It is our culture.
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-secondary-light/80 leading-relaxed">
+                Electricity powers modern living, but faulty engineering causes lethal shock and catastrophic fire hazards. We enforce strict industrial safety protocols on every domestic and commercial job.
+              </p>
+            </div>
+          </ScrollReveal>
 
-        <div className="container-custom relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7">
-              <ScrollReveal variant="fade-right">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
-                  <ShieldAlert size={14} /> Rigorous Field Protocol
-                </div>
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl font-black mb-6 leading-tight break-words">
-                  Safety Is Not A Policy. It Is Our Culture.
-                </h2>
-                <p className="text-slate-300 text-base leading-relaxed mb-8">
-                  Electricity powers modern living, but faulty engineering causes lethal shock and catastrophic fire hazards. We enforce strict industrial safety protocols on every domestic and commercial job.
-                </p>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    '1000V Certified Insulated Tools & Equipment',
-                    'Full Personal Protective Equipment (PPE) On-Site',
-                    'Chemical Earth Pit Megger Resistance Testing',
-                    'FRLS Flame-Retardant Copper Wiring Standard',
-                    'Calibrated 30mA RCCB Shock Prevention Units',
-                    'Standardized Circuit Numbering & Phase Tags'
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-                      <ShieldCheck className="text-emerald-400 shrink-0" size={18} />
-                      <span className="text-sm text-slate-200 font-medium">{item}</span>
+            {/* Protocol hairline grid */}
+            <div className="lg:col-span-7 min-w-0">
+              <ScrollReveal variant="fade-up" delay={0.1}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-panel-line border border-panel-line">
+                  {safetyProtocols.map((item, idx) => (
+                    <div key={idx} className="bg-panel-chassis p-4 text-[13px] text-secondary-light flex items-start gap-2.5">
+                      <ShieldCheck size={16} className="text-tertiary-light shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </ScrollReveal>
             </div>
 
-            <div className="lg:col-span-5">
-              <ScrollReveal variant="fade-left" delay={0.2}>
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl">
-                  <div className="flex items-center gap-4 mb-5 pb-4 border-b border-slate-800">
-                    <img 
-                      src={leadership.photoSquare} 
-                      alt={leadership.name} 
-                      className="w-16 h-16 rounded-full object-cover border-2 border-emerald-400"
+            {/* Sign-off dossier */}
+            <div className="lg:col-span-5 min-w-0">
+              <ScrollReveal variant="fade-up" delay={0.15}>
+                <div className="bg-panel-steel border border-panel-line rounded-md p-5 max-w-xl">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={leadership.photoSquare}
+                      alt={leadership.name}
+                      className="w-14 h-14 rounded-sm object-cover border border-panel-line shrink-0"
                     />
-                    <div>
-                      <h4 className="text-white font-bold text-base">{leadership.name}</h4>
-                      <p className="text-xs text-emerald-400 font-semibold">{leadership.role}</p>
-                      <p className="text-[11px] text-slate-400">{leadership.qualification}</p>
+                    <div className="min-w-0">
+                      <p className="font-sans text-sm font-bold text-surface">{leadership.name}</p>
+                      <p className="mt-0.5 font-mono text-[10px] text-primary-light leading-relaxed">{leadership.role}</p>
+                      <p className="font-mono text-[10px] text-panel-dimmed leading-relaxed">{leadership.qualification}</p>
                     </div>
                   </div>
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                    "Every client we serve in Patancheru and Hyderabad gets my personal mobile number. If there is ever an issue with our panel or wiring, I stand behind our work 100%."
+
+                  <p className="mt-4 text-[13px] text-secondary-light leading-relaxed">
+                    {`“Every client we serve in Patancheru and Hyderabad gets my personal mobile number. If there is ever an issue with our panel or wiring, I stand behind our work 100%.”`}
                   </p>
+
                   <a
                     href={`tel:${contactInfo.phone}`}
-                    className="w-full btn-primary flex items-center justify-center gap-2 text-sm !py-2.5"
+                    className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-primary hover:bg-primary-hover text-surface font-sans text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
                   >
-                    <Phone size={16} />
-                    <span>Call Direct: {contactInfo.displayPhone}</span>
+                    <Phone size={15} aria-hidden="true" />
+                    <span>Call direct: {contactInfo.displayPhone}</span>
                   </a>
                 </div>
               </ScrollReveal>
@@ -425,7 +303,8 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
+
+  </>
   );
 };
 

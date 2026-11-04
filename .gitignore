@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Hallmark design-skill debug & capture artifacts
+.hallmark/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
