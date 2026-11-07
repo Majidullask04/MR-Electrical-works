@@ -18,10 +18,10 @@ const Home = () => {
   const filteredServices = selectedFilter === 'All projects'
     ? services
     : services.filter(s => {
-        if (selectedFilter === 'Substations & HT') return s.id === 3 || s.id === 4;
-        if (selectedFilter === 'Industrial LT') return s.id === 3 || s.id === 6;
-        if (selectedFilter === 'Commercial towers') return s.id === 2 || s.id === 5;
-        if (selectedFilter === 'Villas & high-rise') return s.id === 1 || s.id === 2;
+        if (selectedFilter === 'Substations & HT') return s.id === 4 || s.id === 5 || s.id === 8;
+        if (selectedFilter === 'Industrial LT') return s.id === 4 || s.id === 5 || s.id === 7 || s.id === 8;
+        if (selectedFilter === 'Commercial towers') return s.id === 2 || s.id === 6 || s.id === 8;
+        if (selectedFilter === 'Villas & high-rise') return s.id === 1 || s.id === 2 || s.id === 3 || s.id === 8;
         return true;
       });
 

@@ -1,4 +1,4 @@
-import { Home, Lightbulb, Zap, Factory, Shield, HeartPulse, Building2, HardHat, Warehouse } from 'lucide-react';
+import { Home, Lightbulb, Zap, Factory, Shield, HeartPulse, Building2, HardHat, Warehouse, Layers } from 'lucide-react';
 
 export const services = [
   {
@@ -15,27 +15,39 @@ export const services = [
   },
   {
     id: 3,
+    title: 'Mivan Formwork & Slab Conduiting',
+    description: 'Wall & slab embedded conduiting for monolithic Mivan RCC structures: point & power conduiting, communication/data conduits, fire alarm piping, LPS lightning protection rod fixing, DB & G.I. junction box packing/fixing, accurate panel seating marked per drawing, de-shuttering box opening, and wire pulling.',
+    icon: HardHat,
+  },
+  {
+    id: 4,
     title: 'Distribution Boards & Panels',
     description: 'Main LT panels, Sub-DBs, MCB/RCCB earth leakage breaker setups, busbar chambers, and phase-balancer installations.',
     icon: Zap,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Industrial Electrical Works',
     description: 'Heavy machinery cabling, perforated cable tray networks, bus ducts, motor control centers (MCC), and plant energization.',
     icon: Factory,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Commercial Infrastructure',
     description: 'Complete electrical turnkey solutions for hospitals, tech parks, shopping malls, educational institutions, and showrooms.',
     icon: Building2,
   },
   {
-    id: 6,
+    id: 7,
     title: 'Fault Finding & Testing AMCs',
     description: 'Megger insulation testing, earth-pit resistance measurement, thermal scanning, short-circuit recovery, and 24/7 breakdown callouts.',
     icon: Shield,
+  },
+  {
+    id: 8,
+    title: 'Cable Trays, Lift Shaft & BBT Works',
+    description: 'Cable tray networks with C-channel supports & threaded rod suspensions; G.I., copper & aluminium earthing strip fixing; lift shaft power cabling & elevator panel installation; Busbar Trunking (BBT) jointing; and dual-source tap-off box terminations.',
+    icon: Layers,
   },
 ];
 
@@ -83,9 +95,9 @@ export const industries = [
 ];
 
 export const stats = [
-  { value: '100+', label: 'Projects Delivered' },
-  { value: '50+', label: 'Trusted Clients' },
-  { value: '5+', label: 'Years Experience' },
+  { value: '9+', label: 'Projects Delivered' },
+  { value: '14+', label: 'Trusted Clients' },
+  { value: '9+', label: 'Years Experience' },
   { value: '100%', label: 'Safety Standards' },
 ];
 
@@ -93,7 +105,7 @@ export const leadership = {
   name: 'Mr. Nekbor Seikh',
   qualification: 'M.Tech - Electrical & Electronics Engineering (EEE)',
   role: 'GM - Projects & Lead Consultant',
-  experience: 'M.Tech Qualified Lead Engineer with 5+ years driving residential, commercial, and industrial turnkey electrical contracts.',
+  experience: 'M.Tech Qualified Lead Engineer with 9+ years driving residential, commercial, and industrial turnkey electrical contracts.',
   photo: '/images/nekbor-seikh.jpg',
   photoSquare: '/images/nekbor-seikh-square.jpg',
   businessCard: '/images/mr-electrical-card.jpg',
