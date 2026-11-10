@@ -3,12 +3,15 @@ import ScrollReveal from '../components/ScrollReveal';
 import { Link } from 'react-router-dom';
 
 const galleryImages = [
-  { url: leadership.photo, caption: "Engineering Drawing & Circuit Analysis by Mr. Nekbor Seikh (M.Tech - EEE)" },
+  { url: leadership.photo, caption: "Mr. Nekbor Seikh (M.Tech - EEE) — GM, Projects & Lead Consultant" },
   { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=800", caption: "Commercial Conduit Routing & Laser Leveling" },
   { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", caption: "Architectural Office LED Lighting" },
   { url: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=800", caption: "Industrial Cable Tray & Motor Feeder Assembly" },
   { url: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=800", caption: "Residential Smart Distribution Board Dressing" },
-  { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", caption: "Turnkey Luxury Villa Electrification & Cove Lights" }
+  { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", caption: "Turnkey Luxury Villa Electrification & Cove Lights" },
+  { url: "/images/project-jain-sadguru-team.jpg", caption: "Site execution team — Jain Sadguru Image Capital Park, Madhapur, Hyderabad" },
+  { url: "/images/field-panel-termination.jpg", caption: "Schneider MCB distribution board — phase-wise dressing & terminations" },
+  { url: "/images/field-wiring-labelling.jpg", caption: "FRLS circuit labelling (R6 — Maid Room) for maintainable handover" }
 ];
 
 const Projects = () => {
@@ -138,7 +141,7 @@ const Projects = () => {
           <ScrollReveal variant="fade-up">
             <div className="max-w-2xl">
               <h2 className="font-display font-bold text-2xl sm:text-4xl text-surface">
-                Your site could be dossier number four
+                Your site could be dossier number seven
               </h2>
               <Link
                 to="/contact"

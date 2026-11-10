@@ -1,6 +1,6 @@
 import { ShieldCheck, Phone } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
-import { leadership, contactInfo } from '../data/mockData';
+import { leadership, managingDirector, contactInfo } from '../data/mockData';
 
 const About = () => {
   const values = [
@@ -118,6 +118,66 @@ const About = () => {
         </div>
       </section>
 
+      {/* ============================== MANAGING DIRECTOR DOSSIER ============================== */}
+      <section className="section-padding bg-subtle border-t border-border">
+        <div className="container-custom">
+          <ScrollReveal variant="fade-up">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+              {/* Biography, delivery record & credentials */}
+              <div className="lg:col-span-7 min-w-0 order-2 lg:order-1">
+                <span className="label-tech">Project leadership</span>
+                <h2 className="mt-3 font-display font-bold text-2xl sm:text-4xl text-on-surface leading-tight tracking-tight">
+                  The Managing Director behind every handover
+                </h2>
+
+                <blockquote className="mt-6 border-l-2 border-primary pl-4 text-muted text-sm sm:text-base leading-relaxed">
+                  {`“${managingDirector.quote}”`}
+                </blockquote>
+
+                <div className="mt-6 space-y-4 text-sm sm:text-base text-muted leading-relaxed max-w-[64ch]">
+                  <p>
+                    <strong className="text-on-surface">{managingDirector.name}</strong> leads MR. ELECTRICAL WORKS as <strong className="text-on-surface">Project Managing Director</strong> — directing project planning, site execution teams, and client coordination from first drawing to final handover.
+                  </p>
+                  <p>
+                    Under his direction, the company has delivered integrated electrical &amp; ELV packages for commercial developments — most recently the <strong className="text-on-surface">Jain Sadguru Image Capital Park, Madhapur</strong>: 270+ IP cameras on a 128-channel NVR with 40TB storage, full access control with biometric readers, and 4× 6-metre UHF boom barriers, commissioned with complete test records and documentation.
+                  </p>
+                </div>
+
+                {/* Indexed credentials */}
+                <div className="mt-8">
+                  {managingDirector.credentials.map((cred, idx) => (
+                    <div key={idx} className="flex items-start gap-4 border-t border-border first:border-t-0 pt-3 pb-3">
+                      <span className="font-mono tabular-data text-xs text-primary pt-0.5 shrink-0">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-[13px] font-semibold text-on-surface leading-relaxed">{cred}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Portrait frame */}
+              <div className="lg:col-span-5 min-w-0 order-1 lg:order-2">
+                <div className="border border-border rounded-md shadow-tech-md overflow-hidden bg-neutral">
+                  <img
+                    src={managingDirector.photo}
+                    alt="Mr. Habibulla SK, Managing Director - Projects, MR. ELECTRICAL WORKS"
+                    className="w-full h-auto object-cover object-top max-h-[540px]"
+                  />
+                  <div className="bg-panel-chassis px-4 py-3.5">
+                    <p className="font-sans text-base font-bold text-surface">{managingDirector.name}</p>
+                    <p className="mt-1 font-mono text-[10px] text-panel-dimmed leading-relaxed">{managingDirector.role}</p>
+                    <p className="font-mono text-[10px] text-panel-dimmed leading-relaxed">{managingDirector.tagline}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ============================== IDENTITY VERIFICATION ============================== */}
       <section className="bg-neutral border-y border-border">
         <div className="container-custom section-padding">
@@ -135,7 +195,13 @@ const About = () => {
             <div className="lg:col-span-7 min-w-0">
               <ScrollReveal variant="fade-up" delay={0.1}>
                 <div className="border border-border bg-surface rounded-md p-4">
-                  <span className="label-tech">Official company business card</span>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="label-tech">Official company business card</span>
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-tertiary-light text-tertiary font-mono text-[10px] font-semibold whitespace-nowrap">
+                      <ShieldCheck size={12} aria-hidden="true" />
+                      MSME Verified · Govt. of India
+                    </span>
+                  </div>
                   <div className="mt-3 rounded-sm overflow-hidden border border-border">
                     <img
                       src={leadership.businessCard}

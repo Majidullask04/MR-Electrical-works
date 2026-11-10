@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Phone, MessageSquare, MapPin, FileText, ArrowRight } from 'lucide-react';
-import { stats, services, contactInfo, leadership } from '../data/mockData';
+import { stats, services, contactInfo, leadership, managingDirector } from '../data/mockData';
 import ScrollReveal from '../components/ScrollReveal';
 import Counter from '../components/Counter';
 import Marquee from '../components/Marquee';
@@ -332,12 +332,58 @@ const Home = () => {
                   </div>
 
                   <div className="pt-4 mt-5 border-t border-border flex flex-wrap justify-between gap-2 font-mono text-[11px] text-muted">
-                    <span>Telangana CEIG inspectorate aligned</span>
+                    <span>MSME Verified (Udyam: UDYAM-TS-25-0046549)</span>
                     <span>Patancheru &amp; Hyderabad HQ</span>
                   </div>
                 </div>
               </ScrollReveal>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================== LEADERSHIP ============================== */}
+      <section className="section-padding bg-neutral border-b border-border">
+        <div className="container-custom">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-2xl">
+              <h2 className="font-display font-bold text-2xl sm:text-4xl text-on-surface leading-tight tracking-tight">
+                Led on the ground, not from a desk
+              </h2>
+              <p className="text-sm sm:text-base text-muted leading-relaxed mt-3">
+                Every contract is directed personally by our Managing Director and reviewed in the field by our GM — Projects.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { person: managingDirector, primary: true },
+              { person: leadership, primary: false }
+            ].map(({ person, primary }, idx) => (
+              <ScrollReveal key={person.name} variant="fade-up" delay={idx * 0.08}>
+                <div className="border border-border rounded-md bg-surface p-5 h-full flex items-start gap-4 min-w-0">
+                  <img
+                    src={person.photoSquare}
+                    alt={person.name}
+                    loading="lazy"
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-sm object-cover object-top border border-border shrink-0"
+                  />
+                  <div className="min-w-0">
+                    {primary && (
+                      <span className="inline-block px-2 py-0.5 rounded-sm bg-tertiary-light text-tertiary font-mono text-[10px] font-semibold whitespace-nowrap">
+                        Project Managing Director
+                      </span>
+                    )}
+                    <p className={`font-sans font-bold text-on-surface truncate ${primary ? 'text-base mt-2' : 'text-sm mt-1'}`}>{person.name}</p>
+                    <p className="font-mono text-[10px] text-primary-light mt-0.5 leading-relaxed">{person.role}</p>
+                    <p className="font-mono text-[10px] text-panel-dimmed leading-relaxed mt-0.5">
+                      {person.qualification || person.tagline}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>

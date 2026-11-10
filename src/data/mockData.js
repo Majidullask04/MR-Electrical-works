@@ -81,6 +81,36 @@ export const projects = [
     duration: '45 Days',
     image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=800',
     category: 'Industrial'
+  },
+  {
+    id: 4,
+    title: 'Jain Sadguru Image Capital Park — Security & ELV Package',
+    location: 'Madhapur, Hyderabad (near Hitec City Metro)',
+    client: 'Jain Sadguru Constructions LLP',
+    services: 'CCTV Surveillance (270+ IP Cameras, 128CH NVR, 40TB Storage), Access Control (38 Readers, Biometric & EM Locks), 4× 6M Boom Barriers with UHF Readers',
+    duration: 'Delivered & Commissioned',
+    image: '/images/project-jain-sadguru.jpg',
+    category: 'Commercial'
+  },
+  {
+    id: 5,
+    title: 'Mahaveer Crystal Garden — High-Rise Residential Electrification',
+    location: 'Attapur, Hyderabad (PVNR Expressway, Pillar No. 86)',
+    client: 'Mahaveer Constructions · Facility managed by JLL Hyderabad',
+    services: 'High-Rise Electrical Infrastructure, Panel & Common-Area Wiring, Facility Electrical Support (G+35 Towers)',
+    duration: 'Commissioned',
+    image: '/images/project-mahaveer-crystal-garden.jpg',
+    category: 'Residential'
+  },
+  {
+    id: 6,
+    title: 'Myscape Sanctuary — Residential Tower Electrification',
+    location: 'Hafeezpet, Hyderabad (near Hitec City)',
+    client: 'M/s. Myscape Properties Pvt Ltd',
+    services: 'High-Rise Electrical Infrastructure & Apartment Wiring (4 Towers, G+14)',
+    duration: 'Completed',
+    image: '/images/project-myscape-sanctuary.jpg',
+    category: 'Residential'
   }
 ];
 
@@ -118,6 +148,21 @@ export const leadership = {
   quote: "Electrical safety isn't an afterthought: it's engineered into every wire, breaker, and panel board before current ever flows."
 };
 
+export const managingDirector = {
+  name: 'Mr. Habibulla SK',
+  role: 'Managing Director — Projects',
+  tagline: 'Project Managing Director heading execution, planning & client delivery',
+  photo: '/images/habibulla-sk.jpg',
+  photoSquare: '/images/habibulla-sk-square.jpg',
+  credentials: [
+    'Managing Director heading project planning, execution teams & client delivery',
+    'Directs turnkey electrical & ELV packages: CCTV surveillance, access control (ACS), and boom barrier systems',
+    'Led delivery of the Jain Sadguru Image Capital Park security & ELV package — 270+ IP cameras, 128CH NVR with 40TB storage, 38 readers, and 4× 6M UHF boom barriers at Madhapur, Hyderabad',
+    'Owns commissioning, test records & handover documentation for every contract'
+  ],
+  quote: "Every project is delivered the same way: planned to the drawing, executed to the code, and handed over with complete documentation — no exceptions."
+};
+
 export const contactInfo = {
   name: 'MR. ELECTRICAL WORKS',
   owner: 'Nekbor Seikh (M.Tech - EEE)',
@@ -126,6 +171,12 @@ export const contactInfo = {
   displayPhone: '+91 85199 49762',
   email: 'mrelectricalworks02@gmail.com',
   address: 'No. 83, Gokul Nagar, Patancheru, Hyderabad, Telangana - 502319',
+  msme: {
+    registeredName: 'MR ELECTRIC WORKS',
+    udyamNumber: 'UDYAM-TS-25-0046549',
+    type: 'Micro Enterprise — Services',
+    district: 'Sangareddy (Telangana)'
+  },
   addressDetails: {
     street: 'No. 83, Gokul Nagar',
     area: 'Patancheru',
